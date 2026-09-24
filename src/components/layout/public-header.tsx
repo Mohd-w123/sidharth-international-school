@@ -41,7 +41,7 @@ export async function PublicHeader() {
     <header className="sticky top-0 z-50">
       {/* Top Bar */}
       {showTopbar && (
-        <div className="bg-[#002a54] text-white/90 text-xs py-2 hidden md:block border-b border-white/10">
+        <div className="bg-[#680000] text-white/90 text-xs py-2 hidden md:block border-b border-white/10">
           <Container className="flex items-center justify-between">
             <div className="flex items-center gap-5 flex-wrap">
               {phone && (
@@ -49,7 +49,7 @@ export async function PublicHeader() {
                   href={`tel:${phone}`}
                   className="flex items-center gap-1.5 hover:text-white transition-colors"
                 >
-                  <Phone className="h-3 w-3 text-[#ffb300]" />
+                  <Phone className="h-3 w-3 text-[#D4A72C]" />
                   <span>{phone}</span>
                 </a>
               )}
@@ -58,13 +58,13 @@ export async function PublicHeader() {
                   href={`mailto:${email}`}
                   className="flex items-center gap-1.5 hover:text-white transition-colors"
                 >
-                  <Mail className="h-3 w-3 text-[#ffb300]" />
+                  <Mail className="h-3 w-3 text-[#D4A72C]" />
                   <span>{email}</span>
                 </a>
               )}
               {topbarAnnouncement && (
                 <div className="flex items-center gap-1.5 text-white/70 pl-2 border-l border-white/20">
-                  <Bell className="h-3 w-3 text-[#ffb300]" />
+                  <Bell className="h-3 w-3 text-[#D4A72C]" />
                   <span>{topbarAnnouncement}</span>
                 </div>
               )}
@@ -74,7 +74,7 @@ export async function PublicHeader() {
               <div className="flex items-center gap-3">
                 <Link
                   href={ctaLink}
-                  className="px-3.5 py-1 rounded-md bg-[#ffb300] text-[#002a54] font-bold text-xs hover:bg-[#ffa000] shadow-xs transition-colors"
+                  className="px-3.5 py-1 rounded-md bg-[#D4A72C] text-[#680000] font-bold text-xs hover:bg-[#b88f20] shadow-xs transition-colors"
                 >
                   {ctaText}
                 </Link>
@@ -85,7 +85,7 @@ export async function PublicHeader() {
       )}
 
       {/* Main Nav */}
-      <nav className="bg-[#003d78] shadow-md border-b border-[#002a54]">
+      <nav className="bg-[#8A0000] shadow-md border-b border-[#680000]">
         <Container className="flex items-center justify-between h-18">
           <Link href="/" className="flex items-center gap-3 py-2 group">
             {logo ? (
@@ -109,7 +109,7 @@ export async function PublicHeader() {
               <div className="font-bold text-base md:text-lg leading-tight group-hover:text-white/90 transition-colors">
                 {siteName}
               </div>
-              <div className="text-[10px] text-[#ffb300] font-medium tracking-wide uppercase">
+              <div className="text-[10px] text-[#D4A72C] font-medium tracking-wide uppercase">
                 {headerSubtitle}
               </div>
             </div>
@@ -141,7 +141,7 @@ export async function PublicHeader() {
                               key={ci}
                               href={child.url || "#"}
                               target={child.target}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#003d78]/5 hover:text-[#003d78] transition-colors"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#8A0000]/5 hover:text-[#8A0000] transition-colors"
                             >
                               {child.label}
                             </Link>
@@ -171,7 +171,7 @@ function MobileMenuToggle({ items }: { items: IMenuItem[] }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </summary>
-        <div className="absolute left-0 right-0 top-full bg-[#003d78] shadow-lg border-t border-white/10 z-50">
+        <div className="absolute left-0 right-0 top-full bg-[#8A0000] shadow-lg border-t border-white/10 z-50">
           <Container className="py-4">
             <div className="space-y-1">
               {items.map((item: IMenuItem, i: number) => (

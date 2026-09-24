@@ -68,7 +68,7 @@ export async function PublicFooter() {
   const logo = isValidImageUrl(rawLogo) ? rawLogo.trim() : "";
 
   return (
-    <footer className="bg-[#002a54] text-white mt-auto border-t border-white/10">
+    <footer className="bg-[#680000] text-white mt-auto border-t border-white/10">
       {/* Main Footer */}
       <div className="border-b border-white/10">
         <Container className="py-14">
@@ -88,13 +88,13 @@ export async function PublicFooter() {
                     />
                   </div>
                 ) : (
-                  <div className="h-12 w-12 rounded-full bg-[#ffb300] flex items-center justify-center text-[#002a54] font-bold text-xl shrink-0">
+                  <div className="h-12 w-12 rounded-full bg-[#D4A72C] flex items-center justify-center text-[#680000] font-bold text-xl shrink-0">
                     {siteName.charAt(0)}
                   </div>
                 )}
                 <div>
                   <h3 className="font-bold text-lg leading-tight">{siteName}</h3>
-                  <p className="text-xs text-[#ffb300] uppercase tracking-wider mt-0.5">{headerSubtitle}</p>
+                  <p className="text-xs text-[#D4A72C] uppercase tracking-wider mt-0.5">{headerSubtitle}</p>
                 </div>
               </div>
               <p className="text-sm text-white/75 leading-relaxed">{tagline}</p>
@@ -106,7 +106,7 @@ export async function PublicFooter() {
                     href={facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb300] hover:text-[#002a54] transition-all"
+                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Facebook"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -119,7 +119,7 @@ export async function PublicFooter() {
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb300] hover:text-[#002a54] transition-all"
+                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Instagram"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -132,7 +132,7 @@ export async function PublicFooter() {
                     href={twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb300] hover:text-[#002a54] transition-all"
+                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Twitter / X"
                   >
                     <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
@@ -145,7 +145,7 @@ export async function PublicFooter() {
                     href={youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb300] hover:text-[#002a54] transition-all"
+                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="YouTube"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -158,7 +158,7 @@ export async function PublicFooter() {
                     href={linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ffb300] hover:text-[#002a54] transition-all"
+                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="LinkedIn"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -171,7 +171,7 @@ export async function PublicFooter() {
 
             {/* Column 2: Quick Links */}
             <div>
-              <h4 className="font-semibold mb-4 text-[#ffb300] text-sm uppercase tracking-wider">Quick Links</h4>
+              <h4 className="font-semibold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider">Quick Links</h4>
               <ul className="space-y-2.5">
                 {footerItems.slice(0, 8).map((item: IMenuItem, i: number) => (
                   <li key={i}>
@@ -180,7 +180,7 @@ export async function PublicFooter() {
                       target={item.target}
                       className="text-sm text-white/75 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-1.5 group"
                     >
-                      <ArrowRight className="h-3 w-3 text-[#ffb300] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ArrowRight className="h-3 w-3 text-[#D4A72C] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span>{item.label}</span>
                     </Link>
                   </li>
@@ -198,7 +198,7 @@ export async function PublicFooter() {
 
             {/* Column 3: Important Links */}
             <div>
-              <h4 className="font-semibold mb-4 text-[#ffb300] text-sm uppercase tracking-wider">CBSE & Compliance</h4>
+              <h4 className="font-semibold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider">CBSE & Compliance</h4>
               <ul className="space-y-2.5">
                 {secondaryItems.slice(0, 8).map((item: IMenuItem, i: number) => (
                   <li key={i}>
@@ -224,23 +224,23 @@ export async function PublicFooter() {
 
             {/* Column 4: Contact */}
             <div>
-              <h4 className="font-semibold mb-4 text-[#ffb300] text-sm uppercase tracking-wider">Contact Us</h4>
+              <h4 className="font-semibold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider">Contact Us</h4>
               <div className="space-y-3.5">
                 {address && (
                   <div className="flex items-start gap-2.5">
-                    <MapPin className="h-4 w-4 mt-0.5 text-[#ffb300] shrink-0" />
+                    <MapPin className="h-4 w-4 mt-0.5 text-[#D4A72C] shrink-0" />
                     <p className="text-sm text-white/75 leading-relaxed">{address}</p>
                   </div>
                 )}
                 {phone && (
                   <div className="flex items-center gap-2.5">
-                    <Phone className="h-4 w-4 text-[#ffb300] shrink-0" />
+                    <Phone className="h-4 w-4 text-[#D4A72C] shrink-0" />
                     <a href={`tel:${phone}`} className="text-sm text-white/75 hover:text-white transition-colors">{phone}</a>
                   </div>
                 )}
                 {email && (
                   <div className="flex items-center gap-2.5">
-                    <Mail className="h-4 w-4 text-[#ffb300] shrink-0" />
+                    <Mail className="h-4 w-4 text-[#D4A72C] shrink-0" />
                     <a href={`mailto:${email}`} className="text-sm text-white/75 hover:text-white transition-colors">{email}</a>
                   </div>
                 )}
@@ -251,7 +251,7 @@ export async function PublicFooter() {
       </div>
 
       {/* Copyright Bar */}
-      <div className="py-4 bg-[#002244]">
+      <div className="py-4 bg-[#520000]">
         <Container className="flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <p className="text-xs text-white/60">{copyrightText}</p>
           <p className="text-xs text-white/40">

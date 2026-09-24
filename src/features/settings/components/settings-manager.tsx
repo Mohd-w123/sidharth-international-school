@@ -516,7 +516,7 @@ export function SettingsManager({ settings }: Props) {
             <Button
               onClick={handleSaveActiveSection}
               disabled={isPending}
-              className="bg-[#003d78] hover:bg-[#002a54] text-white shrink-0 shadow-xs"
+              className="bg-[#8A0000] hover:bg-[#680000] text-white shrink-0 shadow-xs"
             >
               {isPending ? (
                 <>
@@ -708,7 +708,7 @@ export function SettingsManager({ settings }: Props) {
                   <Button
                     onClick={handleCreateCustom}
                     disabled={isPending || !newKey.trim()}
-                    className="w-full bg-[#003d78] text-white"
+                    className="w-full bg-[#8A0000] text-white"
                   >
                     {isPending ? "Creating..." : "Create Setting"}
                   </Button>

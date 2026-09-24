@@ -35,8 +35,8 @@ export function TCSearchForm() {
   return (
     <div className="space-y-6">
       <Card className="max-w-xl mx-auto shadow-md">
-        <CardHeader className="bg-[#003d78]/5 border-b">
-          <CardTitle className="text-lg font-semibold text-[#003d78]">TC Verification & Download Search</CardTitle>
+        <CardHeader className="bg-[#8A0000]/5 border-b">
+          <CardTitle className="text-lg font-semibold text-[#8A0000]">TC Verification & Download Search</CardTitle>
         </CardHeader>
         <CardContent className="p-6">
           <form onSubmit={handleSearch} className="space-y-4">
@@ -60,7 +60,7 @@ export function TCSearchForm() {
                 required
               />
             </div>
-            <Button type="submit" disabled={isPending} className="w-full bg-[#003d78] hover:bg-[#0b5699]">
+            <Button type="submit" disabled={isPending} className="w-full bg-[#8A0000] hover:bg-[#A30000]">
               <Search className="h-4 w-4 mr-2" /> {isPending ? "Verifying..." : "Search Certificate"}
             </Button>
           </form>
@@ -95,7 +95,7 @@ export function TCSearchForm() {
             </div>
             <div>
               <p className="text-muted-foreground text-xs">Student Name</p>
-              <p className="font-semibold text-[#003d78] text-base">{result.studentName}</p>
+              <p className="font-semibold text-[#8A0000] text-base">{result.studentName}</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -126,7 +126,7 @@ export function TCSearchForm() {
                   href={result.documentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#003d78] text-white hover:bg-[#0b5699] font-medium transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#8A0000] text-white hover:bg-[#A30000] font-medium transition-colors"
                 >
                   <Download className="h-4 w-4" /> Download Official TC (PDF)
                 </a>

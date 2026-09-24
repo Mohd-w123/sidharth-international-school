@@ -114,7 +114,7 @@ export function TestimonialsSlider({
       <Container>
         {/* Top Centered Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a54] tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#680000] tracking-tight mb-3">
             {title}
           </h2>
           {subtitle && (
@@ -122,7 +122,7 @@ export function TestimonialsSlider({
               {subtitle}
             </p>
           )}
-          <div className="w-16 h-1 bg-[#ffb300] mx-auto mt-3 rounded-full" />
+          <div className="w-16 h-1 bg-[#D4A72C] mx-auto mt-3 rounded-full" />
         </div>
 
         {/* Main Testimonial Card Container */}
@@ -133,8 +133,8 @@ export function TestimonialsSlider({
         >
           <div className="relative rounded-3xl bg-[#f8fafc] border border-slate-200/80 p-8 sm:p-12 md:p-16 shadow-sm hover:shadow-md transition-all duration-300">
             {/* Big Stylized Gold Quotes */}
-            <div className="text-[#ffb300]/60 mb-4 select-none">
-              <Quote className="w-12 h-12 md:w-14 md:h-14 fill-[#ffb300]/20 rotate-180" />
+            <div className="text-[#D4A72C]/60 mb-4 select-none">
+              <Quote className="w-12 h-12 md:w-14 md:h-14 fill-[#D4A72C]/20 rotate-180" />
             </div>
 
             {/* Testimonial Quote Text with Smooth Fade Transition */}
@@ -149,7 +149,7 @@ export function TestimonialsSlider({
               {/* Author Row */}
               <div className="flex items-center gap-4 pt-2">
                 {current.avatar && (
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#ffb300] shadow-sm relative shrink-0 bg-slate-200">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#D4A72C] shadow-sm relative shrink-0 bg-slate-200">
                     <Image
                       src={current.avatar}
                       alt={current.name}
@@ -161,7 +161,7 @@ export function TestimonialsSlider({
                   </div>
                 )}
                 <div>
-                  <h3 className="font-bold text-sm sm:text-base md:text-lg text-[#002a54] leading-snug">
+                  <h3 className="font-bold text-sm sm:text-base md:text-lg text-[#680000] leading-snug">
                     {current.name}
                   </h3>
                   {current.role && (
@@ -180,7 +180,7 @@ export function TestimonialsSlider({
                   type="button"
                   onClick={prevSlide}
                   aria-label="Previous Testimonial"
-                  className="w-9 h-9 rounded-full bg-[#003d78] text-white hover:bg-[#002a54] active:scale-95 flex items-center justify-center transition-all shadow-sm cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-[#8A0000] text-white hover:bg-[#680000] active:scale-95 flex items-center justify-center transition-all shadow-sm cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
@@ -195,7 +195,7 @@ export function TestimonialsSlider({
                       aria-label={`Go to testimonial ${idx + 1}`}
                       className={`transition-all duration-300 rounded-full cursor-pointer ${
                         idx === currentIndex
-                          ? "w-6 h-2 bg-[#ffb300]"
+                          ? "w-6 h-2 bg-[#D4A72C]"
                           : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
                       }`}
                     />
@@ -206,7 +206,7 @@ export function TestimonialsSlider({
                   type="button"
                   onClick={nextSlide}
                   aria-label="Next Testimonial"
-                  className="w-9 h-9 rounded-full bg-[#003d78] text-white hover:bg-[#002a54] active:scale-95 flex items-center justify-center transition-all shadow-sm cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-[#8A0000] text-white hover:bg-[#680000] active:scale-95 flex items-center justify-center transition-all shadow-sm cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>

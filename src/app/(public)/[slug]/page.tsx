@@ -65,11 +65,11 @@ export default async function DynamicPage({ params }: Props) {
               <div className="my-10">
                 {Boolean(block.content.title) && (
                   <div className="text-center max-w-2xl mx-auto mb-8">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#002a54]">{String(block.content.title)}</h3>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-[#680000]">{String(block.content.title)}</h3>
                     {Boolean(block.content.subtitle) && (
                       <p className="text-sm text-slate-600 mt-1 font-normal">{String(block.content.subtitle)}</p>
                     )}
-                    <div className="w-12 h-1 bg-[#ffb300] mx-auto mt-3 rounded-full" />
+                    <div className="w-12 h-1 bg-[#D4A72C] mx-auto mt-3 rounded-full" />
                   </div>
                 )}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
@@ -86,10 +86,10 @@ export default async function DynamicPage({ params }: Props) {
                         />
                       </div>
                       <div className="p-5 flex flex-col flex-1 bg-white">
-                        <h4 className="font-bold text-base sm:text-lg text-[#002a54] mb-0.5 leading-snug">
+                        <h4 className="font-bold text-base sm:text-lg text-[#680000] mb-0.5 leading-snug">
                           {member.name}
                         </h4>
-                        <p className="text-xs font-bold text-[#004080] tracking-wider uppercase mb-2">
+                        <p className="text-xs font-bold text-[#A30000] tracking-wider uppercase mb-2">
                           {member.designation}
                         </p>
                         {member.bio && (

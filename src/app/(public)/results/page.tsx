@@ -15,7 +15,7 @@ export default async function PublicResultsPage() {
 
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-16">
+      <div className="bg-[#8A0000] text-white py-16">
         <Container>
           <h1 className="text-4xl font-bold">Academic Results</h1>
           <p className="mt-2 text-white/80 text-lg">Excellence in CBSE Board and Institutional Examinations</p>
@@ -28,17 +28,17 @@ export default async function PublicResultsPage() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {result.data.map((item) => (
-              <Card key={item._id.toString()} className="group hover:shadow-lg transition-all border-l-4 border-l-[#ffb300]">
+              <Card key={item._id.toString()} className="group hover:shadow-lg transition-all border-l-4 border-l-[#D4A72C]">
                 <CardHeader>
-                  <div className="flex items-center gap-2 text-xs text-[#0b5699] font-semibold mb-1">
+                  <div className="flex items-center gap-2 text-xs text-[#A30000] font-semibold mb-1">
                     <Calendar className="h-3.5 w-3.5" /> Session {item.session}
                     {item.class && <span className="bg-muted text-muted-foreground px-2 py-0.5 rounded text-xs ml-auto">{item.class}</span>}
                   </div>
-                  <CardTitle className="text-lg group-hover:text-[#0b5699] transition-colors">{item.title}</CardTitle>
+                  <CardTitle className="text-lg group-hover:text-[#A30000] transition-colors">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {item.description && <p className="text-sm text-muted-foreground line-clamp-3">{item.description}</p>}
-                  <Link href={`/results/${item.slug}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-[#003d78] hover:text-[#0b5699]">
+                  <Link href={`/results/${item.slug}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-[#8A0000] hover:text-[#A30000]">
                     View Full Highlights <ArrowRight className="h-4 w-4" />
                   </Link>
                 </CardContent>

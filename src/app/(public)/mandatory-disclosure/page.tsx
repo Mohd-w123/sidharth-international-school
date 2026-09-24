@@ -25,9 +25,9 @@ export default async function PublicDisclosurePage() {
   return (
     <main className="min-h-screen bg-slate-50/60 pb-20">
       {/* Top Banner Header */}
-      <div className="bg-[#002a54] text-white py-14 md:py-18 relative overflow-hidden border-b border-[#ffb300]/20">
+      <div className="bg-[#680000] text-white py-14 md:py-18 relative overflow-hidden border-b border-[#D4A72C]/20">
         <Container className="relative z-10">
-          <div className="flex items-center gap-2.5 text-[#ffb300] font-bold text-xs uppercase tracking-widest mb-3">
+          <div className="flex items-center gap-2.5 text-[#D4A72C] font-bold text-xs uppercase tracking-widest mb-3">
             <ShieldCheck className="h-4 w-4" />
             <span>CBSE Statutory Compliance (Appendix-IX)</span>
           </div>
@@ -56,9 +56,9 @@ export default async function PublicDisclosurePage() {
                     key={sec._id.toString()}
                     className="overflow-hidden border border-slate-200 shadow-sm rounded-2xl bg-white"
                   >
-                    <CardHeader className="bg-[#002a54]/5 border-b border-slate-200/80 px-6 py-4">
+                    <CardHeader className="bg-[#680000]/5 border-b border-slate-200/80 px-6 py-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <CardTitle className="text-lg sm:text-xl font-bold text-[#002a54] flex items-center gap-2">
+                        <CardTitle className="text-lg sm:text-xl font-bold text-[#680000] flex items-center gap-2">
                           <span>{sec.title}</span>
                         </CardTitle>
                         <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-full w-fit">
@@ -103,7 +103,7 @@ export default async function PublicDisclosurePage() {
                                             href={docUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#002a54] text-white text-xs font-semibold hover:bg-[#003d78] shadow-xs transition-all"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#680000] text-white text-xs font-semibold hover:bg-[#8A0000] shadow-xs transition-all"
                                           >
                                             <ExternalLink className="h-3.5 w-3.5" />
                                             <span>View PDF</span>
@@ -113,7 +113,7 @@ export default async function PublicDisclosurePage() {
                                             download
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#ffb300] text-[#002a54] text-xs font-bold hover:bg-[#ffa000] shadow-xs transition-all"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#D4A72C] text-[#680000] text-xs font-bold hover:bg-[#b88f20] shadow-xs transition-all"
                                           >
                                             <Download className="h-3.5 w-3.5" />
                                             <span>Download</span>

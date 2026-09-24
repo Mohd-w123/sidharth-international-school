@@ -25,7 +25,7 @@ export default async function PublicResultDetailPage({ params }: Props) {
 
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-12">
+      <div className="bg-[#8A0000] text-white py-12">
         <Container>
           <Link href="/results" className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white mb-4">
             <ArrowLeft className="h-4 w-4" /> Back to Results
@@ -40,7 +40,7 @@ export default async function PublicResultDetailPage({ params }: Props) {
 
       <Container className="py-12 max-w-4xl">
         {item.description && (
-          <div className="bg-amber-50 border-l-4 border-[#ffb300] p-4 rounded-r mb-8 text-amber-900 font-medium">
+          <div className="bg-amber-50 border-l-4 border-[#D4A72C] p-4 rounded-r mb-8 text-amber-900 font-medium">
             {item.description}
           </div>
         )}

@@ -26,7 +26,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
 
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-16">
+      <div className="bg-[#8A0000] text-white py-16">
         <Container>
           <h1 className="text-4xl font-bold">Gallery</h1>
           <p className="mt-2 text-white/80 text-lg">
@@ -42,7 +42,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
             href="/gallery"
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               !albumType
-                ? "bg-[#003d78] text-white"
+                ? "bg-[#8A0000] text-white"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             }`}
           >
@@ -52,7 +52,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
             href="/gallery?type=photo"
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 ${
               albumType === "photo"
-                ? "bg-[#003d78] text-white"
+                ? "bg-[#8A0000] text-white"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             }`}
           >
@@ -62,7 +62,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
             href="/gallery?type=video"
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 ${
               albumType === "video"
-                ? "bg-[#003d78] text-white"
+                ? "bg-[#8A0000] text-white"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             }`}
           >
@@ -87,7 +87,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#003d78] to-[#0b5699] flex items-center justify-center">
+                      <div className="w-full h-full bg-gradient-to-br from-[#8A0000] to-[#A30000] flex items-center justify-center">
                         {album.type === "video" ? (
                           <Video className="h-12 w-12 text-white/40" />
                         ) : (
@@ -102,7 +102,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
                     </div>
                   </div>
                   <CardContent className="p-4">
-                    <h3 className="font-semibold text-lg group-hover:text-[#0b5699] transition-colors">
+                    <h3 className="font-semibold text-lg group-hover:text-[#A30000] transition-colors">
                       {album.title}
                     </h3>
                     {album.description && (
@@ -125,7 +125,7 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
                 href={`/gallery?page=${i + 1}${albumType ? `&type=${albumType}` : ""}`}
                 className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                   page === i + 1
-                    ? "bg-[#003d78] text-white"
+                    ? "bg-[#8A0000] text-white"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
               >

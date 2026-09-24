@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "TC Verification & Tracker", descript
 export default async function PublicTCTrackerPage() {
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-16">
+      <div className="bg-[#8A0000] text-white py-16">
         <Container>
           <h1 className="text-4xl font-bold">Transfer Certificate Verification</h1>
           <p className="mt-2 text-white/80 text-lg">Verify authentic student Transfer Certificates online</p>

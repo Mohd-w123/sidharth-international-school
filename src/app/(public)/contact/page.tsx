@@ -27,10 +27,10 @@ export default async function ContactPage() {
   return (
     <main>
       {/* Hero */}
-      <div className="bg-gradient-to-br from-[#003d78] to-[#002a54] text-white py-20 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-[#8A0000] to-[#680000] text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#ffb300] rounded-full -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#ffb300] rounded-full translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4A72C] rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#D4A72C] rounded-full translate-y-1/2 -translate-x-1/2" />
         </div>
         <Container className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
@@ -60,17 +60,17 @@ export default async function ContactPage() {
             {/* Quick Action Cards */}
             <div className="grid grid-cols-2 gap-3 pt-4">
               <a href={`tel:${phone}`} className="group">
-                <Card className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-[#003d78]">
+                <Card className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-[#8A0000]">
                   <CardContent className="p-4 text-center">
-                    <Phone className="h-6 w-6 mx-auto mb-2 text-[#003d78] group-hover:scale-110 transition-transform" />
+                    <Phone className="h-6 w-6 mx-auto mb-2 text-[#8A0000] group-hover:scale-110 transition-transform" />
                     <p className="text-sm font-medium">Call Us</p>
                   </CardContent>
                 </Card>
               </a>
               <a href={`mailto:${email}`} className="group">
-                <Card className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-[#ffb300]">
+                <Card className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-[#D4A72C]">
                   <CardContent className="p-4 text-center">
-                    <Mail className="h-6 w-6 mx-auto mb-2 text-[#ffb300] group-hover:scale-110 transition-transform" />
+                    <Mail className="h-6 w-6 mx-auto mb-2 text-[#D4A72C] group-hover:scale-110 transition-transform" />
                     <p className="text-sm font-medium">Email Us</p>
                   </CardContent>
                 </Card>
@@ -80,10 +80,10 @@ export default async function ContactPage() {
 
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <Card className="shadow-lg border-t-4 border-t-[#003d78]">
+            <Card className="shadow-lg border-t-4 border-t-[#8A0000]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Send className="h-5 w-5 text-[#003d78]" /> Send us a Message
+                  <Send className="h-5 w-5 text-[#8A0000]" /> Send us a Message
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -97,7 +97,7 @@ export default async function ContactPage() {
         {mapUrl && (
           <div className="mt-16">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <span className="w-1.5 h-6 bg-[#ffb300] rounded-full" /> Find Us on the Map
+              <span className="w-1.5 h-6 bg-[#D4A72C] rounded-full" /> Find Us on the Map
             </h2>
             <div className="rounded-xl overflow-hidden shadow-lg border">
               <iframe
@@ -121,13 +121,13 @@ export default async function ContactPage() {
 function ContactInfoItem({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href?: string }) {
   return (
     <div className="flex items-start gap-3 group">
-      <div className="h-10 w-10 rounded-lg bg-[#003d78]/10 flex items-center justify-center text-[#003d78] shrink-0 group-hover:bg-[#003d78] group-hover:text-white transition-colors duration-300">
+      <div className="h-10 w-10 rounded-lg bg-[#8A0000]/10 flex items-center justify-center text-[#8A0000] shrink-0 group-hover:bg-[#8A0000] group-hover:text-white transition-colors duration-300">
         {icon}
       </div>
       <div>
         <p className="text-xs text-muted-foreground uppercase font-semibold">{label}</p>
         {href ? (
-          <a href={href} className="text-sm font-medium hover:text-[#003d78] transition-colors">{value}</a>
+          <a href={href} className="text-sm font-medium hover:text-[#8A0000] transition-colors">{value}</a>
         ) : (
           <p className="text-sm font-medium">{value}</p>
         )}

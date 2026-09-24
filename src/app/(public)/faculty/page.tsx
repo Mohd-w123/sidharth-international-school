@@ -24,7 +24,7 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
 
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-16">
+      <div className="bg-[#8A0000] text-white py-16">
         <Container>
           <h1 className="text-4xl font-bold">Our Faculty</h1>
           <p className="mt-2 text-white/80 text-lg">
@@ -41,7 +41,7 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
               href="/faculty"
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 !department
-                  ? "bg-[#003d78] text-white"
+                  ? "bg-[#8A0000] text-white"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
@@ -53,7 +53,7 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
                 href={`/faculty?department=${encodeURIComponent(dept)}`}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   department === dept
-                    ? "bg-[#003d78] text-white"
+                    ? "bg-[#8A0000] text-white"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
               >
@@ -74,7 +74,7 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
                 key={member._id.toString()}
                 className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="aspect-[3/4] relative overflow-hidden bg-gradient-to-br from-[#003d78]/10 to-[#0b5699]/5">
+                <div className="aspect-[3/4] relative overflow-hidden bg-gradient-to-br from-[#8A0000]/10 to-[#A30000]/5">
                   {member.photo ? (
                     <img
                       src={member.photo}
@@ -89,7 +89,7 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
                 </div>
                 <CardContent className="p-4 text-center">
                   <h3 className="font-semibold text-lg">{member.name}</h3>
-                  <p className="text-[#0b5699] text-sm font-medium">
+                  <p className="text-[#A30000] text-sm font-medium">
                     {member.designation}
                   </p>
                   {member.department && (
@@ -106,7 +106,7 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
                   {member.email && (
                     <a
                       href={`mailto:${member.email}`}
-                      className="inline-flex items-center gap-1 text-xs text-[#0b5699] hover:underline mt-2"
+                      className="inline-flex items-center gap-1 text-xs text-[#A30000] hover:underline mt-2"
                     >
                       <Mail className="h-3 w-3" /> {member.email}
                     </a>

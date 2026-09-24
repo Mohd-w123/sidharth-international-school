@@ -29,7 +29,7 @@ export default async function PublicEventDetailPage({ params }: Props) {
 
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-12">
+      <div className="bg-[#8A0000] text-white py-12">
         <Container>
           <Link href="/events" className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white mb-4">
             <ArrowLeft className="h-4 w-4" /> All Events
@@ -51,12 +51,12 @@ export default async function PublicEventDetailPage({ params }: Props) {
           </div>
 
           <div className="space-y-4">
-            <Card className="border-l-4 border-l-[#ffb300]">
+            <Card className="border-l-4 border-l-[#D4A72C]">
               <CardContent className="p-5 space-y-4">
                 <div>
                   <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Date</p>
                   <p className="font-medium flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-[#0b5699]" />
+                    <Calendar className="h-4 w-4 text-[#A30000]" />
                     {date.toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
                   </p>
                 </div>
@@ -65,7 +65,7 @@ export default async function PublicEventDetailPage({ params }: Props) {
                   <div>
                     <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Time</p>
                     <p className="font-medium flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-[#0b5699]" />
+                      <Clock className="h-4 w-4 text-[#A30000]" />
                       {event.startTime}{event.endTime ? ` – ${event.endTime}` : ""}
                     </p>
                   </div>
@@ -75,7 +75,7 @@ export default async function PublicEventDetailPage({ params }: Props) {
                   <div>
                     <p className="text-xs text-muted-foreground uppercase font-semibold mb-1">Location</p>
                     <p className="font-medium flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-[#0b5699]" /> {event.location}
+                      <MapPin className="h-4 w-4 text-[#A30000]" /> {event.location}
                     </p>
                   </div>
                 )}
@@ -83,7 +83,7 @@ export default async function PublicEventDetailPage({ params }: Props) {
                 {event.registrationUrl && !isPast && (
                   <div className="pt-2 border-t">
                     <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#ffb300] text-[#003d78] hover:bg-[#ffa000] font-semibold transition-colors">
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#D4A72C] text-[#8A0000] hover:bg-[#b88f20] font-semibold transition-colors">
                       <ExternalLink className="h-4 w-4" /> Register Now
                     </a>
                     {event.registrationDeadline && (

@@ -16,7 +16,7 @@ export default async function PublicEventsPage() {
 
   return (
     <main>
-      <div className="bg-[#003d78] text-white py-16">
+      <div className="bg-[#8A0000] text-white py-16">
         <Container>
           <h1 className="text-4xl font-bold">School Events</h1>
           <p className="mt-2 text-white/80 text-lg">Stay updated with upcoming activities and celebrations</p>
@@ -28,25 +28,25 @@ export default async function PublicEventsPage() {
         {upcoming.length > 0 && (
           <section className="mb-16">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <span className="w-1.5 h-6 bg-[#ffb300] rounded-full" /> Upcoming Events
+              <span className="w-1.5 h-6 bg-[#D4A72C] rounded-full" /> Upcoming Events
             </h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {upcoming.map((event) => {
                 const date = new Date(event.eventDate);
                 return (
-                  <Card key={event._id.toString()} className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-t-4 border-t-[#ffb300]">
+                  <Card key={event._id.toString()} className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-t-4 border-t-[#D4A72C]">
                     {event.image && (
                       <div className="aspect-video overflow-hidden">
                         <img src={event.image} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                       </div>
                     )}
                     <CardHeader className="pb-2">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-[#0b5699] mb-1">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-[#A30000] mb-1">
                         <Calendar className="h-3.5 w-3.5" />
                         {date.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}
                         {event.startTime && <><Clock className="h-3.5 w-3.5 ml-2" />{event.startTime}{event.endTime ? ` – ${event.endTime}` : ""}</>}
                       </div>
-                      <CardTitle className="text-lg group-hover:text-[#0b5699] transition-colors">{event.title}</CardTitle>
+                      <CardTitle className="text-lg group-hover:text-[#A30000] transition-colors">{event.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       {event.location && (
@@ -54,11 +54,11 @@ export default async function PublicEventsPage() {
                       )}
                       {event.description && <p className="text-sm text-muted-foreground line-clamp-2">{event.description}</p>}
                       <div className="flex items-center gap-3">
-                        <Link href={`/events/${event.slug}`} className="text-sm font-medium text-[#003d78] hover:text-[#0b5699] inline-flex items-center gap-1">
+                        <Link href={`/events/${event.slug}`} className="text-sm font-medium text-[#8A0000] hover:text-[#A30000] inline-flex items-center gap-1">
                           View Details <ArrowRight className="h-3.5 w-3.5" />
                         </Link>
                         {event.registrationUrl && (
-                          <a href={event.registrationUrl} target="_blank" rel="noopener" className="text-sm font-medium text-[#ffb300] hover:text-[#ffa000] inline-flex items-center gap-1">
+                          <a href={event.registrationUrl} target="_blank" rel="noopener" className="text-sm font-medium text-[#D4A72C] hover:text-[#b88f20] inline-flex items-center gap-1">
                             Register <ExternalLink className="h-3.5 w-3.5" />
                           </a>
                         )}
@@ -85,11 +85,11 @@ export default async function PublicEventsPage() {
                     <Card className="hover:shadow-md transition-all opacity-80 group-hover:opacity-100">
                       <CardContent className="p-4 flex items-center gap-4">
                         <div className="text-center bg-muted rounded-lg px-3 py-2 shrink-0">
-                          <div className="text-2xl font-bold text-[#003d78]">{date.getDate()}</div>
+                          <div className="text-2xl font-bold text-[#8A0000]">{date.getDate()}</div>
                           <div className="text-xs text-muted-foreground uppercase">{date.toLocaleDateString("en-IN", { month: "short" })}</div>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="font-medium text-sm group-hover:text-[#0b5699] transition-colors truncate">{event.title}</h3>
+                          <h3 className="font-medium text-sm group-hover:text-[#A30000] transition-colors truncate">{event.title}</h3>
                           {event.location && <p className="text-xs text-muted-foreground mt-0.5">{event.location}</p>}
                         </div>
                       </CardContent>

@@ -43,7 +43,7 @@ export function FormsTable({ data }: Props) {
                   <TableCell>
                     <button
                       onClick={() => window.location.href = `/admin/forms/${item._id}/submissions`}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0b5699] hover:underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A30000] hover:underline"
                     >
                       <Inbox className="h-3.5 w-3.5" /> {item.submissionCount || 0} entries
                     </button>

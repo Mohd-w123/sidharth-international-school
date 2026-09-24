@@ -264,7 +264,7 @@ export function HomepageEditor({ config }: HomepageEditorProps) {
           variant={status === "published" ? "outline" : "default"}
           onClick={() => setConfirmPublish(true)}
           disabled={isPending}
-          className={status !== "published" ? "bg-[#003d78] hover:bg-[#002a54] text-white" : ""}
+          className={status !== "published" ? "bg-[#8A0000] hover:bg-[#680000] text-white" : ""}
         >
           <Send className="h-4 w-4 mr-2" />
           {status === "published" ? "Unpublish Homepage" : "Publish Live"}
@@ -372,7 +372,7 @@ export function HomepageEditor({ config }: HomepageEditorProps) {
                         size="sm"
                         onClick={() => handleSaveAndPublishSection(index)}
                         disabled={isPending}
-                        className="bg-[#003d78] hover:bg-[#002a54] text-white text-xs h-8 shadow-xs"
+                        className="bg-[#8A0000] hover:bg-[#680000] text-white text-xs h-8 shadow-xs"
                       >
                         {isPending ? <Loader2 className="h-3.5 w-3.5 mr-1.5 animate-spin" /> : <Send className="h-3.5 w-3.5 mr-1.5" />}
                         Save & Publish Live

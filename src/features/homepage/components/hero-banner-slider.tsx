@@ -128,9 +128,9 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
 
   if (slideCount === 0) {
     return (
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#002a54] text-white py-20 text-center">
+      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#680000] text-white py-20 text-center">
         <Container>
-          <span className="inline-block text-[#ffb300] font-bold text-xs md:text-sm tracking-widest uppercase mb-3">
+          <span className="inline-block text-[#D4A72C] font-bold text-xs md:text-sm tracking-widest uppercase mb-3">
             BE THE LIGHT
           </span>
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
@@ -142,7 +142,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/admissions"
-              className="px-7 py-3 rounded-md bg-[#ffb300] text-[#002a54] font-bold text-sm md:text-base hover:bg-[#ffa000] transition-all shadow-lg"
+              className="px-7 py-3 rounded-md bg-[#D4A72C] text-[#680000] font-bold text-sm md:text-base hover:bg-[#b88f20] transition-all shadow-lg"
             >
               Enquire Now
             </Link>
@@ -162,7 +162,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
 
   return (
     <section
-      className="relative min-h-[65vh] md:min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-[#001f3f]"
+      className="relative min-h-[65vh] md:min-h-[75vh] lg:min-h-[82vh] flex items-center overflow-hidden bg-[#520000]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -188,7 +188,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
               />
             )}
             {/* Rich Navy Blue Gradient Overlay for High Text Readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#002a54]/95 via-[#003d78]/80 to-[#002a54]/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#680000]/95 via-[#8A0000]/80 to-[#680000]/40" />
             <div className="absolute inset-0 bg-black/20" />
           </div>
         );
@@ -199,7 +199,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
         <div key={`slide-content-${currentIndex}`} className="max-w-4xl lg:max-w-5xl text-left transition-all duration-500">
           {currentBanner.badge && (
             <div className="mb-3 animate-in fade-in-50 slide-in-from-bottom-2 duration-500">
-              <span className="inline-block text-[#ffb300] font-bold text-xs md:text-sm tracking-widest uppercase drop-shadow-sm">
+              <span className="inline-block text-[#D4A72C] font-bold text-xs md:text-sm tracking-widest uppercase drop-shadow-sm">
                 {currentBanner.badge}
               </span>
             </div>
@@ -219,7 +219,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
             {currentBanner.primaryButtonText && (
               <Link
                 href={currentBanner.primaryButtonUrl || "/admissions"}
-                className="px-7 py-3 rounded-md bg-[#ffb300] text-[#002a54] font-bold text-sm md:text-base hover:bg-[#ffa000] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                className="px-7 py-3 rounded-md bg-[#D4A72C] text-[#680000] font-bold text-sm md:text-base hover:bg-[#b88f20] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
                 {currentBanner.primaryButtonText}
               </Link>
@@ -267,7 +267,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`transition-all duration-300 rounded-full cursor-pointer ${
                   idx === currentIndex
-                    ? "w-8 h-2.5 bg-[#ffb300]"
+                    ? "w-8 h-2.5 bg-[#D4A72C]"
                     : "w-2.5 h-2.5 bg-white/50 hover:bg-white/80"
                 }`}
               />

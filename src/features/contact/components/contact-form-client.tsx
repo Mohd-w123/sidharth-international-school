@@ -87,7 +87,7 @@ export function ContactFormClient() {
         <Label>Message <span className="text-red-500">*</span></Label>
         <Textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Write your message here..." rows={5} required />
       </div>
-      <Button type="submit" disabled={isPending} className="w-full bg-[#003d78] hover:bg-[#002a54] text-white h-11">
+      <Button type="submit" disabled={isPending} className="w-full bg-[#8A0000] hover:bg-[#680000] text-white h-11">
         {isPending ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Sending...</> : <><Send className="h-4 w-4 mr-2" /> Send Message</>}
       </Button>
     </form>

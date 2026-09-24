@@ -109,7 +109,7 @@ export function ImageSettingInput({
         <div className="relative group shrink-0">
           <div
             className={`w-28 h-28 rounded-xl border flex items-center justify-center p-2 relative overflow-hidden transition-colors ${
-              bgDark ? "bg-[#002a54] text-white" : "bg-muted text-foreground"
+              bgDark ? "bg-[#680000] text-white" : "bg-muted text-foreground"
             }`}
           >
             {hasValidUrl ? (

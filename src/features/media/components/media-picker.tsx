@@ -219,7 +219,7 @@ export function MediaPicker({ open, onOpenChange, onSelect, mimeFilter = "image"
                   <Input value={altText} onChange={(e) => setAltText(e.target.value)} placeholder="Image description..." />
                 </div>
 
-                <Button onClick={handleUploadAndSelect} disabled={isUploading} className="w-full bg-[#003d78] hover:bg-[#002a54] text-white">
+                <Button onClick={handleUploadAndSelect} disabled={isUploading} className="w-full bg-[#8A0000] hover:bg-[#680000] text-white">
                   {isUploading ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Uploading & Selecting...</> : <><CheckCircle2 className="h-4 w-4 mr-2" /> Upload & Use File</>}
                 </Button>
               </div>

@@ -131,7 +131,7 @@ export function NewsSectionSlider({
       <Container>
         {/* Top Centered Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#002a54] tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#680000] tracking-tight mb-3">
             {title}
           </h2>
           {subtitle && (
@@ -139,7 +139,7 @@ export function NewsSectionSlider({
               {subtitle}
             </p>
           )}
-          <div className="w-16 h-1 bg-[#ffb300] mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-[#D4A72C] mx-auto mt-4 rounded-full" />
         </div>
 
         {/* Main Featured News Card Container */}
@@ -169,7 +169,7 @@ export function NewsSectionSlider({
                 {/* Yellow/Gold Category Badge in Top-Left */}
                 {current.category && (
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-block bg-[#ffb300] text-[#002a54] font-extrabold text-[10px] md:text-[11px] px-3 py-1 rounded-xs uppercase tracking-wider shadow-md">
+                    <span className="inline-block bg-[#D4A72C] text-[#680000] font-extrabold text-[10px] md:text-[11px] px-3 py-1 rounded-xs uppercase tracking-wider shadow-md">
                       {current.category}
                     </span>
                   </div>
@@ -181,7 +181,7 @@ export function NewsSectionSlider({
                 <div key={`news-text-${currentIndex}`} className="animate-in fade-in-50 duration-500">
                   {/* Date Tag */}
                   {current.date && (
-                    <p className="text-[#004080] font-semibold text-xs md:text-sm tracking-wide mb-2.5">
+                    <p className="text-[#A30000] font-semibold text-xs md:text-sm tracking-wide mb-2.5">
                       {current.date}
                     </p>
                   )}
@@ -191,7 +191,7 @@ export function NewsSectionSlider({
                     href={current.url || `/news/${current.slug}`}
                     className="block group"
                   >
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#002a54] leading-snug tracking-tight mb-4 group-hover:text-[#004080] transition-colors line-clamp-3">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#680000] leading-snug tracking-tight mb-4 group-hover:text-[#A30000] transition-colors line-clamp-3">
                       {current.title}
                     </h3>
                   </Link>
@@ -211,7 +211,7 @@ export function NewsSectionSlider({
                       type="button"
                       onClick={prevSlide}
                       aria-label="Previous News Slide"
-                      className="w-9 h-9 rounded-full border border-[#002a54]/30 text-[#002a54] hover:bg-[#002a54] hover:text-white hover:border-[#002a54] flex items-center justify-center transition-all duration-200 cursor-pointer"
+                      className="w-9 h-9 rounded-full border border-[#680000]/30 text-[#680000] hover:bg-[#680000] hover:text-white hover:border-[#680000] flex items-center justify-center transition-all duration-200 cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
@@ -219,7 +219,7 @@ export function NewsSectionSlider({
                       type="button"
                       onClick={nextSlide}
                       aria-label="Next News Slide"
-                      className="w-9 h-9 rounded-full border border-[#002a54]/30 text-[#002a54] hover:bg-[#002a54] hover:text-white hover:border-[#002a54] flex items-center justify-center transition-all duration-200 cursor-pointer"
+                      className="w-9 h-9 rounded-full border border-[#680000]/30 text-[#680000] hover:bg-[#680000] hover:text-white hover:border-[#680000] flex items-center justify-center transition-all duration-200 cursor-pointer"
                     >
                       <ChevronRight className="w-4 h-4" />
                     </button>
@@ -230,7 +230,7 @@ export function NewsSectionSlider({
 
                   <Link
                     href={current.url || `/news/${current.slug}`}
-                    className="inline-flex items-center text-xs font-bold text-[#004080] hover:text-[#ffb300] transition-colors gap-1 group"
+                    className="inline-flex items-center text-xs font-bold text-[#A30000] hover:text-[#D4A72C] transition-colors gap-1 group"
                   >
                     Read More
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -252,13 +252,13 @@ export function NewsSectionSlider({
                     onClick={() => setCurrentIndex(idx)}
                     className={`text-left p-3.5 rounded-xl transition-all duration-300 border cursor-pointer ${
                       isActive
-                        ? "bg-[#003d78] text-white border-[#003d78] shadow-md"
+                        ? "bg-[#8A0000] text-white border-[#8A0000] shadow-md"
                         : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
                     }`}
                   >
                     <p
                       className={`text-[11px] font-bold mb-1 tracking-wider ${
-                        isActive ? "text-[#ffb300]" : "text-slate-500"
+                        isActive ? "text-[#D4A72C]" : "text-slate-500"
                       }`}
                     >
                       {item.date}

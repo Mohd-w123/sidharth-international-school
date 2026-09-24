@@ -30,7 +30,7 @@ export default async function PublicAlbumDetailPage({ params }: Props) {
   return (
     <main>
       {/* Hero Banner */}
-      <div className="relative bg-[#003d78] text-white py-16">
+      <div className="relative bg-[#8A0000] text-white py-16">
         {album.coverImage && (
           <div className="absolute inset-0">
             <img

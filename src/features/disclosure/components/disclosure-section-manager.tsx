@@ -340,7 +340,7 @@ export function DisclosureSectionManager({ categoryId, categoryName, sections: i
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                   Cancel
                 </Button>
-                <Button onClick={handleSubmit} disabled={isPending} className="bg-[#002a54] hover:bg-[#003d78] text-white">
+                <Button onClick={handleSubmit} disabled={isPending} className="bg-[#680000] hover:bg-[#8A0000] text-white">
                   {isPending ? "Saving..." : editItem ? "Save Changes" : "Create Section"}
                 </Button>
               </div>

@@ -60,7 +60,7 @@ export function PublicFormRenderer({ form }: Props) {
       <Card className="max-w-xl mx-auto border-emerald-500/30 bg-emerald-50/20 text-center p-8">
         <CardContent className="space-y-4">
           <CheckCircle className="h-16 w-16 text-emerald-600 mx-auto" />
-          <h2 className="text-2xl font-bold text-[#003d78]">Submission Received</h2>
+          <h2 className="text-2xl font-bold text-[#8A0000]">Submission Received</h2>
           <p className="text-muted-foreground">{form.successMessage || "Thank you for your response!"}</p>
           <Button variant="outline" onClick={() => { setSubmitted(false); setFormData({}); }}>
             Submit Another Response
@@ -72,7 +72,7 @@ export function PublicFormRenderer({ form }: Props) {
 
   return (
     <Card className="max-w-2xl mx-auto shadow-md">
-      <CardHeader className="bg-[#003d78] text-white rounded-t-lg">
+      <CardHeader className="bg-[#8A0000] text-white rounded-t-lg">
         <CardTitle className="text-2xl font-bold">{form.title}</CardTitle>
         {form.description && <p className="text-sm text-white/80 mt-1">{form.description}</p>}
       </CardHeader>
@@ -188,7 +188,7 @@ export function PublicFormRenderer({ form }: Props) {
             );
           })}
 
-          <Button type="submit" disabled={isPending} className="w-full bg-[#003d78] hover:bg-[#0b5699] py-6 text-base">
+          <Button type="submit" disabled={isPending} className="w-full bg-[#8A0000] hover:bg-[#A30000] py-6 text-base">
             <Send className="h-4 w-4 mr-2" /> {isPending ? "Submitting..." : "Submit Form"}
           </Button>
         </form>
