@@ -3,7 +3,15 @@ import { siteSettingService } from "@/services/settings.service";
 import { Container } from "@/components/layout/container";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, ChevronDown, Bell } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  ChevronDown,
+  ArrowRight,
+  ShieldCheck,
+  Menu,
+} from "lucide-react";
 import type { IMenuItem } from "@/models/menu.model";
 
 function isValidImageUrl(url: string | null | undefined): boolean {
@@ -24,99 +32,135 @@ export async function PublicHeader() {
   const items = menu?.items?.filter((i) => i.isEnabled) || [];
   const settings = await siteSettingService.getPublicSettings();
 
-  const siteName = (settings.site_name as string) || "Saint Lawrence Public School";
-  const headerSubtitle = (settings.header_subtitle as string) || "CBSE Affiliated";
-  const phone = (settings.topbar_phone as string) || (settings.phone as string) || "";
-  const email = (settings.topbar_email as string) || (settings.email as string) || "";
-  const topbarAnnouncement = (settings.topbar_announcement as string) || "";
-  const rawLogo = (settings.header_logo as string) || (settings.logo as string) || "";
+  const siteName =
+    (settings.site_name as string) || "Siddharth International School";
+  const headerSubtitle =
+    (settings.header_subtitle as string) ||
+    "Co-Educational English Medium School (CBSE Affiliated)";
+  const phone =
+    (settings.topbar_phone as string) ||
+    (settings.phone as string) ||
+    "+91 7568419751";
+  const phone2 = "+91 7568419752";
+  const email =
+    (settings.topbar_email as string) ||
+    (settings.email as string) ||
+    "siddharthinternationalschool15@gmail.com";
+  const rawLogo =
+    (settings.header_logo as string) || (settings.logo as string) || "";
   const logo = isValidImageUrl(rawLogo) ? rawLogo.trim() : "";
 
-  const showTopbar = settings.topbar_show !== false && settings.topbar_show !== "false";
-  const showCta = settings.topbar_cta_show !== false && settings.topbar_cta_show !== "false";
+  const showTopbar =
+    settings.topbar_show !== false && settings.topbar_show !== "false";
+  const showCta =
+    settings.topbar_cta_show !== false && settings.topbar_cta_show !== "false";
   const ctaText = (settings.topbar_cta_text as string) || "Apply Now";
   const ctaLink = (settings.topbar_cta_link as string) || "/admissions";
 
   return (
-    <header className="sticky top-0 z-50">
-      {/* Top Bar */}
+    <header className="sticky top-0 z-50 w-full shadow-md">
+      {/* 
+        MODI WORLD SCHOOL-STYLE TOP BAR
+        Dark Red #680000 background with gold icons and essential school helpline
+      */}
       {showTopbar && (
-        <div className="bg-[#680000] text-white/90 text-xs py-2 hidden md:block border-b border-white/10">
+        <div className="bg-[#680000] text-white text-xs py-2 hidden md:block border-b border-white/10">
           <Container className="flex items-center justify-between">
+            {/* Left Contact Information */}
             <div className="flex items-center gap-5 flex-wrap">
+              <div className="flex items-center gap-1.5 text-white/90">
+                <MapPin className="h-3.5 w-3.5 text-[#D4A72C] shrink-0" />
+                <span>Nangal, Udaipurwati (Jhunjhunu)</span>
+              </div>
+
               {phone && (
-                <a
-                  href={`tel:${phone}`}
-                  className="flex items-center gap-1.5 hover:text-white transition-colors"
-                >
-                  <Phone className="h-3 w-3 text-[#D4A72C]" />
-                  <span>{phone}</span>
-                </a>
+                <div className="flex items-center gap-1.5 text-white/90">
+                  <Phone className="h-3.5 w-3.5 text-[#D4A72C] shrink-0" />
+                  <a
+                    href={`tel:${phone}`}
+                    className="hover:text-[#D4A72C] transition-colors"
+                  >
+                    {phone}
+                  </a>
+                  <span className="text-white/40">/</span>
+                  <a
+                    href={`tel:${phone2}`}
+                    className="hover:text-[#D4A72C] transition-colors"
+                  >
+                    {phone2}
+                  </a>
+                </div>
               )}
+
               {email && (
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center gap-1.5 hover:text-white transition-colors"
+                  className="flex items-center gap-1.5 text-white/90 hover:text-[#D4A72C] transition-colors"
                 >
-                  <Mail className="h-3 w-3 text-[#D4A72C]" />
-                  <span>{email}</span>
+                  <Mail className="h-3.5 w-3.5 text-[#D4A72C] shrink-0" />
+                  <span className="truncate max-w-[240px]">{email}</span>
                 </a>
-              )}
-              {topbarAnnouncement && (
-                <div className="flex items-center gap-1.5 text-white/70 pl-2 border-l border-white/20">
-                  <Bell className="h-3 w-3 text-[#D4A72C]" />
-                  <span>{topbarAnnouncement}</span>
-                </div>
               )}
             </div>
 
-            {showCta && (
-              <div className="flex items-center gap-3">
-                <Link
-                  href={ctaLink}
-                  className="px-3.5 py-1 rounded-md bg-[#D4A72C] text-[#680000] font-bold text-xs hover:bg-[#b88f20] shadow-xs transition-colors"
-                >
-                  {ctaText}
-                </Link>
+            {/* Right Affiliation & Fast Links */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1.5 text-white/80 bg-black/20 px-2.5 py-0.5 rounded-full border border-white/10">
+                <ShieldCheck className="h-3.5 w-3.5 text-[#D4A72C]" />
+                <span className="text-[11px] font-medium tracking-wide">
+                  CBSE Affiliated Senior Secondary
+                </span>
               </div>
-            )}
+
+              <Link
+                href="/mandatory-disclosure"
+                className="text-white/80 hover:text-[#D4A72C] transition-colors text-xs font-medium underline underline-offset-2"
+              >
+                CBSE Disclosure
+              </Link>
+            </div>
           </Container>
         </div>
       )}
 
-      {/* Main Nav */}
-      <nav className="bg-[#8A0000] shadow-md border-b border-[#680000]">
-        <Container className="flex items-center justify-between h-18">
-          <Link href="/" className="flex items-center gap-3 py-2 group">
+      {/* 
+        MODI WORLD SCHOOL-STYLE MAIN NAVBAR
+        Crisp pure white background, dark text #1A1A1A, dark red hover #8A0000,
+        and high-converting right side "Apply Now" button
+      */}
+      <nav className="bg-white/98 backdrop-blur-md border-b border-slate-200">
+        <Container className="flex items-center justify-between h-20">
+          {/* Logo & School Name */}
+          <Link href="/" className="flex items-center gap-3.5 py-1 group">
             {logo ? (
-              <div className="relative h-12 w-12 rounded-full overflow-hidden bg-white/10 p-0.5 border border-white/20 shrink-0 flex items-center justify-center">
+              <div className="relative h-13 w-13 rounded-full overflow-hidden bg-white p-0.5 border-2 border-[#8A0000]/20 shadow-xs shrink-0 flex items-center justify-center group-hover:border-[#8A0000] transition-colors">
                 <Image
                   src={logo}
                   alt={siteName}
-                  width={48}
-                  height={48}
+                  width={52}
+                  height={52}
                   className="h-full w-full object-contain"
                   unoptimized={logo.endsWith(".svg")}
                   priority
                 />
               </div>
             ) : (
-              <div className="h-11 w-11 rounded-full bg-white/10 flex items-center justify-center text-white font-bold text-lg border border-white/20 shrink-0">
+              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#8A0000] to-[#680000] flex items-center justify-center text-white font-extrabold text-xl shadow-md shrink-0">
                 {siteName.charAt(0)}
               </div>
             )}
-            <div className="text-white">
-              <div className="font-bold text-base md:text-lg leading-tight group-hover:text-white/90 transition-colors">
+            <div>
+              <div className="font-extrabold text-lg md:text-xl lg:text-[21px] text-[#8A0000] tracking-tight leading-tight group-hover:text-[#680000] transition-colors">
                 {siteName}
               </div>
-              <div className="text-[10px] text-[#D4A72C] font-medium tracking-wide uppercase">
+              <div className="text-[10px] md:text-[11px] text-[#1A1A1A]/70 font-bold uppercase tracking-wider mt-0.5">
                 {headerSubtitle}
               </div>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {items.map((item: IMenuItem, i: number) => {
               const hasChildren = item.children && item.children.length > 0;
               return (
@@ -124,16 +168,18 @@ export async function PublicHeader() {
                   <Link
                     href={item.url || "#"}
                     target={item.target}
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-white/90 hover:text-white rounded-md hover:bg-white/10 transition-all"
+                    className="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-[#1A1A1A] hover:text-[#8A0000] hover:bg-slate-50 rounded-md transition-colors"
                   >
-                    {item.label}
+                    <span>{item.label}</span>
                     {hasChildren && (
-                      <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100 transition-all group-hover:rotate-180" />
+                      <ChevronDown className="h-3.5 w-3.5 text-slate-400 group-hover:text-[#8A0000] transition-transform duration-200 group-hover:rotate-180" />
                     )}
                   </Link>
+
+                  {/* Dropdown Menu */}
                   {hasChildren && (
-                    <div className="absolute top-full left-0 pt-1 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50">
-                      <div className="bg-white rounded-lg shadow-xl border min-w-[200px] py-1.5 overflow-hidden">
+                    <div className="absolute top-full left-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50">
+                      <div className="bg-white rounded-xl shadow-2xl border border-slate-200 min-w-[220px] py-2 overflow-hidden border-t-2 border-t-[#8A0000]">
                         {item.children
                           ?.filter((c: IMenuItem) => c.isEnabled)
                           .map((child: IMenuItem, ci: number) => (
@@ -141,7 +187,7 @@ export async function PublicHeader() {
                               key={ci}
                               href={child.url || "#"}
                               target={child.target}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#8A0000]/5 hover:text-[#8A0000] transition-colors"
+                              className="block px-4 py-2.5 text-sm text-[#1A1A1A] hover:bg-[#8A0000]/8 hover:text-[#8A0000] font-medium transition-colors border-l-2 border-transparent hover:border-[#8A0000]"
                             >
                               {child.label}
                             </Link>
@@ -154,32 +200,53 @@ export async function PublicHeader() {
             })}
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <MobileMenuToggle items={items} />
+          {/* Right Action: Apply Now CTA & Mobile Menu Button */}
+          <div className="flex items-center gap-3">
+            {showCta && (
+              <Link
+                href={ctaLink}
+                className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#8A0000] hover:bg-[#680000] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
+              >
+                <span>{ctaText}</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
+
+            {/* Mobile Menu Toggle */}
+            <MobileMenuToggle items={items} ctaText={ctaText} ctaLink={ctaLink} phone={phone} />
+          </div>
         </Container>
       </nav>
     </header>
   );
 }
 
-function MobileMenuToggle({ items }: { items: IMenuItem[] }) {
+function MobileMenuToggle({
+  items,
+  ctaText,
+  ctaLink,
+  phone,
+}: {
+  items: IMenuItem[];
+  ctaText: string;
+  ctaLink: string;
+  phone: string;
+}) {
   return (
     <div className="lg:hidden">
       <details className="group">
-        <summary className="list-none cursor-pointer p-2 text-white hover:bg-white/10 rounded-md transition-colors">
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+        <summary className="list-none cursor-pointer p-2 text-[#1A1A1A] hover:bg-slate-100 rounded-lg transition-colors border border-slate-200">
+          <Menu className="h-6 w-6" />
         </summary>
-        <div className="absolute left-0 right-0 top-full bg-[#8A0000] shadow-lg border-t border-white/10 z-50">
-          <Container className="py-4">
+        <div className="absolute left-0 right-0 top-full bg-white shadow-2xl border-t border-slate-200 z-50 max-h-[85vh] overflow-y-auto">
+          <Container className="py-5 space-y-4">
             <div className="space-y-1">
               {items.map((item: IMenuItem, i: number) => (
-                <div key={i}>
+                <div key={i} className="border-b border-slate-100 pb-1">
                   <Link
                     href={item.url || "#"}
                     target={item.target}
-                    className="block px-3 py-2.5 text-sm text-white/85 hover:text-white hover:bg-white/10 rounded-md transition-colors"
+                    className="block px-3 py-2.5 text-sm font-bold text-[#1A1A1A] hover:text-[#8A0000] hover:bg-slate-50 rounded-md transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -190,13 +257,33 @@ function MobileMenuToggle({ items }: { items: IMenuItem[] }) {
                         key={ci}
                         href={child.url || "#"}
                         target={child.target}
-                        className="block px-6 py-2 text-sm text-white/60 hover:text-white hover:bg-white/10 rounded-md transition-colors"
+                        className="block px-6 py-2 text-xs font-medium text-slate-600 hover:text-[#8A0000] hover:bg-slate-50 rounded-md transition-colors"
                       >
-                        {child.label}
+                        • {child.label}
                       </Link>
                     ))}
                 </div>
               ))}
+            </div>
+
+            <div className="pt-2 space-y-2.5">
+              <Link
+                href={ctaLink}
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-[#8A0000] text-white font-bold text-sm shadow-md"
+              >
+                <span>{ctaText}</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+
+              {phone && (
+                <a
+                  href={`tel:${phone}`}
+                  className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-md border border-slate-300 text-[#1A1A1A] font-semibold text-xs bg-slate-50"
+                >
+                  <Phone className="h-3.5 w-3.5 text-[#8A0000]" />
+                  <span>Call Helpline: {phone}</span>
+                </a>
+              )}
             </div>
           </Container>
         </div>

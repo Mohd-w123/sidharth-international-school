@@ -23,33 +23,33 @@ interface TestimonialsSliderProps {
 const DEFAULT_SAMPLE_TESTIMONIALS: TestimonialItem[] = [
   {
     quote:
-      "As a doctor and mother, I value Saint Lawrence Public School's nurturing environment. The school combines academic excellence with holistic development, fostering empathy, confidence, and curiosity.",
-    name: "Dr. Anju Sharma",
-    role: "Mother of Nyra Sharma (Grade I-Tulip)",
+      "Enrolling our child at Siddharth International School has been a remarkable decision. The emphasis on discipline, campus hygiene, safe water facilities, and individual teacher attention has helped our child flourish with confidence.",
+    name: "Dr. Mukesh Kumar Bagadi",
+    role: "Parent Representative (BAMS Doctor), Udaipurwati",
     avatar:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=400&auto=format&fit=crop",
   },
   {
     quote:
-      "Choosing Saint Lawrence Public School for our son was the best decision. The faculty’s focus on conceptual learning, moral integrity, and modern sports facilities has truly transformed his confidence.",
-    name: "Mr. Rajesh Mathur",
-    role: "Father of Aarav Mathur (Grade V-Lotus)",
+      "The modern infrastructure, well-equipped labs, and safe transportation provided by Siddharth International School set a genuine benchmark in the Udaipurwati area. The leadership is always receptive and transparent.",
+    name: "Mr. Arvind Badiwal",
+    role: "Parent Representative & Businessman, Udaipurwati",
     avatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop",
   },
   {
     quote:
-      "The educators go above and beyond to ensure every student’s strengths are identified and nurtured. Saint Lawrence genuinely delivers a well-rounded foundation for future leaders.",
-    name: "Mrs. Sunita Verma",
-    role: "Mother of Riya Verma (Grade VIII-Rose)",
+      "As an educator myself, I closely examine academic standards. The teachers at Siddharth International School demonstrate genuine dedication, utilizing modern CBSE teaching aids while keeping core values alive.",
+    name: "Mrs. Renu Soni",
+    role: "Parent Representative & Govt. Teacher, Udaipurwati",
     avatar:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop",
   },
   {
     quote:
       "The safe, inclusive campus culture and individual academic attention have made a huge difference in my children's enthusiasm for coming to school every single day.",
-    name: "Dr. Alok K. Sen",
-    role: "Parent of Tanvi Sen (Grade III-Daisy)",
+    name: "Mr. Naresh Kr. Meena",
+    role: "Parent Representative & Govt. Teacher, Todpura",
     avatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
   },

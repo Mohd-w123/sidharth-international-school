@@ -25,6 +25,13 @@ export async function uploadToCloudinary(
 ): Promise<UploadResult> {
   const { folder = "school-cms", resourceType = "image", filename } = options;
 
+  // Cloudinary blocks direct delivery of raw/PDF files by default on accounts (HTTP 401: deny or ACL failure).
+  // Always save PDF and raw documents locally so they are served reliably with zero access issues.
+  const isDocument = resourceType === "raw" || (Boolean(filename) && filename!.toLowerCase().endsWith(".pdf"));
+  if (isDocument) {
+    return saveLocally(file, resourceType, filename);
+  }
+
   if (!process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME === "your-cloud-name") {
     return saveLocally(file, resourceType, filename);
   }
@@ -38,7 +45,7 @@ export async function uploadToCloudinary(
 
     // For raw files (PDFs, docs), Cloudinary requires the extension in public_id
     // to serve the download with the correct extension in the URL
-    const publicId = resourceType === "raw" && ext
+    const publicId = (resourceType as string) === "raw" && ext
       ? `${baseName}_${timestamp}${ext.toLowerCase()}`
       : `${baseName}_${timestamp}`;
 
@@ -75,7 +82,12 @@ export async function uploadToCloudinary(
 }
 
 async function saveLocally(file: Buffer, resourceType: string, filename?: string): Promise<UploadResult> {
-  const uploadsDir = path.join(process.cwd(), "public", "uploads");
+  const isDoc = resourceType === "raw" || (Boolean(filename) && filename!.toLowerCase().endsWith(".pdf"));
+  const subFolder = isDoc ? "documents" : "";
+  const uploadsDir = isDoc
+    ? path.join(process.cwd(), "public", "uploads", subFolder)
+    : path.join(process.cwd(), "public", "uploads");
+
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
   }
@@ -97,7 +109,7 @@ async function saveLocally(file: Buffer, resourceType: string, filename?: string
 
   await fs.promises.writeFile(filePath, file);
 
-  const localUrl = `/uploads/${savedFilename}`;
+  const localUrl = isDoc ? `/uploads/documents/${savedFilename}` : `/uploads/${savedFilename}`;
   return {
     publicId: `local_${savedFilename}`,
     url: localUrl,

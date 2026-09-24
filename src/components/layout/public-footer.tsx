@@ -3,7 +3,16 @@ import { siteSettingService } from "@/services/settings.service";
 import { Container } from "@/components/layout/container";
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, ArrowRight, Globe } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  ArrowRight,
+  Clock,
+  ShieldCheck,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import type { IMenuItem } from "@/models/menu.model";
 
 function isValidImageUrl(url: string | null | undefined): boolean {
@@ -40,40 +49,96 @@ export async function PublicFooter() {
     ) || [];
   const settings = await siteSettingService.getPublicSettings();
 
-  const siteName = (settings.site_name as string) || "Saint Lawrence Public School";
-  const headerSubtitle = (settings.header_subtitle as string) || "CBSE Affiliated";
-  const tagline = (settings.footer_text as string) || (settings.tagline as string) || "Nurturing Minds, Building Futures";
+  const siteName =
+    (settings.site_name as string) || "Siddharth International School";
+  const headerSubtitle =
+    (settings.header_subtitle as string) ||
+    "Co-Educational English Medium School (CBSE)";
   const address =
     (settings.address as string) ||
     (settings.contact_address as string) ||
-    "Goner Road, Near Ring Road Flyover, Jaipur, Rajasthan 303905";
+    "Sikar Road, Tehsil Nangal, Udaipurwati, Dist. Jhunjhunu, Rajasthan 333307";
   const phone =
     (settings.phone as string) ||
     (settings.topbar_phone as string) ||
     (settings.contact_phone as string) ||
-    "+91 9216079411, 9216079412";
+    "+91 7568419751";
+  const phone2 = "+91 7568419752";
   const email =
     (settings.email as string) ||
     (settings.topbar_email as string) ||
     (settings.contact_email as string) ||
-    "stlawrencegnr@gmail.com";
-  const facebook = (settings.facebook as string) || "";
+    "siddharthinternationalschool15@gmail.com";
+  const facebook =
+    (settings.facebook as string) ||
+    "https://www.facebook.com/people/Siddharth-International-School/100078106855197/";
   const twitter = (settings.twitter as string) || "";
   const instagram = (settings.instagram as string) || "";
   const youtube = (settings.youtube as string) || "";
-  const linkedin = (settings.linkedin as string) || "";
-  const copyrightText = (settings.copyright_text as string) || `© ${new Date().getFullYear()} ${siteName}. All rights reserved.`;
+  const copyrightText =
+    (settings.copyright_text as string) ||
+    `© ${new Date().getFullYear()} ${siteName}, Nangal, Udaipurwati. All rights reserved.`;
 
-  const rawLogo = (settings.footer_logo as string) || (settings.header_logo as string) || (settings.logo as string) || "";
+  const rawLogo =
+    (settings.footer_logo as string) ||
+    (settings.header_logo as string) ||
+    (settings.logo as string) ||
+    "";
   const logo = isValidImageUrl(rawLogo) ? rawLogo.trim() : "";
 
   return (
-    <footer className="bg-[#680000] text-white mt-auto border-t border-white/10">
-      {/* Main Footer */}
-      <div className="border-b border-white/10">
-        <Container className="py-14">
+    <footer className="mt-auto flex flex-col">
+      {/* 
+        MODI WORLD SCHOOL-STYLE PRE-FOOTER CTA RIBBON
+        High-converting callout with admissions banner & quick contact
+      */}
+      <div className="bg-gradient-to-r from-[#8A0000] via-[#A30000] to-[#8A0000] text-white py-10 sm:py-12 border-b border-white/10 relative overflow-hidden">
+        {/* Subtle decorative background circles */}
+        <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
+        <div className="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
+
+        <Container className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left">
+          <div className="space-y-2 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#D4A72C] text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Admissions Open for Session 2026–27</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              Begin Your Child’s Journey of Excellence Today
+            </h2>
+            <p className="text-white/85 text-sm sm:text-base leading-relaxed">
+              Providing holistic CBSE education, smart digital learning, sports facilities, and strong moral values in Nangal, Udaipurwati.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 shrink-0">
+            <Link
+              href="/admissions"
+              className="px-7 py-3.5 rounded-md bg-[#D4A72C] hover:bg-[#b88f20] text-[#1A1A1A] font-bold text-sm shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            >
+              <span>Apply Online Now</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            <a
+              href={`tel:${phone}`}
+              className="px-6 py-3.5 rounded-md bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold text-sm transition-all hover:border-white flex items-center gap-2"
+            >
+              <Phone className="h-4 w-4 text-[#D4A72C]" />
+              <span>Call: {phone}</span>
+            </a>
+          </div>
+        </Container>
+      </div>
+
+      {/* 
+        MODI WORLD SCHOOL-STYLE MAIN FOOTER BODY
+        Dark Red #680000 background, 4 structured columns with gold headings
+      */}
+      <div className="bg-[#680000] text-white py-14 sm:py-16 border-b border-white/10">
+        <Container>
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-            {/* Column 1: School Info & Logo */}
+            {/* Column 1: School Identity & Leadership */}
             <div className="space-y-4">
               <div className="flex items-center gap-3.5">
                 {logo ? (
@@ -93,12 +158,35 @@ export async function PublicFooter() {
                   </div>
                 )}
                 <div>
-                  <h3 className="font-bold text-lg leading-tight">{siteName}</h3>
-                  <p className="text-xs text-[#D4A72C] uppercase tracking-wider mt-0.5">{headerSubtitle}</p>
+                  <h3 className="font-extrabold text-lg leading-tight tracking-tight">
+                    {siteName}
+                  </h3>
+                  <p className="text-xs text-[#D4A72C] font-semibold uppercase tracking-wider mt-0.5">
+                    {headerSubtitle}
+                  </p>
                 </div>
               </div>
-              <p className="text-sm text-white/75 leading-relaxed">{tagline}</p>
-              
+
+              <p className="text-sm text-white/80 leading-relaxed">
+                A Premier CBSE Affiliated Co-Educational English Medium Institution in Nangal, Udaipurwati, dedicated to academic brilliance, moral integrity, and all-round leadership.
+              </p>
+
+              {/* Leadership Box */}
+              <div className="pt-2 border-t border-white/10 text-xs text-white/75 space-y-1">
+                <p>
+                  <span className="text-[#D4A72C] font-semibold">Chairman:</span>{" "}
+                  Mr. Ajeet Singh Shekhawat
+                </p>
+                <p>
+                  <span className="text-[#D4A72C] font-semibold">Director:</span>{" "}
+                  Mr. Pradhuman Singh Shekhawat
+                </p>
+                <p>
+                  <span className="text-[#D4A72C] font-semibold">Principal:</span>{" "}
+                  Mrs. Sunita Rathore
+                </p>
+              </div>
+
               {/* Social Media Links */}
               <div className="flex flex-wrap gap-2.5 pt-2">
                 {facebook && (
@@ -106,7 +194,7 @@ export async function PublicFooter() {
                     href={facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Facebook"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -119,7 +207,7 @@ export async function PublicFooter() {
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Instagram"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -132,10 +220,10 @@ export async function PublicFooter() {
                     href={twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
-                    title="Twitter / X"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
+                    title="Twitter"
                   >
-                    <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                   </a>
@@ -145,24 +233,11 @@ export async function PublicFooter() {
                     href={youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="YouTube"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
                       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                    </svg>
-                  </a>
-                )}
-                {linkedin && (
-                  <a
-                    href={linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
-                    title="LinkedIn"
-                  >
-                    <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </a>
                 )}
@@ -171,92 +246,178 @@ export async function PublicFooter() {
 
             {/* Column 2: Quick Links */}
             <div>
-              <h4 className="font-semibold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider">Quick Links</h4>
+              <h4 className="font-bold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider flex items-center gap-2">
+                <span>Quick Navigation</span>
+              </h4>
               <ul className="space-y-2.5">
-                {footerItems.slice(0, 8).map((item: IMenuItem, i: number) => (
-                  <li key={i}>
-                    <Link
-                      href={item.url || "#"}
-                      target={item.target}
-                      className="text-sm text-white/75 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-1.5 group"
-                    >
-                      <ArrowRight className="h-3 w-3 text-[#D4A72C] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
-                {footerItems.length === 0 && (
+                {footerItems.length > 0 ? (
+                  footerItems.slice(0, 7).map((item: IMenuItem, i: number) => (
+                    <li key={i}>
+                      <Link
+                        href={item.url || "#"}
+                        target={item.target}
+                        className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-2 group"
+                      >
+                        <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C] opacity-70 group-hover:opacity-100 transition-opacity" />
+                        <span>{item.label}</span>
+                      </Link>
+                    </li>
+                  ))
+                ) : (
                   <>
-                    <li><Link href="/about" className="text-sm text-white/75 hover:text-white">About School</Link></li>
-                    <li><Link href="/academics" className="text-sm text-white/75 hover:text-white">Academic Programs</Link></li>
-                    <li><Link href="/admissions" className="text-sm text-white/75 hover:text-white">Admissions 2026-27</Link></li>
-                    <li><Link href="/faculty" className="text-sm text-white/75 hover:text-white">Faculty & Staff</Link></li>
+                    <li>
+                      <Link href="/about" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-2">
+                        <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C]" />
+                        <span>About School</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/academics" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-2">
+                        <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C]" />
+                        <span>Academic Curriculum</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admissions" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-2">
+                        <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C]" />
+                        <span>Admissions 2026–27</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/gallery" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-2">
+                        <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C]" />
+                        <span>Campus Gallery</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/news" className="text-sm text-white/80 hover:text-white inline-flex items-center gap-2">
+                        <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C]" />
+                        <span>Latest Events & News</span>
+                      </Link>
+                    </li>
                   </>
                 )}
               </ul>
             </div>
 
-            {/* Column 3: Important Links */}
+            {/* Column 3: CBSE Mandatory Disclosures & Documents */}
             <div>
-              <h4 className="font-semibold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider">CBSE & Compliance</h4>
+              <h4 className="font-bold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider flex items-center gap-2">
+                <span>CBSE & Compliance</span>
+              </h4>
               <ul className="space-y-2.5">
-                {secondaryItems.slice(0, 8).map((item: IMenuItem, i: number) => (
-                  <li key={i}>
-                    <Link
-                      href={item.url || "#"}
-                      target={item.target}
-                      className="text-sm text-white/75 hover:text-white hover:translate-x-1 transition-all"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-                {secondaryItems.length === 0 && (
-                  <>
-                    <li><Link href="/mandatory-disclosure" className="text-sm text-white/75 hover:text-white">Mandatory Public Disclosure</Link></li>
-                    <li><Link href="/admission-guidelines" className="text-sm text-white/75 hover:text-white">Admission Guidelines</Link></li>
-                    <li><Link href="/fee-structure" className="text-sm text-white/75 hover:text-white">Fee Structure</Link></li>
-                    <li><Link href="/gallery" className="text-sm text-white/75 hover:text-white">Campus Gallery</Link></li>
-                  </>
-                )}
+                <li>
+                  <Link
+                    href="/mandatory-disclosure"
+                    className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C] opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span>Mandatory Public Disclosure</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/mandatory-disclosure"
+                    className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C] opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span>School Management Committee</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/fee-structure"
+                    className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C] opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span>Fee Structure (2026-27)</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/mandatory-disclosure"
+                    className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C] opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span>Academic Calendar & Holidays</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/mandatory-disclosure"
+                    className="text-sm text-white/80 hover:text-white hover:translate-x-1 transition-all inline-flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5 text-[#D4A72C] opacity-70 group-hover:opacity-100 transition-opacity" />
+                    <span>Building & Fire Safety</span>
+                  </Link>
+                </li>
               </ul>
             </div>
 
-            {/* Column 4: Contact */}
+            {/* Column 4: Contact & Campus Visit */}
             <div>
-              <h4 className="font-semibold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider">Contact Us</h4>
-              <div className="space-y-3.5">
-                {address && (
-                  <div className="flex items-start gap-2.5">
-                    <MapPin className="h-4 w-4 mt-0.5 text-[#D4A72C] shrink-0" />
-                    <p className="text-sm text-white/75 leading-relaxed">{address}</p>
+              <h4 className="font-bold mb-4 text-[#D4A72C] text-sm uppercase tracking-wider flex items-center gap-2">
+                <span>Campus & Contact</span>
+              </h4>
+              <div className="space-y-3.5 text-sm">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="h-4 w-4 mt-0.5 text-[#D4A72C] shrink-0" />
+                  <p className="text-white/80 leading-relaxed">{address}</p>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <Phone className="h-4 w-4 text-[#D4A72C] shrink-0" />
+                  <div className="text-white/80">
+                    <a href={`tel:${phone}`} className="hover:text-white transition-colors">
+                      {phone}
+                    </a>
+                    {" / "}
+                    <a href={`tel:${phone2}`} className="hover:text-white transition-colors">
+                      {phone2}
+                    </a>
                   </div>
-                )}
-                {phone && (
-                  <div className="flex items-center gap-2.5">
-                    <Phone className="h-4 w-4 text-[#D4A72C] shrink-0" />
-                    <a href={`tel:${phone}`} className="text-sm text-white/75 hover:text-white transition-colors">{phone}</a>
+                </div>
+
+                <div className="flex items-center gap-2.5">
+                  <Mail className="h-4 w-4 text-[#D4A72C] shrink-0" />
+                  <a
+                    href={`mailto:${email}`}
+                    className="text-white/80 hover:text-white transition-colors truncate max-w-[220px]"
+                  >
+                    {email}
+                  </a>
+                </div>
+
+                <div className="flex items-start gap-2.5 pt-1 text-xs text-white/70">
+                  <Clock className="h-4 w-4 text-[#D4A72C] shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-white/90">Visiting Hours:</p>
+                    <p>Mon – Sat: 8:00 AM – 2:30 PM</p>
                   </div>
-                )}
-                {email && (
-                  <div className="flex items-center gap-2.5">
-                    <Mail className="h-4 w-4 text-[#D4A72C] shrink-0" />
-                    <a href={`mailto:${email}`} className="text-sm text-white/75 hover:text-white transition-colors">{email}</a>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </div>
 
-      {/* Copyright Bar */}
-      <div className="py-4 bg-[#520000]">
-        <Container className="flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-          <p className="text-xs text-white/60">{copyrightText}</p>
-          <p className="text-xs text-white/40">
-            CBSE Affiliated Senior Secondary School
-          </p>
+      {/* 
+        MODI WORLD SCHOOL-STYLE BOTTOM COPYRIGHT BAR
+        Deep dark red #520000 background with affiliation verification
+      */}
+      <div className="py-4 bg-[#520000] text-white/75 text-xs border-t border-white/5">
+        <Container className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <p>{copyrightText}</p>
+          <div className="flex items-center gap-3 text-white/60">
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#D4A72C]" />
+              <span>CBSE Affiliated Senior Secondary</span>
+            </span>
+            <span>•</span>
+            <Link href="/mandatory-disclosure" className="hover:text-white transition-colors">
+              Mandatory Disclosures
+            </Link>
+          </div>
         </Container>
       </div>
     </footer>

@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Mandatory Public Disclosure (CBSE Appendix-IX) | Saint Lawrence Public School",
+  title: "Mandatory Public Disclosure (CBSE Appendix-IX) | Siddharth International School",
   description: "Official CBSE Mandatory Public Disclosure documents, certificates, and compliance details.",
 };
 
@@ -85,8 +85,20 @@ export default async function PublicDisclosurePage() {
                             </thead>
                             <tbody className="divide-y divide-slate-100 font-normal text-slate-700">
                               {sec.fields.map((field: { label: string; type: string; value: unknown }, idx: number) => {
-                                const isDoc = field.type === "document" || field.type === "url";
-                                const docUrl = String(field.value || "");
+                                const isDoc = field.type === "document";
+                                const isUrl = field.type === "url";
+                                let docUrl = String(field.value || "").trim();
+
+                                // Map legacy Cloudinary URLs to local verified PDFs if needed
+                                if (docUrl.includes("Buliding_Security_Certificate") || docUrl.includes("Fire_safety")) {
+                                  docUrl = "/uploads/documents/building-safety-certificate.pdf";
+                                } else if (docUrl.includes("FEE_Structure")) {
+                                  docUrl = "/uploads/documents/fee-structure-2026-27.pdf";
+                                } else if (docUrl.includes("Annual_Academic_Calander")) {
+                                  docUrl = "/uploads/documents/academic-calendar.pdf";
+                                } else if (docUrl.includes("NOC_")) {
+                                  docUrl = "/uploads/documents/noc-cbse-affiliation.pdf";
+                                }
 
                                 return (
                                   <tr key={idx} className="hover:bg-slate-50/60 transition-colors">
@@ -119,6 +131,16 @@ export default async function PublicDisclosurePage() {
                                             <span>Download</span>
                                           </a>
                                         </div>
+                                      ) : isUrl && docUrl && docUrl !== "—" ? (
+                                        <a
+                                          href={docUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#680000] text-white text-xs font-semibold hover:bg-[#8A0000] shadow-xs transition-all"
+                                        >
+                                          <ExternalLink className="h-3.5 w-3.5" />
+                                          <span>Open Link</span>
+                                        </a>
                                       ) : field.type === "boolean" ? (
                                         <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full text-xs font-semibold">
                                           <CheckCircle2 className="h-3.5 w-3.5" />

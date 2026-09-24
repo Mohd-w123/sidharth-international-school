@@ -35,7 +35,7 @@ export async function uploadMedia(formData: FormData): Promise<ActionState & { i
   const resourceType = file.type.startsWith("video/") ? "video" : file.type.startsWith("image/") ? "image" : "raw";
   const folder = (formData.get("folder") as string) || "school-cms";
 
-  const result = await uploadToCloudinary(buffer, { folder, resourceType });
+  const result = await uploadToCloudinary(buffer, { folder, resourceType, filename: file.name });
 
   const media = await mediaService.create({
     filename: `${result.publicId}.${result.format}`,
