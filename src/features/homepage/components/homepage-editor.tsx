@@ -27,6 +27,7 @@ import {
   Save,
   Loader2,
   CheckCircle2,
+  Video,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -123,17 +124,28 @@ export function HomepageEditor({ config }: HomepageEditorProps) {
     });
   };
 
-  // Validation helper to ensure mandatory fields like hero banner image are filled
+  // Validation helper to ensure mandatory fields are filled
   const validateSections = (sectionsList: HomepageSectionInput[]): boolean => {
     for (let i = 0; i < sectionsList.length; i++) {
       const sec = sectionsList[i]!;
       if (sec.type === "hero" && sec.isEnabled) {
         const content = (sec.content || {}) as Record<string, any>;
+        const videoUrl =
+          (content.videoUrl as string) ||
+          (content.backgroundVideo as string) ||
+          (content.video as string) ||
+          "/slider-video/slider-video.mp4";
+
+        // If hero has a video background configured (including default video), image is optional
+        if (videoUrl && videoUrl.trim()) {
+          continue;
+        }
+
         const rawBanners = Array.isArray(content.banners) ? content.banners : [];
 
         if (rawBanners.length === 0) {
           if (!content.backgroundImage || !String(content.backgroundImage).trim()) {
-            toast.error(`Hero Banner Section: Banner image is mandatory. Please upload or select an image.`);
+            toast.error(`Hero Banner Section: Video URL or banner image is required.`);
             setExpandedIndex(i);
             return false;
           }
@@ -453,257 +465,245 @@ function SectionContentEditor({
 
   switch (section.type) {
     case "hero": {
-      // Normalize banners list from content.banners or legacy root fields
-      const rawBanners = Array.isArray(content.banners) ? content.banners : [];
-      const banners: Array<{
-        badge?: string;
-        title: string;
-        description?: string;
-        image: string;
-        primaryButtonText?: string;
-        primaryButtonUrl?: string;
-        secondaryButtonText?: string;
-        secondaryButtonUrl?: string;
-      }> =
-        rawBanners.length > 0
-          ? rawBanners.map((b: any, idx: number) => ({
-              badge: b?.badge || (idx === 0 ? content.badge : "") || "BE THE LIGHT",
-              title: b?.title || (idx === 0 ? content.title : "") || "Saint Lawrence Public School – One of the Best Schools in Jaipur",
-              description:
-                b?.description ||
-                b?.subtitle ||
-                (idx === 0 ? content.description || content.subtitle : "") ||
-                "Where every child is known by name, nurtured by purpose, and inspired to lead with empathy, integrity, perseverance, and autonomy.",
-              image: b?.image || (idx === 0 ? content.backgroundImage : "") || "",
-              primaryButtonText: b?.primaryButtonText || b?.buttonText || (idx === 0 ? content.buttonText : "") || "Enquire Now",
-              primaryButtonUrl: b?.primaryButtonUrl || b?.buttonUrl || (idx === 0 ? content.buttonUrl : "") || "/admissions",
-              secondaryButtonText: b?.secondaryButtonText || (idx === 0 ? content.secondaryButtonText : "") || "Latest News",
-              secondaryButtonUrl: b?.secondaryButtonUrl || (idx === 0 ? content.secondaryButtonUrl : "") || "/news",
-            }))
-          : [
-              {
-                badge: content.badge || "BE THE LIGHT",
-                title: content.title || "Saint Lawrence Public School – One of the Best Schools in Jaipur",
-                description:
-                  content.subtitle ||
-                  content.description ||
-                  "Where every child is known by name, nurtured by purpose, and inspired to lead with empathy, integrity, perseverance, and autonomy.",
-                image: content.backgroundImage || "",
-                primaryButtonText: content.buttonText || content.primaryButtonText || "Enquire Now",
-                primaryButtonUrl: content.buttonUrl || content.primaryButtonUrl || "/admissions",
-                secondaryButtonText: "Latest News",
-                secondaryButtonUrl: "/news",
-              },
-            ];
+      const videoUrl =
+        (content.videoUrl as string) ||
+        (content.backgroundVideo as string) ||
+        (content.video as string) ||
+        "/slider-video/slider-video.mp4";
 
-      const saveBanners = (updatedBanners: typeof banners) => {
-        const first = updatedBanners[0];
-        const newContent = {
-          ...content,
-          banners: updatedBanners,
-          backgroundImage: first?.image || "",
-          title: first?.title || "",
-          subtitle: first?.description || "",
-          description: first?.description || "",
-          badge: first?.badge || "",
-          buttonText: first?.primaryButtonText || "",
-          buttonUrl: first?.primaryButtonUrl || "",
-          secondaryButtonText: first?.secondaryButtonText || "",
-          secondaryButtonUrl: first?.secondaryButtonUrl || "",
-        };
-        onUpdateAll(newContent);
-      };
+      const posterImage =
+        (content.posterImage as string) ||
+        (content.backgroundImage as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.image) ||
+        "/uploads/campus/morning-assembly-ground.jpg";
 
-      const addBanner = () => {
-        const newSlide = {
-          badge: "BE THE LIGHT",
-          title: "Saint Lawrence Public School",
-          description: "Nurturing Minds, Building Futures.",
-          image: "",
-          primaryButtonText: "Enquire Now",
-          primaryButtonUrl: "/admissions",
-          secondaryButtonText: "Latest News",
-          secondaryButtonUrl: "/news",
-        };
-        saveBanners([...banners, newSlide]);
-      };
+      const badge =
+        (content.badge as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.badge) ||
+        "AFFILIATED TO CBSE, NEW DELHI";
 
-      const removeBanner = (i: number) => {
-        if (banners.length <= 1) {
-          toast.info("At least one banner slide is required.");
-          return;
-        }
-        saveBanners(banners.filter((_, idx) => idx !== i));
-      };
+      const title =
+        (content.title as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.title) ||
+        "Inspiring Excellence, Character & Lifelong Learning";
 
-      const updateBanner = (i: number, field: string, value: any) => {
-        const copy = banners.map((b, idx) => (idx === i ? { ...b, [field]: value } : b));
-        saveBanners(copy);
-      };
+      const description =
+        (content.description as string) ||
+        (content.subtitle as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.description) ||
+        "A Premier CBSE Co-Educational English Medium Institution in Nangal, Udaipurwati. Empowering young minds with academic brilliance, modern technology, and timeless values.";
+
+      const primaryButtonText =
+        (content.primaryButtonText as string) ||
+        (content.buttonText as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.primaryButtonText) ||
+        "Apply For Admission";
+
+      const primaryButtonUrl =
+        (content.primaryButtonUrl as string) ||
+        (content.buttonUrl as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.primaryButtonUrl) ||
+        "/admissions";
+
+      const secondaryButtonText =
+        (content.secondaryButtonText as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.secondaryButtonText) ||
+        "Explore Campus";
+
+      const secondaryButtonUrl =
+        (content.secondaryButtonUrl as string) ||
+        (Array.isArray(content.banners) && content.banners[0]?.secondaryButtonUrl) ||
+        "/gallery";
 
       return (
-        <div className="space-y-4 pt-2">
-          <div className="flex items-center justify-between">
-            <Label className="text-xs font-bold text-foreground">
-              Hero Banner Slides ({banners.length})
-            </Label>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={addBanner}
-              className="text-xs h-7"
-            >
-              <Plus className="h-3.5 w-3.5 mr-1" /> Add Banner Slide
-            </Button>
+        <div className="space-y-5 pt-2">
+          {/* Header Info */}
+          <div className="p-3.5 bg-[#A22965]/10 border border-[#A22965]/30 rounded-lg flex items-start gap-3">
+            <Video className="h-5 w-5 text-[#A22965] shrink-0 mt-0.5" />
+            <div className="text-xs">
+              <span className="font-bold text-foreground block">
+                Dynamic Video Hero Active
+              </span>
+              <p className="text-muted-foreground text-[11px] mt-0.5 leading-relaxed">
+                The homepage hero displays a seamless background video instead of an image slider. All video links, titles, descriptions, and action buttons are 100% dynamic and editable below.
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            {banners.map((slide, i) => {
-              const isImageMissing = !slide.image || !String(slide.image).trim();
-
-              return (
-                <Card
-                  key={`hero-slide-editor-${i}`}
-                  className={`border transition-all ${
-                    isImageMissing ? "border-destructive/60 bg-destructive/5" : "border-border bg-muted/20"
-                  }`}
+          {/* Video Configuration Card */}
+          <Card className="border border-border bg-muted/20">
+            <CardHeader className="py-2.5 px-4 bg-muted/40 border-b">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold flex items-center gap-1.5">
+                  <Video className="h-3.5 w-3.5 text-[#A22965]" />
+                  Background Video & Fallback Poster Settings
+                </span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="h-6 text-[10px] px-2"
+                  onClick={() => onChange("videoUrl", "/slider-video/slider-video.mp4")}
                 >
-                  <CardHeader className="py-2.5 px-4 flex flex-row items-center justify-between border-b bg-muted/40">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold">Slide {i + 1}</span>
-                      {slide.title && (
-                        <span className="text-xs text-muted-foreground truncate max-w-[200px]">
-                          - {slide.title}
-                        </span>
-                      )}
-                      {isImageMissing && (
-                        <span className="text-[10px] bg-destructive/20 text-destructive font-medium px-1.5 py-0.5 rounded">
-                          Image Required *
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      {banners.length > 1 && (
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeBanner(i)}
-                          className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive cursor-pointer"
-                          title="Remove slide"
-                        >
-                          <Trash2 className="h-3.5 w-3.5" />
-                        </Button>
-                      )}
-                    </div>
-                  </CardHeader>
+                  Reset Default Video
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4 space-y-4">
+              {/* Video URL Input */}
+              <div className="space-y-1.5">
+                <Label className="text-xs font-semibold">
+                  Background Video File URL (.mp4 / .webm) <span className="text-destructive font-bold">*</span>
+                </Label>
+                <div className="flex gap-2">
+                  <Input
+                    value={videoUrl}
+                    onChange={(e) => onChange("videoUrl", e.target.value)}
+                    placeholder="/slider-video/slider-video.mp4"
+                    className="text-xs font-mono"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="shrink-0 text-xs h-9"
+                    onClick={() => onOpenMedia("videoUrl")}
+                  >
+                    Select File
+                  </Button>
+                </div>
+                <p className="text-[11px] text-muted-foreground">
+                  Current video: <code className="bg-muted px-1.5 py-0.5 rounded font-mono text-[10px] font-semibold text-primary">{videoUrl}</code>
+                </p>
+              </div>
 
-                  <CardContent className="p-4 space-y-3">
-                    {/* MANDATORY Banner Image */}
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <Label className="text-xs font-semibold flex items-center gap-1">
-                          Banner Background Image <span className="text-destructive font-bold">* (Mandatory)</span>
-                        </Label>
-                      </div>
-                      <ImageSettingInput
-                        value={slide.image || ""}
-                        onChange={(url) => updateBanner(i, "image", url)}
-                        placeholder="Upload or paste banner image URL (Mandatory)"
-                        label={`Banner Slide ${i + 1}`}
-                        description="High quality school photo or campus building view (Recommended 1920x1080)."
-                      />
+              {/* Video Live Preview */}
+              {videoUrl && (
+                <div className="space-y-1.5">
+                  <Label className="text-[11px] text-muted-foreground">Live Video Preview</Label>
+                  <div className="relative aspect-video max-h-[220px] rounded-lg overflow-hidden border border-border bg-black">
+                    <video
+                      key={videoUrl}
+                      src={videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2 bg-black/75 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1.5 backdrop-blur-xs">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      Video Autoplaying
                     </div>
+                  </div>
+                </div>
+              )}
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                      <div className="space-y-1">
-                        <Label className="text-xs">Badge / Tagline (Above Title)</Label>
-                        <Input
-                          value={slide.badge || ""}
-                          onChange={(e) => updateBanner(i, "badge", e.target.value)}
-                          placeholder="BE THE LIGHT"
-                          className="text-xs"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <Label className="text-xs">Main Title</Label>
-                        <Input
-                          value={slide.title || ""}
-                          onChange={(e) => updateBanner(i, "title", e.target.value)}
-                          placeholder="Saint Lawrence Public School – One of the Best Schools in Jaipur"
-                          className="text-xs"
-                        />
-                      </div>
-                    </div>
+              {/* Poster Image / Fallback */}
+              <div className="space-y-1.5 pt-3 border-t">
+                <Label className="text-xs font-semibold">
+                  Fallback Poster Image (shown before video loads or on mobile low-power mode)
+                </Label>
+                <ImageSettingInput
+                  value={posterImage}
+                  onChange={(url) => onChange("posterImage", url)}
+                  placeholder="Paste or select poster image URL"
+                  label="Hero Poster Image"
+                  description="Recommended 1920x1080 sharp campus photograph."
+                />
+              </div>
+            </CardContent>
+          </Card>
 
-                    <div className="space-y-1">
-                      <Label className="text-xs">Description / Subtext</Label>
-                      <Textarea
-                        value={slide.description || ""}
-                        onChange={(e) => updateBanner(i, "description", e.target.value)}
-                        placeholder="Where every child is known by name, nurtured by purpose..."
-                        rows={2}
-                        className="text-xs"
-                      />
-                    </div>
+          {/* Text & Content Card */}
+          <Card className="border border-border bg-muted/20">
+            <CardHeader className="py-2.5 px-4 bg-muted/40 border-b">
+              <span className="text-xs font-bold">Hero Text & Headline</span>
+            </CardHeader>
+            <CardContent className="p-4 space-y-3">
+              <div className="space-y-1">
+                <Label className="text-xs">Badge / Tagline (Above Title)</Label>
+                <Input
+                  value={badge}
+                  onChange={(e) => onChange("badge", e.target.value)}
+                  placeholder="AFFILIATED TO CBSE, NEW DELHI"
+                  className="text-xs"
+                />
+              </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {/* Primary Button */}
-                      <div className="p-2.5 rounded-lg border bg-background/50 space-y-2">
-                        <span className="text-[11px] font-semibold text-primary block">
-                          Primary Button (Gold/Filled)
-                        </span>
-                        <div className="space-y-1">
-                          <Label className="text-[10px]">Button Label</Label>
-                          <Input
-                            value={slide.primaryButtonText || ""}
-                            onChange={(e) => updateBanner(i, "primaryButtonText", e.target.value)}
-                            placeholder="Enquire Now"
-                            className="text-xs h-7"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <Label className="text-[10px]">Button URL</Label>
-                          <Input
-                            value={slide.primaryButtonUrl || ""}
-                            onChange={(e) => updateBanner(i, "primaryButtonUrl", e.target.value)}
-                            placeholder="/admissions"
-                            className="text-xs h-7"
-                          />
-                        </div>
-                      </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Main Hero Title</Label>
+                <Input
+                  value={title}
+                  onChange={(e) => onChange("title", e.target.value)}
+                  placeholder="Inspiring Excellence, Character & Lifelong Learning"
+                  className="text-xs font-semibold"
+                />
+              </div>
 
-                      {/* Secondary Button */}
-                      <div className="p-2.5 rounded-lg border bg-background/50 space-y-2">
-                        <span className="text-[11px] font-semibold text-muted-foreground block">
-                          Secondary Button (Outline)
-                        </span>
-                        <div className="space-y-1">
-                          <Label className="text-[10px]">Button Label</Label>
-                          <Input
-                            value={slide.secondaryButtonText || ""}
-                            onChange={(e) => updateBanner(i, "secondaryButtonText", e.target.value)}
-                            placeholder="Latest News"
-                            className="text-xs h-7"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <Label className="text-[10px]">Button URL</Label>
-                          <Input
-                            value={slide.secondaryButtonUrl || ""}
-                            onChange={(e) => updateBanner(i, "secondaryButtonUrl", e.target.value)}
-                            placeholder="/news"
-                            className="text-xs h-7"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+              <div className="space-y-1">
+                <Label className="text-xs">Subtitle / School Description</Label>
+                <Textarea
+                  value={description}
+                  onChange={(e) => onChange("description", e.target.value)}
+                  placeholder="A Premier CBSE Co-Educational English Medium Institution..."
+                  rows={3}
+                  className="text-xs"
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="p-3 rounded-lg border bg-background/50 space-y-2">
+                  <span className="text-xs font-bold text-[#D4A72C] block">
+                    Primary Button (Gold CTA)
+                  </span>
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Button Text</Label>
+                    <Input
+                      value={primaryButtonText}
+                      onChange={(e) => onChange("primaryButtonText", e.target.value)}
+                      placeholder="Apply For Admission"
+                      className="text-xs h-7"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Button Link</Label>
+                    <Input
+                      value={primaryButtonUrl}
+                      onChange={(e) => onChange("primaryButtonUrl", e.target.value)}
+                      placeholder="/admissions"
+                      className="text-xs h-7"
+                    />
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-lg border bg-background/50 space-y-2">
+                  <span className="text-xs font-bold text-muted-foreground block">
+                    Secondary Button (Glass Outline)
+                  </span>
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Button Text</Label>
+                    <Input
+                      value={secondaryButtonText}
+                      onChange={(e) => onChange("secondaryButtonText", e.target.value)}
+                      placeholder="Explore Campus"
+                      className="text-xs h-7"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Button Link</Label>
+                    <Input
+                      value={secondaryButtonUrl}
+                      onChange={(e) => onChange("secondaryButtonUrl", e.target.value)}
+                      placeholder="/gallery"
+                      className="text-xs h-7"
+                    />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       );
     }
@@ -980,9 +980,58 @@ function SectionContentEditor({
       );
     }
 
-    case "vision": {
-      const items = (content.items || []) as { title: string; tag?: string; description?: string }[];
-      const addItem = () => onChange("items", [...items, { title: "Stage Name", tag: "GRADES I-II", description: "" }]);
+    case "vision":
+    case "academics": {
+      const defaultStages = [
+        {
+          title: "Foundation Stage",
+          tag: "Class Nursery to II (Ages 3 to 8 Years)",
+          sub: "Jolly Kids Early Childhood - Pre Primary Division:",
+          description: "Play-based, joyful, and experiential pedagogy focused on phonics, early numeracy, and sensory motor development.",
+          image: "/uploads/events/sports-day-races.jpg",
+          link: "/curriculum",
+        },
+        {
+          title: "Preparatory Stage",
+          tag: "Class III to V (Ages 8 to 11 Years)",
+          sub: "CBSE - NCERT Curriculum. Sports Curriculum",
+          description: "Conceptual foundations in Mathematics, Environmental Science, and Languages (English/Hindi). Sports & Arts Integration.",
+          image: "/uploads/campus/morning-assembly-ground.jpg",
+          link: "/curriculum",
+        },
+        {
+          title: "Middle Stage",
+          tag: "Class VI to VIII (Ages 11 to 14 Years)",
+          sub: "CBSE - NCERT Curriculum. Sports Curriculum",
+          description: "Hands-on Science laboratory experiments, computer coding & digital literacy, athletics coaching, and ethical character building.",
+          image: "/uploads/campus/siddharth-academic-block.jpg",
+          link: "/curriculum",
+        },
+        {
+          title: "Secondary Stage",
+          tag: "Class IX to XII (Ages 14 to 18 Years)",
+          sub: "CBSE - NCERT Curriculum, Sports Curriculum",
+          description: "Rigorous board examination excellence, specialized Science & Commerce streams, career counseling, and leadership grooming.",
+          image: "/uploads/campus/siddharth-campus-main.jpg",
+          link: "/curriculum",
+        },
+      ];
+
+      const rawItems = Array.isArray(content.items) && content.items.length > 0 ? content.items : defaultStages;
+      const items = rawItems.map((st: any) => ({
+        title: st?.title || "",
+        tag: st?.tag || "",
+        sub: st?.sub || "",
+        description: st?.description || "",
+        image: st?.image || "",
+        link: st?.link || "/curriculum",
+      }));
+
+      const addItem = () =>
+        onChange("items", [
+          ...items,
+          { title: "New Stage", tag: "GRADES I-II", sub: "", description: "", image: "", link: "/curriculum" },
+        ]);
       const removeItem = (i: number) => onChange("items", items.filter((_, idx) => idx !== i));
       const updateItem = (i: number, f: string, v: string) => {
         const copy = [...items];
@@ -994,67 +1043,129 @@ function SectionContentEditor({
 
       return (
         <div className="space-y-4 pt-2">
-          <div className="space-y-1">
-            <Label className="text-xs font-semibold">Vision Statement / Description</Label>
-            <Textarea
-              value={content.description || ""}
-              onChange={(e) => onChange("description", e.target.value)}
-              placeholder="Recognised as one of Jaipur's most trusted schools..."
-              rows={3}
-              className="text-xs"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Section Subtitle</Label>
+              <Input
+                value={content.subtitle || "Siddharth International School Wisdom Campus | Best CBSE School Of Rajasthan"}
+                onChange={(e) => onChange("subtitle", e.target.value)}
+                placeholder="Section Subtitle"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Overview Description</Label>
+              <Input
+                value={content.description || ""}
+                onChange={(e) => onChange("description", e.target.value)}
+                placeholder="Overview statement..."
+                className="text-xs h-8"
+              />
+            </div>
           </div>
 
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <Label className="text-xs font-semibold">Developmental Stages ({items.length})</Label>
+              <Label className="text-xs font-semibold">Academic Developmental Stages ({items.length})</Label>
               <Button type="button" variant="outline" size="sm" onClick={addItem} className="text-xs h-7">
                 <Plus className="h-3.5 w-3.5 mr-1" /> Add Stage Card
               </Button>
             </div>
 
-            {items.map((item, i) => (
-              <div key={i} className="p-3.5 border rounded-lg space-y-2.5 bg-muted/20">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-semibold text-foreground">Stage #{i + 1}</span>
-                  <Button type="button" variant="ghost" size="sm" onClick={() => removeItem(i)} className="h-6 w-6 p-0 text-destructive">
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {items.map((item, i) => (
+                <div key={i} className="p-3.5 border rounded-lg space-y-2.5 bg-muted/20">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-semibold text-foreground">
+                      Stage #{i + 1}: {item.title || "Stage"}
+                    </span>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeItem(i)}
+                      className="h-6 w-6 p-0 text-destructive"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className="text-[10px]">Stage Title</Label>
+                      <Input
+                        value={item.title}
+                        onChange={(e) => updateItem(i, "title", e.target.value)}
+                        placeholder="e.g. Foundation Stage"
+                        className="text-xs h-8"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className="text-[10px]">Grades / Age Tag</Label>
+                      <Input
+                        value={item.tag || ""}
+                        onChange={(e) => updateItem(i, "tag", e.target.value)}
+                        placeholder="Class Nursery to II (Ages 3 to 8 Years)"
+                        className="text-xs h-8"
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-1">
-                    <Label className="text-[10px]">Stage Title (e.g. Chetna, Ananda)</Label>
+                    <Label className="text-[10px]">Division / Curriculum Subheading</Label>
                     <Input
-                      value={item.title}
-                      onChange={(e) => updateItem(i, "title", e.target.value)}
-                      placeholder="Title"
+                      value={item.sub || ""}
+                      onChange={(e) => updateItem(i, "sub", e.target.value)}
+                      placeholder="Jolly Kids Early Childhood - Pre Primary Division:"
                       className="text-xs h-8"
                     />
                   </div>
+
                   <div className="space-y-1">
-                    <Label className="text-[10px]">Grades Tag (e.g. EARLY YEAR I, II, & III)</Label>
-                    <Input
-                      value={item.tag || ""}
-                      onChange={(e) => updateItem(i, "tag", e.target.value)}
-                      placeholder="GRADES I-II"
-                      className="text-xs h-8"
+                    <Label className="text-[10px]">Description</Label>
+                    <Textarea
+                      value={item.description || ""}
+                      onChange={(e) => updateItem(i, "description", e.target.value)}
+                      placeholder="Describe this stage's pedagogy and focus..."
+                      rows={2}
+                      className="text-xs"
                     />
                   </div>
-                </div>
 
-                <div className="space-y-1">
-                  <Label className="text-[10px]">Description</Label>
-                  <Textarea
-                    value={item.description || ""}
-                    onChange={(e) => updateItem(i, "description", e.target.value)}
-                    placeholder="Describe this learning stage..."
-                    rows={2}
-                    className="text-xs"
-                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className="text-[10px]">Stage Image</Label>
+                      <div className="flex gap-1">
+                        <Input
+                          value={item.image || ""}
+                          onChange={(e) => updateItem(i, "image", e.target.value)}
+                          placeholder="Image URL"
+                          className="text-xs h-8"
+                        />
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="sm"
+                          onClick={() => onOpenMedia("image", i)}
+                          className="h-8 px-2"
+                        >
+                          <ImageIcon className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label className="text-[10px]">Curriculum Link</Label>
+                      <Input
+                        value={item.link || "/curriculum"}
+                        onChange={(e) => updateItem(i, "link", e.target.value)}
+                        placeholder="/curriculum"
+                        className="text-xs h-8"
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       );
@@ -1153,10 +1264,473 @@ function SectionContentEditor({
       );
     }
 
+    case "why-choose-us": {
+      const defaultOpportunityPoints = [
+        "Best Schooling In Shekhawati Region",
+        "Plethora of subject options from Foundation Stage to Grade XII",
+        "Specialised sports coaching in addition to regular CBSE Board and yearly exams",
+        "Best CBSE School In Udaipurwati in Academic Excellence",
+        "State-of-the-Art Science Laboratories, Computer Hub & Digital Classrooms",
+        "Safe & Secure Campus with 24/7 CCTV Surveillance & GPS-Tracked Bus Fleet",
+      ];
+
+      const rawPoints: string[] = Array.isArray(content.points) && content.points.length > 0
+        ? (content.points as string[])
+        : Array.isArray(content.items) && content.items.length > 0
+          ? (content.items as any[]).map((p) => (typeof p === "string" ? p : p.title || p.text || String(p)))
+          : defaultOpportunityPoints;
+
+      const setPointsList = (newPts: string[]) => {
+        onChange("points", newPts);
+        onChange("items", newPts);
+      };
+
+      const addPoint = () => setPointsList([...rawPoints, "New advantage or key feature"]);
+      const removePoint = (idx: number) => setPointsList(rawPoints.filter((_, i) => i !== idx));
+      const updatePoint = (idx: number, val: string) => {
+        const copy = [...rawPoints];
+        copy[idx] = val;
+        setPointsList(copy);
+      };
+
+      return (
+        <div className="space-y-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Sub-Heading Tag</Label>
+              <Input
+                value={content.subHeadingTag || "One Campus"}
+                onChange={(e) => onChange("subHeadingTag", e.target.value)}
+                placeholder="One Campus"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Sub-Heading Title</Label>
+              <Input
+                value={content.subHeading || "Multiple opportunities"}
+                onChange={(e) => onChange("subHeading", e.target.value)}
+                placeholder="Multiple opportunities"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <Label className="text-xs font-semibold">Intro Description Paragraph</Label>
+            <Textarea
+              value={content.description || ""}
+              onChange={(e) => onChange("description", e.target.value)}
+              placeholder="Describe why parents and students choose Siddharth International School..."
+              rows={4}
+              className="text-xs"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <Label className="text-xs font-semibold">Campus Photo (Left 50% Visual)</Label>
+            <ImageSettingInput
+              value={(content.image as string) || (content.backgroundImage as string) || "/uploads/campus/siddharth-campus-main.jpg"}
+              onChange={(url) => {
+                onChange("image", url);
+                onChange("backgroundImage", url);
+              }}
+              placeholder="Upload or select campus image"
+              label="Campus Photo"
+              description="Full-bleed photo showcased on the left side of the section."
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs font-semibold">Checklist Points ({rawPoints.length})</Label>
+              <Button type="button" variant="outline" size="sm" onClick={addPoint} className="text-xs h-7">
+                <Plus className="h-3.5 w-3.5 mr-1" /> Add Point
+              </Button>
+            </div>
+            <div className="space-y-2">
+              {rawPoints.map((pt, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-muted-foreground w-6 text-right">#{i + 1}</span>
+                  <Input
+                    value={pt}
+                    onChange={(e) => updatePoint(i, e.target.value)}
+                    placeholder="Advantage point..."
+                    className="text-xs h-8 flex-1"
+                  />
+                  <Button type="button" variant="ghost" size="sm" onClick={() => removePoint(i)} className="h-7 w-7 p-0 text-destructive">
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Button Text</Label>
+              <Input
+                value={content.buttonText || "About Us"}
+                onChange={(e) => onChange("buttonText", e.target.value)}
+                placeholder="About Us"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Button URL</Label>
+              <Input
+                value={content.buttonUrl || "/about"}
+                onChange={(e) => onChange("buttonUrl", e.target.value)}
+                placeholder="/about"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    case "amenities":
+    case "facilities": {
+      const defaultAmenities = [
+        { title: "Cafeteria & Dining", desc: "Clean, hygienic dining spaces and pure drinking water facilities ensuring wholesome child nutrition.", icon: "Droplets" },
+        { title: "VR & Computer Lab", desc: "Modern IT terminals, high-speed fiber internet, and cutting-edge software for digital literacy and coding.", icon: "Laptop" },
+        { title: "Science Labs", desc: "Fully equipped Physics, Chemistry, and Biology laboratories with modern apparatus and safety measures.", icon: "FlaskConical" },
+        { title: "Digital Classrooms", desc: "Interactive smart boards, projectors, and multimedia audio-visual tools in well-ventilated classrooms.", icon: "MonitorPlay" },
+        { title: "Safe Campus & Security", desc: "24/7 security personnel, gated boundary, and complete CCTV surveillance across all corridors and grounds.", icon: "ShieldCheck" },
+        { title: "Transport", desc: "Safe, comfortable bus fleet with GPS tracking and trained drivers covering Udaipurwati and all neighboring villages.", icon: "Bus" },
+        { title: "Sports Complex", desc: "Sprawling sports grounds for Cricket, Athletics, Volleyball, Badminton, Obstacle races, and Yoga.", icon: "Trophy" },
+        { title: "Library & Resource Hub", desc: "Thousands of books, educational journals, encyclopedia, and quiet reading zones nurturing young scholars.", icon: "BookOpen" },
+      ];
+
+      const rawItems = Array.isArray(content.items) && content.items.length > 0 ? content.items : defaultAmenities;
+      const items = rawItems.map((it: any) => ({
+        title: it?.title || "",
+        desc: it?.desc || it?.description || "",
+        icon: it?.icon || "Sparkles",
+      }));
+
+      const addItem = () => {
+        onChange("items", [...items, { title: "New Amenity", desc: "", icon: "Sparkles" }]);
+      };
+      const removeItem = (i: number) => {
+        onChange("items", items.filter((_, idx) => idx !== i));
+      };
+      const updateItem = (i: number, f: string, v: string) => {
+        const copy = [...items];
+        if (copy[i]) {
+          copy[i] = { ...copy[i]!, [f]: v };
+          onChange("items", copy);
+        }
+      };
+
+      return (
+        <div className="space-y-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Section Subtitle</Label>
+              <Input
+                value={content.subtitle || "FACILITIES"}
+                onChange={(e) => onChange("subtitle", e.target.value)}
+                placeholder="FACILITIES"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Section Description</Label>
+              <Input
+                value={content.description || ""}
+                onChange={(e) => onChange("description", e.target.value)}
+                placeholder="World-class infrastructure designed to foster intellectual curiosity..."
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs font-semibold">Amenity Cards ({items.length})</Label>
+              <Button type="button" variant="outline" size="sm" onClick={addItem} className="text-xs h-7">
+                <Plus className="h-3.5 w-3.5 mr-1" /> Add Amenity Card
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {items.map((item, i) => (
+                <div key={i} className="p-3.5 border rounded-lg space-y-2 bg-card/60 relative">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-primary">Amenity #{i + 1}</span>
+                    <Button type="button" variant="ghost" size="sm" onClick={() => removeItem(i)} className="h-6 w-6 p-0 text-destructive">
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Title</Label>
+                    <Input
+                      value={item.title}
+                      onChange={(e) => updateItem(i, "title", e.target.value)}
+                      placeholder="e.g. Cafeteria & Dining"
+                      className="text-xs h-8"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Description (Optional)</Label>
+                    <Textarea
+                      value={item.desc}
+                      onChange={(e) => updateItem(i, "desc", e.target.value)}
+                      placeholder="Brief details..."
+                      rows={2}
+                      className="text-xs"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Card Icon</Label>
+                    <select
+                      value={item.icon || "Sparkles"}
+                      onChange={(e) => updateItem(i, "icon", e.target.value)}
+                      className="w-full text-xs h-8 rounded-md border border-input bg-background px-2"
+                    >
+                      <option value="Droplets">Dining / Cafeteria</option>
+                      <option value="Laptop">Computer / VR Lab</option>
+                      <option value="FlaskConical">Science Labs</option>
+                      <option value="MonitorPlay">Digital Classroom</option>
+                      <option value="ShieldCheck">Safe Campus / Security</option>
+                      <option value="Bus">Transport / Bus</option>
+                      <option value="Trophy">Sports / Complex</option>
+                      <option value="BookOpen">Library & Hub</option>
+                      <option value="Sparkles">Sparkles / General</option>
+                    </select>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    case "school-life":
+    case "campus-life": {
+      const defaultActivities = [
+        { title: "BADMINTON", image: "/uploads/campus/siddharth-campus-main.jpg" },
+        { title: "CRICKET", image: "/uploads/campus/morning-assembly-ground.jpg" },
+        { title: "BASKET BALL", image: "/uploads/events/sports-day-races.jpg" },
+        { title: "LAWN TENNIS", image: "/uploads/campus/siddharth-academic-block.jpg" },
+        { title: "SWIMMING", image: "/uploads/events/sports-day-races.jpg" },
+        { title: "WRESTLING", image: "/uploads/events/national-flag-celebration.jpg" },
+        { title: "SHOOTING", image: "/uploads/campus/morning-assembly-ground.jpg" },
+        { title: "ARCHERY", image: "/uploads/campus/siddharth-campus-main.jpg" },
+        { title: "MARTIAL ARTS", image: "/uploads/events/sports-day-races.jpg" },
+        { title: "SKATING", image: "/uploads/campus/siddharth-academic-block.jpg" },
+        { title: "FOOTBALL", image: "/uploads/events/sports-day-races.jpg" },
+        { title: "CLUBS", image: "/uploads/events/national-flag-celebration.jpg" },
+      ];
+
+      const rawItems = Array.isArray(content.items) && content.items.length > 0 ? content.items : defaultActivities;
+      const items = rawItems.map((it: any) => ({
+        title: it?.title || "",
+        image: it?.image || "/uploads/campus/siddharth-campus-main.jpg",
+      }));
+
+      const addItem = () => onChange("items", [...items, { title: "NEW ACTIVITY", image: "/uploads/campus/siddharth-campus-main.jpg" }]);
+      const removeItem = (i: number) => onChange("items", items.filter((_, idx) => idx !== i));
+      const updateItem = (i: number, f: string, v: string) => {
+        const copy = [...items];
+        if (copy[i]) {
+          copy[i] = { ...copy[i]!, [f]: v };
+          onChange("items", copy);
+        }
+      };
+
+      return (
+        <div className="space-y-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Section Subtitle</Label>
+              <Input
+                value={content.subtitle || "CAMPUS VIBES & SPORTS"}
+                onChange={(e) => onChange("subtitle", e.target.value)}
+                placeholder="CAMPUS VIBES & SPORTS"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Section Description</Label>
+              <Input
+                value={content.description || ""}
+                onChange={(e) => onChange("description", e.target.value)}
+                placeholder="From high-spirited athletics to morning assemblies..."
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs font-semibold">Sports & Activity Cards ({items.length})</Label>
+              <Button type="button" variant="outline" size="sm" onClick={addItem} className="text-xs h-7">
+                <Plus className="h-3.5 w-3.5 mr-1" /> Add Card
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {items.map((item, i) => (
+                <div key={i} className="p-3 border rounded-lg space-y-2 bg-card/60">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-primary">#{i + 1} {item.title || "Card"}</span>
+                    <Button type="button" variant="ghost" size="sm" onClick={() => removeItem(i)} className="h-6 w-6 p-0 text-destructive">
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Activity Title</Label>
+                    <Input
+                      value={item.title}
+                      onChange={(e) => updateItem(i, "title", e.target.value)}
+                      placeholder="e.g. CRICKET"
+                      className="text-xs h-8 uppercase font-bold"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-[10px]">Photo Image</Label>
+                    <div className="flex gap-1">
+                      <Input
+                        value={item.image}
+                        onChange={(e) => updateItem(i, "image", e.target.value)}
+                        placeholder="Image URL"
+                        className="text-xs h-8"
+                      />
+                      <Button type="button" variant="outline" size="sm" onClick={() => onOpenMedia("image", i)} className="h-8 px-2">
+                        <ImageIcon className="h-3.5 w-3.5" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Gallery Button Text</Label>
+              <Input
+                value={content.buttonText || "View Full Photo & Video Gallery"}
+                onChange={(e) => onChange("buttonText", e.target.value)}
+                placeholder="View Full Photo & Video Gallery"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Gallery Button URL</Label>
+              <Input
+                value={content.buttonUrl || "/gallery"}
+                onChange={(e) => onChange("buttonUrl", e.target.value)}
+                placeholder="/gallery"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    case "regional-overview":
+    case "about-banner": {
+      return (
+        <div className="space-y-4 pt-2">
+          <div className="space-y-1">
+            <Label className="text-xs font-semibold">Subtitle / Eyebrow Text</Label>
+            <Input
+              value={content.subtitle || "Premier Senior Secondary Institution"}
+              onChange={(e) => onChange("subtitle", e.target.value)}
+              placeholder="Premier Senior Secondary Institution"
+              className="text-xs h-8"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <Label className="text-xs font-semibold">Overview Description Paragraphs</Label>
+            <Textarea
+              value={content.description || ""}
+              onChange={(e) => onChange("description", e.target.value)}
+              placeholder="Siddharth International School, one of the Best CBSE Schools in Rajasthan..."
+              rows={4}
+              className="text-xs"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Primary Button Text</Label>
+              <Input
+                value={content.primaryButtonText || "Apply for Admission"}
+                onChange={(e) => onChange("primaryButtonText", e.target.value)}
+                placeholder="Apply for Admission"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Primary Button URL</Label>
+              <Input
+                value={content.primaryButtonUrl || "/admissions"}
+                onChange={(e) => onChange("primaryButtonUrl", e.target.value)}
+                placeholder="/admissions"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Secondary Button Text</Label>
+              <Input
+                value={content.secondaryButtonText || "Mandatory Disclosure"}
+                onChange={(e) => onChange("secondaryButtonText", e.target.value)}
+                placeholder="Mandatory Disclosure"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Secondary Button URL</Label>
+              <Input
+                value={content.secondaryButtonUrl || "/mandatory-disclosure"}
+                onChange={(e) => onChange("secondaryButtonUrl", e.target.value)}
+                placeholder="/mandatory-disclosure"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
+          <div className="p-3.5 bg-muted/40 border border-border rounded-lg space-y-3">
+            <span className="text-xs font-bold flex items-center gap-1.5 text-foreground">
+              <Video className="h-4 w-4 text-[#A22965]" />
+              Video Tour & YouTube Link Settings
+            </span>
+
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">
+                YouTube Video URL (e.g. https://www.youtube.com/watch?v=... or https://youtu.be/...)
+              </Label>
+              <Input
+                value={(content.videoUrl as string) || (content.videoTourUrl as string) || ""}
+                onChange={(e) => onChange("videoUrl", e.target.value)}
+                placeholder="e.g. https://www.youtube.com/watch?v=... or https://youtu.be/..."
+                className="text-xs h-8 font-mono"
+              />
+              <p className="text-[11px] text-muted-foreground">
+                Paste any YouTube video link. The video player will be embedded directly in the section frame.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     case "student-development":
-    case "why-choose-us":
     case "programs":
-    case "facilities":
     case "achievements": {
       const items = (content.items || []) as { title: string; description?: string; image?: string }[];
       const addItem = () => onChange("items", [...items, { title: "New Item", description: "", image: "" }]);
@@ -1203,36 +1777,92 @@ function SectionContentEditor({
     case "contact-cta":
       return (
         <div className="space-y-3 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Badge 1</Label>
+              <Input
+                value={content.subtitle || content.badge || "ADMISSIONS OPEN · SESSION 2026–27"}
+                onChange={(e) => {
+                  onChange("subtitle", e.target.value);
+                  onChange("badge", e.target.value);
+                }}
+                placeholder="ADMISSIONS OPEN · SESSION 2026–27"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Badge 2</Label>
+              <Input
+                value={content.subBadge || "School Plus"}
+                onChange={(e) => onChange("subBadge", e.target.value)}
+                placeholder="School Plus"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
           <div className="space-y-1">
             <Label className="text-xs font-semibold">Description / Subtitle</Label>
             <Textarea
               value={content.description || ""}
               onChange={(e) => onChange("description", e.target.value)}
-              placeholder="Saint Lawrence Public School is recognised as a leading CBSE school..."
+              placeholder="Siddharth International School, Best CBSE School In Rajasthan..."
               rows={3}
               className="text-xs"
             />
           </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Phone 1</Label>
+              <Input
+                value={content.phone1 || "+91-7568419751"}
+                onChange={(e) => onChange("phone1", e.target.value)}
+                placeholder="+91-7568419751"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Phone 2</Label>
+              <Input
+                value={content.phone2 || "+91-7568419752"}
+                onChange={(e) => onChange("phone2", e.target.value)}
+                placeholder="+91-7568419752"
+                className="text-xs h-8"
+              />
+            </div>
+            <div className="space-y-1">
+              <Label className="text-xs font-semibold">Email</Label>
+              <Input
+                value={content.email || "siddharthinternationalschool15@gmail.com"}
+                onChange={(e) => onChange("email", e.target.value)}
+                placeholder="school@example.com"
+                className="text-xs h-8"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
               <Label className="text-xs">Button Text</Label>
               <Input
-                value={content.buttonText || ""}
+                value={content.buttonText || "Apply for Admission"}
                 onChange={(e) => onChange("buttonText", e.target.value)}
-                placeholder="Apply Now"
+                placeholder="Apply for Admission"
                 className="text-xs h-8"
               />
             </div>
             <div className="space-y-1">
               <Label className="text-xs">Button URL</Label>
               <Input
-                value={content.buttonUrl || ""}
+                value={content.buttonUrl || "/admissions"}
                 onChange={(e) => onChange("buttonUrl", e.target.value)}
                 placeholder="/admissions"
                 className="text-xs h-8"
               />
             </div>
           </div>
+
           <div className="space-y-1">
             <Label className="text-xs">Background Image (Optional)</Label>
             <ImageSettingInput
@@ -1407,19 +2037,16 @@ function getDefaultContentForType(type: string): Record<string, any> {
   switch (type) {
     case "hero":
       return {
-        banners: [
-          {
-            badge: "BE THE LIGHT",
-            title: "Saint Lawrence Public School – One of the Best Schools in Jaipur",
-            description:
-              "Where every child is known by name, nurtured by purpose, and inspired to lead with empathy, integrity, perseverance, and autonomy.",
-            image: "",
-            primaryButtonText: "Enquire Now",
-            primaryButtonUrl: "/admissions",
-            secondaryButtonText: "Latest News",
-            secondaryButtonUrl: "/news",
-          },
-        ],
+        videoUrl: "/slider-video/slider-video.mp4",
+        posterImage: "/uploads/campus/morning-assembly-ground.jpg",
+        badge: "AFFILIATED TO CBSE, NEW DELHI",
+        title: "Inspiring Excellence, Character & Lifelong Learning",
+        description:
+          "A Premier CBSE Co-Educational English Medium Institution in Nangal, Udaipurwati. Empowering young minds with academic brilliance, modern technology, and timeless values.",
+        primaryButtonText: "Apply For Admission",
+        primaryButtonUrl: "/admissions",
+        secondaryButtonText: "Explore Campus",
+        secondaryButtonUrl: "/gallery",
       };
     case "announcement":
       return { text: "Admissions open for the upcoming academic session." };
@@ -1653,16 +2280,104 @@ function getDefaultContentForType(type: string): Record<string, any> {
     case "programs":
       return { description: "Explore our academic offerings from Primary to Senior Secondary levels.", items: [{ title: "Primary School", description: "Classes I to V", image: "" }, { title: "Middle School", description: "Classes VI to VIII", image: "" }, { title: "Senior Secondary", description: "Science, Commerce, Arts", image: "" }] };
     case "facilities":
-      return { description: "World-class facilities supporting all-round development.", items: [{ title: "Science & Computer Labs", description: "State of the art practical labs", image: "" }, { title: "Library & E-Resources", description: "Over 10,000 books and digital archives", image: "" }, { title: "Sports Complex", description: "Playgrounds for indoor and outdoor sports", image: "" }] };
+    case "amenities":
+      return {
+        subtitle: "FACILITIES",
+        description: "World-class infrastructure designed to foster intellectual curiosity, physical fitness, and student well-being.",
+        items: [
+          { title: "Cafeteria & Dining", desc: "Clean, hygienic dining spaces and pure drinking water facilities ensuring wholesome child nutrition.", icon: "Droplets" },
+          { title: "VR & Computer Lab", desc: "Modern IT terminals, high-speed fiber internet, and cutting-edge software for digital literacy and coding.", icon: "Laptop" },
+          { title: "Science Labs", desc: "Fully equipped Physics, Chemistry, and Biology laboratories with modern apparatus and safety measures.", icon: "FlaskConical" },
+          { title: "Digital Classrooms", desc: "Interactive smart boards, projectors, and multimedia audio-visual tools in well-ventilated classrooms.", icon: "MonitorPlay" },
+          { title: "Safe Campus & Security", desc: "24/7 security personnel, gated boundary, and complete CCTV surveillance across all corridors and grounds.", icon: "ShieldCheck" },
+          { title: "Transport", desc: "Safe, comfortable bus fleet with GPS tracking and trained drivers covering Udaipurwati and all neighboring villages.", icon: "Bus" },
+          { title: "Sports Complex", desc: "Sprawling sports grounds for Cricket, Athletics, Volleyball, Badminton, Obstacle races, and Yoga.", icon: "Trophy" },
+          { title: "Library & Resource Hub", desc: "Thousands of books, educational journals, encyclopedia, and quiet reading zones nurturing young scholars.", icon: "BookOpen" },
+        ],
+      };
+    case "academics":
+      return {
+        subtitle: "Siddharth International School Wisdom Campus | Best CBSE School Of Rajasthan",
+        description: "Providing age-appropriate learning pathways designed to inspire curiosity, foster character, and build academic rigor.",
+        items: [
+          {
+            title: "Foundation Stage",
+            tag: "Class Nursery to II (Ages 3 to 8 Years)",
+            sub: "Jolly Kids Early Childhood - Pre Primary Division:",
+            description: "Play-based, joyful, and experiential pedagogy focused on phonics, early numeracy, and sensory motor development.",
+            image: "/uploads/events/sports-day-races.jpg",
+            link: "/curriculum",
+          },
+          {
+            title: "Preparatory Stage",
+            tag: "Class III to V (Ages 8 to 11 Years)",
+            sub: "CBSE - NCERT Curriculum. Sports Curriculum",
+            description: "Conceptual foundations in Mathematics, Environmental Science, and Languages (English/Hindi). Sports & Arts Integration.",
+            image: "/uploads/campus/morning-assembly-ground.jpg",
+            link: "/curriculum",
+          },
+          {
+            title: "Middle Stage",
+            tag: "Class VI to VIII (Ages 11 to 14 Years)",
+            sub: "CBSE - NCERT Curriculum. Sports Curriculum",
+            description: "Hands-on Science laboratory experiments, computer coding & digital literacy, athletics coaching, and ethical character building.",
+            image: "/uploads/campus/siddharth-academic-block.jpg",
+            link: "/curriculum",
+          },
+          {
+            title: "Secondary Stage",
+            tag: "Class IX to XII (Ages 14 to 18 Years)",
+            sub: "CBSE - NCERT Curriculum, Sports Curriculum",
+            description: "Rigorous board examination excellence, specialized Science & Commerce streams, career counseling, and leadership grooming.",
+            image: "/uploads/campus/siddharth-campus-main.jpg",
+            link: "/curriculum",
+          },
+        ],
+      };
+    case "school-life":
+      return {
+        subtitle: "CAMPUS VIBES & SPORTS",
+        description: "From high-spirited athletics and national day formations to morning prayer assemblies and science discovery.",
+        items: [
+          { title: "BADMINTON", image: "/uploads/campus/siddharth-campus-main.jpg" },
+          { title: "CRICKET", image: "/uploads/campus/morning-assembly-ground.jpg" },
+          { title: "BASKET BALL", image: "/uploads/events/sports-day-races.jpg" },
+          { title: "LAWN TENNIS", image: "/uploads/campus/siddharth-academic-block.jpg" },
+          { title: "SWIMMING", image: "/uploads/events/sports-day-races.jpg" },
+          { title: "WRESTLING", image: "/uploads/events/national-flag-celebration.jpg" },
+          { title: "SHOOTING", image: "/uploads/campus/morning-assembly-ground.jpg" },
+          { title: "ARCHERY", image: "/uploads/campus/siddharth-campus-main.jpg" },
+          { title: "MARTIAL ARTS", image: "/uploads/events/sports-day-races.jpg" },
+          { title: "SKATING", image: "/uploads/campus/siddharth-academic-block.jpg" },
+          { title: "FOOTBALL", image: "/uploads/events/sports-day-races.jpg" },
+          { title: "CLUBS", image: "/uploads/events/national-flag-celebration.jpg" },
+        ],
+        buttonText: "View Full Photo & Video Gallery",
+        buttonUrl: "/gallery",
+      };
+    case "regional-overview":
+      return {
+        subtitle: "Premier Senior Secondary Institution",
+        description: "Siddharth International School, one of the Best CBSE Schools in Rajasthan, is a flagship institution run by Shree Shyam Shiksha Samiti which was established in 2011. Sprawling over an expansive, green campus, the environment is idyllic and capacious for the holistic growth of a child.",
+        primaryButtonText: "Apply for Admission",
+        primaryButtonUrl: "/admissions",
+        secondaryButtonText: "Mandatory Disclosure",
+        secondaryButtonUrl: "/mandatory-disclosure",
+        image: "/uploads/campus/morning-assembly-ground.jpg",
+      };
     case "cta":
     case "contact-cta":
       return {
+        badge: "School Plus",
+        subtitle: "ADMISSIONS OPEN · SESSION 2026–27",
         description:
-          "Saint Lawrence Public School is recognised as a leading CBSE school on Goner Road, Jaipur, Rajasthan. Today's world values citizens who are creative, empathetic, self-motivated, and critical thinkers.",
-        buttonText: "Apply Now",
+          "Siddharth International School, Best CBSE School In Rajasthan, Nursery to 12th. Through a unique learning experience which will enrich the child both academically and personally, we strive to cultivate the leaders of tomorrow, today.",
+        phone1: "+91-7568419751",
+        phone2: "+91-7568419752",
+        email: "siddharthinternationalschool15@gmail.com",
+        buttonText: "Apply for Admission",
         buttonUrl: "/admissions",
-        image:
-          "https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=1600&auto=format&fit=crop",
+        image: "/uploads/campus/morning-assembly-ground.jpg",
       };
     case "video":
       return { videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" };

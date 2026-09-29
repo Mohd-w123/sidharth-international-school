@@ -6,10 +6,10 @@
 
 :root {
   /* Core Theme Colors */
-  --primary: #8A0000;
+  --primary: #A22965;
   --primary-foreground: #FFFFFF;
-  --primary-dark: #680000;
-  --primary-light: #A30000;
+  --primary-dark: #851e51;
+  --primary-light: #ba3879;
   --accent: #D4A72C;
   --accent-foreground: #1A1A1A;
   --background: #FFFFFF;
@@ -20,36 +20,36 @@
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
   --secondary: #FDF9F5;
-  --secondary-foreground: #8A0000;
+  --secondary-foreground: #A22965;
   --muted: #F8F5F2;
   --muted-foreground: #666666;
-  --destructive: #8A0000;
+  --destructive: #A22965;
   --border: #ECE6E0;
   --input: #ECE6E0;
-  --ring: #8A0000;
+  --ring: #A22965;
   --radius: 0.5rem;
 
   /* Custom Palette Tokens */
-  --school-primary: #8A0000;
-  --school-bright: #A30000;
-  --school-dark: #680000;
+  --school-primary: #A22965;
+  --school-bright: #ba3879;
+  --school-dark: #851e51;
   --school-gold: #D4A72C;
   --school-white: #FFFFFF;
   --school-text: #1A1A1A;
 
   /* Charts */
-  --chart-1: #8A0000;
+  --chart-1: #A22965;
   --chart-2: #D4A72C;
-  --chart-3: #680000;
-  --chart-4: #A30000;
+  --chart-3: #851e51;
+  --chart-4: #ba3879;
   --chart-5: #1A1A1A;
 
   /* Admin Sidebar Tokens */
-  --sidebar: #680000;
+  --sidebar: #851e51;
   --sidebar-foreground: #FFFFFF;
   --sidebar-primary: #D4A72C;
-  --sidebar-primary-foreground: #680000;
-  --sidebar-accent: #8A0000;
+  --sidebar-primary-foreground: #851e51;
+  --sidebar-accent: #A22965;
   --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: rgba(255, 255, 255, 0.15);
   --sidebar-ring: #D4A72C;
@@ -67,8 +67,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-ring: var(--ring);
-  --font-sans: var(--font-poppins);
-  --font-heading: var(--font-poppins);
+  --font-sans: var(--font-jost), sans-serif;
+  --font-heading: var(--font-jost), sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -90,9 +90,9 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  --color-school-primary: #8A0000;
-  --color-school-bright: #A30000;
-  --color-school-dark: #680000;
+  --color-school-primary: #A22965;
+  --color-school-bright: #ba3879;
+  --color-school-dark: #851e51;
   --color-school-gold: #D4A72C;
   --color-school-white: #FFFFFF;
   --color-school-text: #1A1A1A;
@@ -109,15 +109,27 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-jost), sans-serif;
 }
 
 body {
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-jost), sans-serif;
+  color: #4D5765;
+  font-size: 16px;
+  line-height: 1.7;
+  background-color: #FFFFFF;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-jost), sans-serif;
+  color: inherit;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: #A22965;
+  color: #FFFFFF;
 }
 
 .dark {

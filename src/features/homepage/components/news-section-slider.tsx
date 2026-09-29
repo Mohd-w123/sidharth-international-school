@@ -39,12 +39,12 @@ const DEFAULT_SAMPLE_NEWS: NewsItem[] = [
     image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    title: "Investiture Ceremony 2026–27 | Saint Lawrence Public School. Empowering Young Minds Today, Inspiring Tomorrow's Leaders.",
+    title: "Investiture Ceremony 2026–27 | Siddharth International School. Empowering Young Minds Today, Inspiring Tomorrow's Leaders.",
     slug: "investiture-ceremony-2026-27",
     date: "18th July'26",
     category: "LEADERSHIP & CIVICS",
     excerpt:
-      "A momentous day as the newly elected student council takes the pledge to uphold the values, integrity, and honor of Saint Lawrence Public School.",
+      "A momentous day as the newly elected student council takes the pledge to uphold the values, integrity, and honor of Siddharth International School.",
     image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop",
   },
   {
@@ -60,7 +60,7 @@ const DEFAULT_SAMPLE_NEWS: NewsItem[] = [
 
 export function NewsSectionSlider({
   title = "Explore Latest News",
-  subtitle = "Stay up to date with events, activities, and updates from one of the best CBSE schools in Jaipur.",
+  subtitle = "Stay up to date with events, activities, and updates from one of the best CBSE schools in Udaipurwati, Rajasthan.",
   content = {},
   latestNews = [],
 }: NewsSectionSliderProps) {
