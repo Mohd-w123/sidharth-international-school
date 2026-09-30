@@ -25,14 +25,25 @@ export async function uploadToCloudinary(
 ): Promise<UploadResult> {
   const { folder = "school-cms", resourceType = "image", filename } = options;
 
-  // Cloudinary blocks direct delivery of raw/PDF files by default on accounts (HTTP 401: deny or ACL failure).
-  // Always save PDF and raw documents locally so they are served reliably with zero access issues.
-  const isDocument = resourceType === "raw" || (Boolean(filename) && filename!.toLowerCase().endsWith(".pdf"));
-  if (isDocument) {
-    return saveLocally(file, resourceType, filename);
-  }
+  const isServerless = Boolean(
+    process.env.VERCEL ||
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+    process.env.NODE_ENV === "production"
+  );
 
-  if (!process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME === "your-cloud-name") {
+  const hasCloudinary = Boolean(
+    process.env.CLOUDINARY_CLOUD_NAME &&
+    process.env.CLOUDINARY_CLOUD_NAME !== "your-cloud-name" &&
+    process.env.CLOUDINARY_API_KEY &&
+    process.env.CLOUDINARY_API_SECRET
+  );
+
+  if (!hasCloudinary) {
+    if (isServerless) {
+      throw new Error(
+        "Cloudinary credentials (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET) are missing or invalid in production environment."
+      );
+    }
     return saveLocally(file, resourceType, filename);
   }
 
@@ -58,6 +69,7 @@ export async function uploadToCloudinary(
             public_id: publicId,
             use_filename: true,
             unique_filename: true,
+            access_mode: "public",
           },
           (error, result) => {
             if (error || !result) return reject(error ?? new Error("Upload failed"));
@@ -76,12 +88,27 @@ export async function uploadToCloudinary(
         .end(file);
     });
   } catch (err) {
+    if (isServerless) {
+      console.error("Cloudinary upload failed on production/serverless:", err);
+      throw err;
+    }
     console.warn("Cloudinary upload failed, falling back to local storage:", err);
     return saveLocally(file, resourceType, filename);
   }
 }
 
 async function saveLocally(file: Buffer, resourceType: string, filename?: string): Promise<UploadResult> {
+  const isServerless = Boolean(
+    process.env.VERCEL ||
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+    process.env.NODE_ENV === "production"
+  );
+  if (isServerless) {
+    throw new Error(
+      "Local file system is read-only in production. Please configure Cloudinary environment variables (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET)."
+    );
+  }
+
   const isDoc = resourceType === "raw" || (Boolean(filename) && filename!.toLowerCase().endsWith(".pdf"));
   const subFolder = isDoc ? "documents" : "";
   const uploadsDir = isDoc

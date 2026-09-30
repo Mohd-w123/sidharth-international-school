@@ -29,7 +29,13 @@ function isValidImageUrl(url: string | null | undefined): boolean {
 
 export async function PublicHeader() {
   const menu = await menuService.findByLocation("header");
-  const items = menu?.items?.filter((i) => i.isEnabled) || [];
+  const items =
+    menu?.items
+      ?.filter((i) => i.isEnabled)
+      .map((item) => ({
+        ...item,
+        children: item.children?.filter((c: IMenuItem) => c.isEnabled) || [],
+      })) || [];
   const settings = await siteSettingService.getPublicSettings();
 
   const siteName =
@@ -162,7 +168,9 @@ export async function PublicHeader() {
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {items.map((item: IMenuItem, i: number) => {
-              const hasChildren = item.children && item.children.length > 0;
+              const enabledChildren =
+                item.children?.filter((c: IMenuItem) => c.isEnabled) || [];
+              const hasChildren = enabledChildren.length > 0;
               return (
                 <div key={i} className="relative group">
                   <Link
@@ -180,18 +188,16 @@ export async function PublicHeader() {
                   {hasChildren && (
                     <div className="absolute top-full left-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50">
                       <div className="bg-white rounded-xl shadow-2xl border border-slate-200 min-w-[220px] py-2 overflow-hidden border-t-2 border-t-[#A22965]">
-                        {item.children
-                          ?.filter((c: IMenuItem) => c.isEnabled)
-                          .map((child: IMenuItem, ci: number) => (
-                            <Link
-                              key={ci}
-                              href={child.url || "#"}
-                              target={child.target}
-                              className="block px-4 py-2.5 text-sm text-[#1A1A1A] hover:bg-[#A22965]/8 hover:text-[#A22965] font-medium transition-colors border-l-2 border-transparent hover:border-[#A22965]"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
+                        {enabledChildren.map((child: IMenuItem, ci: number) => (
+                          <Link
+                            key={ci}
+                            href={child.url || "#"}
+                            target={child.target}
+                            className="block px-4 py-2.5 text-sm text-[#1A1A1A] hover:bg-[#A22965]/8 hover:text-[#A22965] font-medium transition-colors border-l-2 border-transparent hover:border-[#A22965]"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   )}
