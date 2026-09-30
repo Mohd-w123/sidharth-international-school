@@ -10,7 +10,8 @@ export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Mandatory Public Disclosure (CBSE Appendix-IX) | Siddharth International School",
-  description: "Official CBSE Mandatory Public Disclosure documents, certificates, and compliance details.",
+  description:
+    "Official CBSE Mandatory Public Disclosure documents, safety certificates, affiliation letters, and institutional compliance details for Siddharth International School, Nangal.",
 };
 
 export default async function PublicDisclosurePage() {
@@ -23,24 +24,30 @@ export default async function PublicDisclosurePage() {
   );
 
   return (
-    <main className="min-h-screen bg-slate-50/60 pb-20">
-      {/* Top Banner Header */}
-      <div className="bg-[#680000] text-white py-14 md:py-18 relative overflow-hidden border-b border-[#D4A72C]/20">
-        <Container className="relative z-10">
-          <div className="flex items-center gap-2.5 text-[#D4A72C] font-bold text-xs uppercase tracking-widest mb-3">
+    <main className="min-h-screen bg-slate-50/70 pb-20">
+      {/* 
+        TOP HEADER BANNER
+        Styled with school signature pink/maroon #A22965 brand palette and gold compliance accents
+      */}
+      <div className="bg-gradient-to-r from-[#851e51] via-[#A22965] to-[#851e51] text-white py-14 md:py-20 relative overflow-hidden border-b-4 border-[#D4A72C]">
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
+        <Container className="relative z-10 max-w-5xl">
+          <div className="flex items-center gap-2 text-[#D4A72C] font-extrabold text-xs uppercase tracking-widest mb-3">
             <ShieldCheck className="h-4 w-4" />
             <span>CBSE Statutory Compliance (Appendix-IX)</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">
+
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-3 leading-tight">
             Mandatory Public Disclosure
           </h1>
-          <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed">
-            In compliance with the directives of the Central Board of Secondary Education (CBSE), New Delhi, all statutory documents, safety certificates, and institutional details are published below.
+
+          <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed font-normal">
+            In compliance with the directives of the Central Board of Secondary Education (CBSE), New Delhi, all statutory documents, safety certificates, and institutional data are published below.
           </p>
         </Container>
       </div>
 
-      <Container className="py-10 md:py-14">
+      <Container className="py-10 md:py-14 max-w-5xl">
         {categoriesWithSections.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-2xl border p-8 max-w-lg mx-auto shadow-xs">
             <Building2 className="h-12 w-12 text-slate-300 mx-auto mb-3" />
@@ -48,20 +55,21 @@ export default async function PublicDisclosurePage() {
             <p className="text-slate-500 text-sm mt-1">Official disclosure documents are being uploaded by the school administration.</p>
           </div>
         ) : (
-          <div className="space-y-10 max-w-5xl mx-auto">
+          <div className="space-y-10">
             {categoriesWithSections.map((cat) => (
-              <div key={cat._id.toString()} className="space-y-6">
+              <div key={cat._id.toString()} className="space-y-8">
                 {cat.sections.map((sec) => (
                   <Card
                     key={sec._id.toString()}
                     className="overflow-hidden border border-slate-200 shadow-sm rounded-2xl bg-white"
                   >
-                    <CardHeader className="bg-[#680000]/5 border-b border-slate-200/80 px-6 py-4">
+                    {/* Section Header */}
+                    <CardHeader className="bg-[#A22965]/5 border-b border-[#A22965]/15 px-6 py-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <CardTitle className="text-lg sm:text-xl font-bold text-[#680000] flex items-center gap-2">
+                        <CardTitle className="text-lg sm:text-xl font-extrabold text-[#A22965] flex items-center gap-2">
                           <span>{sec.title}</span>
                         </CardTitle>
-                        <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-600 bg-white border border-slate-200 px-2.5 py-1 rounded-full w-fit">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 bg-white border border-slate-300 px-3 py-1 rounded-full w-fit shadow-xs">
                           {sec.fields?.length || 0} Records
                         </span>
                       </div>
@@ -72,50 +80,40 @@ export default async function PublicDisclosurePage() {
                       )}
                     </CardHeader>
 
+                    {/* Section Table */}
                     <CardContent className="p-0">
                       {sec.fields && sec.fields.length > 0 ? (
                         <div className="overflow-x-auto">
                           <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50/80 text-slate-700 text-xs font-semibold uppercase tracking-wider border-b border-slate-100">
+                            <thead className="bg-slate-100/90 text-slate-700 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
                               <tr>
-                                <th className="py-3 px-5 sm:px-6 w-12 text-center">#</th>
-                                <th className="py-3 px-4 sm:px-6">Information / Document Required</th>
-                                <th className="py-3 px-5 sm:px-6 text-right min-w-[200px]">Details / Document Link</th>
+                                <th className="py-3.5 px-4 sm:px-6 w-14 text-center">#</th>
+                                <th className="py-3.5 px-4 sm:px-6">Information / Document Required</th>
+                                <th className="py-3.5 px-4 sm:px-6 text-right min-w-[220px]">Details / Document Link</th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100 font-normal text-slate-700">
                               {sec.fields.map((field: { label: string; type: string; value: unknown }, idx: number) => {
                                 const isDoc = field.type === "document";
                                 const isUrl = field.type === "url";
-                                let docUrl = String(field.value || "").trim();
-
-                                // Map legacy Cloudinary URLs to local verified PDFs if needed
-                                if (docUrl.includes("Buliding_Security_Certificate") || docUrl.includes("Fire_safety")) {
-                                  docUrl = "/uploads/documents/building-safety-certificate.pdf";
-                                } else if (docUrl.includes("FEE_Structure")) {
-                                  docUrl = "/uploads/documents/fee-structure-2026-27.pdf";
-                                } else if (docUrl.includes("Annual_Academic_Calander")) {
-                                  docUrl = "/uploads/documents/academic-calendar.pdf";
-                                } else if (docUrl.includes("NOC_")) {
-                                  docUrl = "/uploads/documents/noc-cbse-affiliation.pdf";
-                                }
+                                const docUrl = String(field.value || "").trim();
 
                                 return (
-                                  <tr key={idx} className="hover:bg-slate-50/60 transition-colors">
-                                    <td className="py-4 px-5 sm:px-6 text-center font-mono text-xs text-slate-600">
+                                  <tr key={idx} className="hover:bg-slate-50/70 transition-colors">
+                                    <td className="py-4 px-4 sm:px-6 text-center font-mono text-xs font-semibold text-slate-500">
                                       {idx + 1}
                                     </td>
                                     <td className="py-4 px-4 sm:px-6 font-medium text-slate-900 leading-snug">
                                       {field.label}
                                     </td>
-                                    <td className="py-4 px-5 sm:px-6 text-right">
+                                    <td className="py-4 px-4 sm:px-6 text-right">
                                       {isDoc && docUrl && docUrl !== "—" ? (
-                                        <div className="flex items-center justify-end gap-2 flex-wrap">
+                                        <div className="flex items-center justify-end gap-2.5 flex-wrap">
                                           <a
                                             href={docUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#680000] text-white text-xs font-semibold hover:bg-[#8A0000] shadow-xs transition-all"
+                                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#A22965] text-white text-xs font-bold hover:bg-[#851e51] shadow-xs transition-all hover:scale-105 active:scale-95"
                                           >
                                             <ExternalLink className="h-3.5 w-3.5" />
                                             <span>View PDF</span>
@@ -125,7 +123,7 @@ export default async function PublicDisclosurePage() {
                                             download
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#D4A72C] text-[#680000] text-xs font-bold hover:bg-[#b88f20] shadow-xs transition-all"
+                                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#D4A72C] text-[#591036] text-xs font-bold hover:bg-[#b88f20] shadow-xs transition-all hover:scale-105 active:scale-95"
                                           >
                                             <Download className="h-3.5 w-3.5" />
                                             <span>Download</span>
@@ -136,7 +134,7 @@ export default async function PublicDisclosurePage() {
                                           href={docUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#680000] text-white text-xs font-semibold hover:bg-[#8A0000] shadow-xs transition-all"
+                                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#A22965] text-white text-xs font-semibold hover:bg-[#851e51] shadow-xs transition-all"
                                         >
                                           <ExternalLink className="h-3.5 w-3.5" />
                                           <span>Open Link</span>
@@ -147,7 +145,7 @@ export default async function PublicDisclosurePage() {
                                           {field.value ? "Yes / Approved" : "No"}
                                         </span>
                                       ) : (
-                                        <span className="font-medium text-slate-800 text-xs sm:text-sm">
+                                        <span className="font-semibold text-slate-800 text-xs sm:text-sm">
                                           {String(field.value ?? "—")}
                                         </span>
                                       )}

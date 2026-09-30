@@ -120,9 +120,10 @@ export async function PublicHeader() {
 
               <Link
                 href="/mandatory-disclosure"
-                className="text-white/80 hover:text-[#D4A72C] transition-colors text-xs font-medium underline underline-offset-2"
+                className="flex items-center gap-1.5 bg-[#D4A72C] hover:bg-[#b88f20] text-[#680000] px-3 py-1 rounded-full text-xs font-bold transition-all shadow-xs hover:scale-105"
               >
-                CBSE Disclosure
+                <span className="h-1.5 w-1.5 rounded-full bg-[#680000] animate-pulse" />
+                <span>CBSE Disclosure</span>
               </Link>
             </div>
           </Container>
@@ -171,16 +172,36 @@ export async function PublicHeader() {
               const enabledChildren =
                 item.children?.filter((c: IMenuItem) => c.isEnabled) || [];
               const hasChildren = enabledChildren.length > 0;
+              const isMandatoryDisclosure =
+                item.label?.toLowerCase().includes("disclosure") ||
+                item.url?.toLowerCase().includes("mandatory-disclosure");
+
               return (
                 <div key={i} className="relative group">
                   <Link
                     href={item.url || "#"}
                     target={item.target}
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-[#1A1A1A] hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
+                    className={
+                      isMandatoryDisclosure
+                        ? "flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-[#851e51] bg-[#D4A72C]/20 hover:bg-[#D4A72C] hover:text-[#591036] border-2 border-[#D4A72C] rounded-full shadow-xs hover:shadow-md transition-all hover:scale-105 active:scale-95 mx-0.5"
+                        : "flex items-center gap-1 px-3 py-2 text-sm font-semibold text-[#1A1A1A] hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
+                    }
                   >
+                    {isMandatoryDisclosure && (
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A72C] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#A22965]"></span>
+                      </span>
+                    )}
                     <span>{item.label}</span>
                     {hasChildren && (
-                      <ChevronDown className="h-3.5 w-3.5 text-slate-400 group-hover:text-[#A22965] transition-transform duration-200 group-hover:rotate-180" />
+                      <ChevronDown
+                        className={`h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 ${
+                          isMandatoryDisclosure
+                            ? "text-[#851e51]"
+                            : "text-slate-400 group-hover:text-[#A22965]"
+                        }`}
+                      />
                     )}
                   </Link>
 
@@ -247,15 +268,33 @@ function MobileMenuToggle({
         <div className="absolute left-0 right-0 top-full bg-white shadow-2xl border-t border-slate-200 z-50 max-h-[85vh] overflow-y-auto">
           <Container className="py-5 space-y-4">
             <div className="space-y-1">
-              {items.map((item: IMenuItem, i: number) => (
-                <div key={i} className="border-b border-slate-100 pb-1">
-                  <Link
-                    href={item.url || "#"}
-                    target={item.target}
-                    className="block px-3 py-2.5 text-sm font-bold text-[#1A1A1A] hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
-                  >
-                    {item.label}
-                  </Link>
+              {items.map((item: IMenuItem, i: number) => {
+                const isMandatoryDisclosure =
+                  item.label?.toLowerCase().includes("disclosure") ||
+                  item.url?.toLowerCase().includes("mandatory-disclosure");
+                return (
+                  <div key={i} className="border-b border-slate-100 pb-1">
+                    <Link
+                      href={item.url || "#"}
+                      target={item.target}
+                      className={
+                        isMandatoryDisclosure
+                          ? "flex items-center justify-between px-3.5 py-2.5 text-sm font-bold text-[#851e51] bg-[#D4A72C]/20 border border-[#D4A72C] rounded-lg transition-colors my-1"
+                          : "block px-3 py-2.5 text-sm font-bold text-[#1A1A1A] hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
+                      }
+                    >
+                      <div className="flex items-center gap-2">
+                        {isMandatoryDisclosure && (
+                          <span className="h-2 w-2 rounded-full bg-[#A22965]" />
+                        )}
+                        <span>{item.label}</span>
+                      </div>
+                      {isMandatoryDisclosure && (
+                        <span className="text-[10px] font-bold bg-[#A22965] text-white px-2 py-0.5 rounded">
+                          CBSE
+                        </span>
+                      )}
+                    </Link>
                   {item.children
                     ?.filter((c: IMenuItem) => c.isEnabled)
                     .map((child: IMenuItem, ci: number) => (
@@ -269,7 +308,8 @@ function MobileMenuToggle({
                       </Link>
                     ))}
                 </div>
-              ))}
+              );
+            })}
             </div>
 
             <div className="pt-2 space-y-2.5">

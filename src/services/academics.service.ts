@@ -39,6 +39,13 @@ class ClassService extends BaseService<IClass> {
     super(Class, ["name"]);
   }
 
+  async findPublished() {
+    return this.findPaginated(
+      { pagination: { page: 1, limit: 100 }, sort: { field: "order", order: "asc" } },
+      { status: "published" }
+    );
+  }
+
   async generateUniqueSlug(name: string, excludeId?: string) {
     const baseSlug = generateSlug(name);
     return ensureUniqueSlug(baseSlug, async (candidate) => {
@@ -57,6 +64,13 @@ class SubjectService extends BaseService<ISubject> {
     super(Subject, ["name", "code"]);
   }
 
+  async findPublished() {
+    return this.findPaginated(
+      { pagination: { page: 1, limit: 100 }, sort: { field: "order", order: "asc" } },
+      { status: "published" }
+    );
+  }
+
   async generateUniqueSlug(name: string, excludeId?: string) {
     const baseSlug = generateSlug(name);
     return ensureUniqueSlug(baseSlug, async (candidate) => {
@@ -73,6 +87,13 @@ class SubjectService extends BaseService<ISubject> {
 class CalendarService extends BaseService<IAcademicCalendar> {
   constructor() {
     super(AcademicCalendar, ["title"]);
+  }
+
+  async findPublished(session?: string) {
+    return this.findPaginated(
+      { pagination: { page: 1, limit: 200 }, sort: { field: "date", order: "asc" } },
+      session ? { session, status: "published" } : { status: "published" }
+    );
   }
 
   async findBySession(session: string) {

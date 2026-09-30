@@ -625,9 +625,13 @@ function HomepageSection({
                   {secondaryBtnText && (
                     <Link
                       href={secondaryBtnUrl}
-                      className="bg-white hover:bg-slate-50 text-[#252525] font-bold text-sm px-8 py-3.5 rounded-lg border border-slate-300 shadow-xs hover:shadow-md transition-all"
+                      className="bg-[#D4A72C]/15 hover:bg-[#D4A72C] text-[#851e51] hover:text-[#591036] font-bold text-sm px-7 py-3.5 rounded-lg border-2 border-[#D4A72C] shadow-xs hover:shadow-md transition-all inline-flex items-center gap-2.5 hover:scale-105 active:scale-95"
                     >
-                      {secondaryBtnText}
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A72C] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#A22965]"></span>
+                      </span>
+                      <span>{secondaryBtnText}</span>
                     </Link>
                   )}
                 </div>

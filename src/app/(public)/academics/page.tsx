@@ -1,48 +1,73 @@
-import { programService } from "@/services/academics.service";
-import { Container } from "@/components/layout/container";
-import { Card, CardContent } from "@/components/ui/card";
-import { GraduationCap } from "lucide-react";
+import {
+  programService,
+  classService,
+  subjectService,
+  calendarService,
+} from "@/services/academics.service";
+import { PublicAcademicsView } from "@/features/academics/components/public-academics-view";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export const metadata: Metadata = { title: "Academics", description: "Academic programs and curriculum" };
+export const metadata: Metadata = {
+  title: "Academics & Curriculum | Siddharth International School",
+  description:
+    "Explore academic programs, classes, curriculum subjects, and academic calendar at Siddharth International School, Nangal (Udaipurwati). Affiliated to CBSE, New Delhi.",
+};
 
 export default async function PublicAcademicsPage() {
-  const result = await programService.findPublished();
+  const [programsRes, classesRes, subjectsRes, calendarRes] = await Promise.all([
+    programService.findPublished(),
+    classService.findPublished(),
+    subjectService.findPublished(),
+    calendarService.findPublished("2026-2027"),
+  ]);
+
+  const programs = programsRes.data.map((p) => ({
+    _id: String(p._id),
+    name: p.name,
+    slug: p.slug,
+    description: p.description || "",
+    image: p.image || "",
+    order: p.order || 0,
+  }));
+
+  const classes = classesRes.data.map((c) => ({
+    _id: String(c._id),
+    name: c.name,
+    slug: c.slug,
+    program: c.program ? String(c.program) : "",
+    section: c.section || "",
+    description: c.description || "",
+    order: c.order || 0,
+  }));
+
+  const subjects = subjectsRes.data.map((s) => ({
+    _id: String(s._id),
+    name: s.name,
+    code: s.code || "",
+    department: s.department || "General Curriculum",
+    description: s.description || "",
+    order: s.order || 0,
+  }));
+
+  const calendarEvents = calendarRes.data.map((e) => ({
+    _id: String(e._id),
+    title: e.title,
+    description: e.description || "",
+    date: e.date instanceof Date ? e.date.toISOString() : String(e.date),
+    endDate: e.endDate instanceof Date ? e.endDate.toISOString() : e.endDate ? String(e.endDate) : undefined,
+    type: e.type,
+    session: e.session,
+  }));
 
   return (
-    <main>
-      <div className="bg-[#8A0000] text-white py-16">
-        <Container>
-          <h1 className="text-4xl font-bold">Academics</h1>
-          <p className="mt-2 text-white/80 text-lg">Our curriculum and academic programs</p>
-        </Container>
-      </div>
-      <Container className="py-12">
-        {result.data.length === 0 ? (
-          <p className="text-muted-foreground text-center py-12">Academic information coming soon.</p>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {result.data.map((prog) => (
-              <Card key={prog._id.toString()} className="group overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-[#8A0000]/10 to-[#A30000]/5">
-                  {prog.image ? (
-                    <img src={prog.image} alt={prog.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center"><GraduationCap className="h-16 w-16 text-[#8A0000]/20" /></div>
-                  )}
-                </div>
-                <CardContent className="p-5">
-                  <h3 className="font-semibold text-xl group-hover:text-[#A30000] transition-colors">{prog.name}</h3>
-                  {prog.description && <p className="text-sm text-muted-foreground mt-2 line-clamp-3">{prog.description}</p>}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </Container>
-    </main>
+    <PublicAcademicsView
+      programs={programs}
+      classes={classes}
+      subjects={subjects}
+      calendarEvents={calendarEvents}
+    />
   );
 }
