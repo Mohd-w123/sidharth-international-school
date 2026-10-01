@@ -68,7 +68,10 @@ export async function PublicFooter() {
     (settings.email as string) ||
     (settings.topbar_email as string) ||
     (settings.contact_email as string) ||
-    "siddharthinternationalschool15@gmail.com";
+    "SISNANGAL@gmail.com";
+  const principalName =
+    (settings.principal_name as string) ||
+    "Mr. Anil Kumar Bhaskar (MA, B.ED)";
   const facebook =
     (settings.facebook as string) ||
     "https://www.facebook.com/people/Siddharth-International-School/100078106855197/";
@@ -92,7 +95,7 @@ export async function PublicFooter() {
         MODI WORLD SCHOOL-STYLE PRE-FOOTER CTA RIBBON
         High-converting callout with admissions banner & quick contact
       */}
-      <div className="bg-gradient-to-r from-[#851e51] via-[#A22965] to-[#851e51] text-white py-10 sm:py-12 border-b border-white/10 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-[#680000] via-[#8A0000] to-[#680000] text-white py-10 sm:py-12 border-b border-white/10 relative overflow-hidden">
         {/* Subtle decorative background circles */}
         <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
         <div className="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
@@ -135,7 +138,7 @@ export async function PublicFooter() {
         MODI WORLD SCHOOL-STYLE MAIN FOOTER BODY
         Dark Red #680000 background, 4 structured columns with gold headings
       */}
-      <div className="bg-[#851e51] text-white py-14 sm:py-16 border-b border-white/10">
+      <div className="bg-[#680000] text-white py-14 sm:py-16 border-b border-white/10">
         <Container>
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
             {/* Column 1: School Identity & Leadership */}
@@ -153,7 +156,7 @@ export async function PublicFooter() {
                     />
                   </div>
                 ) : (
-                  <div className="h-12 w-12 rounded-full bg-[#D4A72C] flex items-center justify-center text-[#851e51] font-bold text-xl shrink-0">
+                  <div className="h-12 w-12 rounded-full bg-[#D4A72C] flex items-center justify-center text-[#680000] font-bold text-xl shrink-0">
                     {siteName.charAt(0)}
                   </div>
                 )}
@@ -183,7 +186,7 @@ export async function PublicFooter() {
                 </p>
                 <p>
                   <span className="text-[#D4A72C] font-semibold">Principal:</span>{" "}
-                  Mrs. Sunita Rathore
+                  {principalName}
                 </p>
               </div>
 
@@ -194,7 +197,7 @@ export async function PublicFooter() {
                     href={facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#851e51] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Facebook"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -207,7 +210,7 @@ export async function PublicFooter() {
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#851e51] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Instagram"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -220,7 +223,7 @@ export async function PublicFooter() {
                     href={twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#851e51] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="Twitter"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -233,7 +236,7 @@ export async function PublicFooter() {
                     href={youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#851e51] transition-all"
+                    className="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#D4A72C] hover:text-[#680000] transition-all"
                     title="YouTube"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">

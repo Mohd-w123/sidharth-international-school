@@ -1,5 +1,6 @@
 import { PublicHeader } from "@/components/layout/public-header";
 import { PublicFooter } from "@/components/layout/public-footer";
+import { StickyEnquiryButton } from "@/components/shared/sticky-enquiry-button";
 
 export const dynamic = "force-dynamic";
 
@@ -13,6 +14,7 @@ export default function PublicLayout({
       <PublicHeader />
       <div className="flex-1">{children}</div>
       <PublicFooter />
+      <StickyEnquiryButton />
     </div>
   );
 }

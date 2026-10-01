@@ -39,11 +39,10 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
           <div className="flex flex-wrap gap-2 mb-8">
             <Link
               href="/faculty"
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                !department
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!department
                   ? "bg-[#8A0000] text-white"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
-              }`}
+                }`}
             >
               All
             </Link>
@@ -51,11 +50,10 @@ export default async function PublicFacultyPage({ searchParams }: Props) {
               <Link
                 key={dept}
                 href={`/faculty?department=${encodeURIComponent(dept)}`}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  department === dept
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${department === dept
                     ? "bg-[#8A0000] text-white"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
+                  }`}
               >
                 {dept}
               </Link>

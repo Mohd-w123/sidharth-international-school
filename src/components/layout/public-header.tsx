@@ -51,7 +51,7 @@ export async function PublicHeader() {
   const email =
     (settings.topbar_email as string) ||
     (settings.email as string) ||
-    "siddharthinternationalschool15@gmail.com";
+    "SISNANGAL@gmail.com";
   const rawLogo =
     (settings.header_logo as string) || (settings.logo as string) || "";
   const logo = isValidImageUrl(rawLogo) ? rawLogo.trim() : "";
@@ -70,7 +70,7 @@ export async function PublicHeader() {
         Dark Red #680000 background with gold icons and essential school helpline
       */}
       {showTopbar && (
-        <div className="bg-[#A22965] text-white text-xs py-2 hidden md:block border-b border-white/10">
+        <div className="bg-[#8A0000] text-white text-xs py-2 hidden md:block border-b border-white/10">
           <Container className="flex items-center justify-between">
             {/* Left Contact Information */}
             <div className="flex items-center gap-5 flex-wrap">
@@ -140,7 +140,7 @@ export async function PublicHeader() {
           {/* Logo & School Name */}
           <Link href="/" className="flex items-center gap-3.5 py-1 group">
             {logo ? (
-              <div className="relative h-13 w-13 rounded-full overflow-hidden bg-white p-0.5 border-2 border-[#A22965]/20 shadow-xs shrink-0 flex items-center justify-center group-hover:border-[#A22965] transition-colors">
+              <div className="relative h-13 w-13 rounded-full overflow-hidden bg-white p-0.5 border-2 border-[#8A0000]/20 shadow-xs shrink-0 flex items-center justify-center group-hover:border-[#8A0000] transition-colors">
                 <Image
                   src={logo}
                   alt={siteName}
@@ -152,12 +152,12 @@ export async function PublicHeader() {
                 />
               </div>
             ) : (
-              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#A22965] to-[#851e51] flex items-center justify-center text-white font-extrabold text-xl shadow-md shrink-0">
+              <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[#8A0000] to-[#680000] flex items-center justify-center text-white font-extrabold text-xl shadow-md shrink-0">
                 {siteName.charAt(0)}
               </div>
             )}
             <div>
-              <div className="font-extrabold text-lg md:text-xl lg:text-[21px] text-[#A22965] tracking-tight leading-tight group-hover:text-[#851e51] transition-colors">
+              <div className="font-extrabold text-lg md:text-xl lg:text-[21px] text-[#8A0000] tracking-tight leading-tight group-hover:text-[#680000] transition-colors">
                 {siteName}
               </div>
               <div className="text-[10px] md:text-[11px] text-[#1A1A1A]/70 font-bold uppercase tracking-wider mt-0.5">
@@ -183,24 +183,23 @@ export async function PublicHeader() {
                     target={item.target}
                     className={
                       isMandatoryDisclosure
-                        ? "flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-[#851e51] bg-[#D4A72C]/20 hover:bg-[#D4A72C] hover:text-[#591036] border-2 border-[#D4A72C] rounded-full shadow-xs hover:shadow-md transition-all hover:scale-105 active:scale-95 mx-0.5"
-                        : "flex items-center gap-1 px-3 py-2 text-sm font-semibold text-[#1A1A1A] hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
+                        ? "flex items-center gap-2 px-3.5 py-1.5 text-xs sm:text-sm font-bold text-[#680000] bg-[#D4A72C]/20 hover:bg-[#D4A72C] hover:text-[#591036] border-2 border-[#D4A72C] rounded-full shadow-xs hover:shadow-md transition-all hover:scale-105 active:scale-95 mx-0.5"
+                        : "flex items-center gap-1 px-3 py-2 text-sm font-semibold text-[#1A1A1A] hover:text-[#8A0000] hover:bg-slate-50 rounded-md transition-colors"
                     }
                   >
                     {isMandatoryDisclosure && (
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A72C] opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#A22965]"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8A0000]"></span>
                       </span>
                     )}
                     <span>{item.label}</span>
                     {hasChildren && (
                       <ChevronDown
-                        className={`h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 ${
-                          isMandatoryDisclosure
-                            ? "text-[#851e51]"
-                            : "text-slate-400 group-hover:text-[#A22965]"
-                        }`}
+                        className={`h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 ${isMandatoryDisclosure
+                          ? "text-[#680000]"
+                          : "text-slate-400 group-hover:text-[#8A0000]"
+                          }`}
                       />
                     )}
                   </Link>
@@ -208,13 +207,13 @@ export async function PublicHeader() {
                   {/* Dropdown Menu */}
                   {hasChildren && (
                     <div className="absolute top-full left-0 pt-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 translate-y-2 group-hover:translate-y-0 z-50">
-                      <div className="bg-white rounded-xl shadow-2xl border border-slate-200 min-w-[220px] py-2 overflow-hidden border-t-2 border-t-[#A22965]">
+                      <div className="bg-white rounded-xl shadow-2xl border border-slate-200 min-w-[220px] py-2 overflow-hidden border-t-2 border-t-[#8A0000]">
                         {enabledChildren.map((child: IMenuItem, ci: number) => (
                           <Link
                             key={ci}
                             href={child.url || "#"}
                             target={child.target}
-                            className="block px-4 py-2.5 text-sm text-[#1A1A1A] hover:bg-[#A22965]/8 hover:text-[#A22965] font-medium transition-colors border-l-2 border-transparent hover:border-[#A22965]"
+                            className="block px-4 py-2.5 text-sm text-[#1A1A1A] hover:bg-[#8A0000]/8 hover:text-[#8A0000] font-medium transition-colors border-l-2 border-transparent hover:border-[#8A0000]"
                           >
                             {child.label}
                           </Link>
@@ -232,7 +231,7 @@ export async function PublicHeader() {
             {showCta && (
               <Link
                 href={ctaLink}
-                className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#A22965] hover:bg-[#851e51] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
+                className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#8A0000] hover:bg-[#680000] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all hover:scale-105 active:scale-95"
               >
                 <span>{ctaText}</span>
                 <ArrowRight className="h-4 w-4" />
@@ -279,43 +278,43 @@ function MobileMenuToggle({
                       target={item.target}
                       className={
                         isMandatoryDisclosure
-                          ? "flex items-center justify-between px-3.5 py-2.5 text-sm font-bold text-[#851e51] bg-[#D4A72C]/20 border border-[#D4A72C] rounded-lg transition-colors my-1"
-                          : "block px-3 py-2.5 text-sm font-bold text-[#1A1A1A] hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
+                          ? "flex items-center justify-between px-3.5 py-2.5 text-sm font-bold text-[#680000] bg-[#D4A72C]/20 border border-[#D4A72C] rounded-lg transition-colors my-1"
+                          : "block px-3 py-2.5 text-sm font-bold text-[#1A1A1A] hover:text-[#8A0000] hover:bg-slate-50 rounded-md transition-colors"
                       }
                     >
                       <div className="flex items-center gap-2">
                         {isMandatoryDisclosure && (
-                          <span className="h-2 w-2 rounded-full bg-[#A22965]" />
+                          <span className="h-2 w-2 rounded-full bg-[#8A0000]" />
                         )}
                         <span>{item.label}</span>
                       </div>
                       {isMandatoryDisclosure && (
-                        <span className="text-[10px] font-bold bg-[#A22965] text-white px-2 py-0.5 rounded">
+                        <span className="text-[10px] font-bold bg-[#8A0000] text-white px-2 py-0.5 rounded">
                           CBSE
                         </span>
                       )}
                     </Link>
-                  {item.children
-                    ?.filter((c: IMenuItem) => c.isEnabled)
-                    .map((child: IMenuItem, ci: number) => (
-                      <Link
-                        key={ci}
-                        href={child.url || "#"}
-                        target={child.target}
-                        className="block px-6 py-2 text-xs font-medium text-slate-600 hover:text-[#A22965] hover:bg-slate-50 rounded-md transition-colors"
-                      >
-                        • {child.label}
-                      </Link>
-                    ))}
-                </div>
-              );
-            })}
+                    {item.children
+                      ?.filter((c: IMenuItem) => c.isEnabled)
+                      .map((child: IMenuItem, ci: number) => (
+                        <Link
+                          key={ci}
+                          href={child.url || "#"}
+                          target={child.target}
+                          className="block px-6 py-2 text-xs font-medium text-slate-600 hover:text-[#8A0000] hover:bg-slate-50 rounded-md transition-colors"
+                        >
+                          • {child.label}
+                        </Link>
+                      ))}
+                  </div>
+                );
+              })}
             </div>
 
             <div className="pt-2 space-y-2.5">
               <Link
                 href={ctaLink}
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-[#A22965] text-white font-bold text-sm shadow-md"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-[#8A0000] text-white font-bold text-sm shadow-md"
               >
                 <span>{ctaText}</span>
                 <ArrowRight className="h-4 w-4" />
@@ -326,7 +325,7 @@ function MobileMenuToggle({
                   href={`tel:${phone}`}
                   className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-md border border-slate-300 text-[#1A1A1A] font-semibold text-xs bg-slate-50"
                 >
-                  <Phone className="h-3.5 w-3.5 text-[#A22965]" />
+                  <Phone className="h-3.5 w-3.5 text-[#8A0000]" />
                   <span>Call Helpline: {phone}</span>
                 </a>
               )}

@@ -40,31 +40,28 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
         <div className="flex gap-2 mb-8">
           <Link
             href="/gallery"
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              !albumType
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!albumType
                 ? "bg-[#8A0000] text-white"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
-            }`}
+              }`}
           >
             All
           </Link>
           <Link
             href="/gallery?type=photo"
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 ${
-              albumType === "photo"
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 ${albumType === "photo"
                 ? "bg-[#8A0000] text-white"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
-            }`}
+              }`}
           >
             <Images className="h-3.5 w-3.5" /> Photos
           </Link>
           <Link
             href="/gallery?type=video"
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 ${
-              albumType === "video"
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1.5 ${albumType === "video"
                 ? "bg-[#8A0000] text-white"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
-            }`}
+              }`}
           >
             <Video className="h-3.5 w-3.5" /> Videos
           </Link>
@@ -123,11 +120,10 @@ export default async function PublicGalleryPage({ searchParams }: Props) {
               <Link
                 key={i}
                 href={`/gallery?page=${i + 1}${albumType ? `&type=${albumType}` : ""}`}
-                className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
-                  page === i + 1
+                className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${page === i + 1
                     ? "bg-[#8A0000] text-white"
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
+                  }`}
               >
                 {i + 1}
               </Link>

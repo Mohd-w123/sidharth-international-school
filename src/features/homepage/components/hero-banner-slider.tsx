@@ -68,7 +68,7 @@ export function HeroBannerSlider({ content }: HeroBannerSliderProps) {
       </section>
 
       {/* 4 Quick Pillars Ribbon directly beneath Hero */}
-      <div className="relative z-20 bg-gradient-to-r from-[#851e51] via-[#A22965] to-[#851e51] text-white py-4 shadow-xl border-y border-[#D4A72C]/30">
+      <div className="relative z-20 bg-gradient-to-r from-[#680000] via-[#8A0000] to-[#680000] text-white py-4 shadow-xl border-y border-[#D4A72C]/30">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y md:divide-y-0 md:divide-x divide-white/15">
             <div className="flex items-center gap-3 pt-2 md:pt-0">

@@ -518,8 +518,8 @@ function SectionContentEditor({
       return (
         <div className="space-y-5 pt-2">
           {/* Header Info */}
-          <div className="p-3.5 bg-[#A22965]/10 border border-[#A22965]/30 rounded-lg flex items-start gap-3">
-            <Video className="h-5 w-5 text-[#A22965] shrink-0 mt-0.5" />
+          <div className="p-3.5 bg-[#8A0000]/10 border border-[#8A0000]/30 rounded-lg flex items-start gap-3">
+            <Video className="h-5 w-5 text-[#8A0000] shrink-0 mt-0.5" />
             <div className="text-xs">
               <span className="font-bold text-foreground block">
                 Dynamic Video Hero Active
@@ -535,7 +535,7 @@ function SectionContentEditor({
             <CardHeader className="py-2.5 px-4 bg-muted/40 border-b">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold flex items-center gap-1.5">
-                  <Video className="h-3.5 w-3.5 text-[#A22965]" />
+                  <Video className="h-3.5 w-3.5 text-[#8A0000]" />
                   Background Video & Fallback Poster Settings
                 </span>
                 <Button
@@ -1706,7 +1706,7 @@ function SectionContentEditor({
 
           <div className="p-3.5 bg-muted/40 border border-border rounded-lg space-y-3">
             <span className="text-xs font-bold flex items-center gap-1.5 text-foreground">
-              <Video className="h-4 w-4 text-[#A22965]" />
+              <Video className="h-4 w-4 text-[#8A0000]" />
               Video Tour & YouTube Link Settings
             </span>
 

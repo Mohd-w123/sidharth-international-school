@@ -116,42 +116,42 @@ export function PublicAcademicsView({
         return <Badge className="bg-blue-600 hover:bg-blue-700 text-white font-semibold">PTM / Meeting</Badge>;
       case "event":
       default:
-        return <Badge className="bg-[#A22965] hover:bg-[#851e51] text-white font-semibold">Event / Activity</Badge>;
+        return <Badge className="bg-[#8A0000] hover:bg-[#680000] text-white font-semibold">Event / Activity</Badge>;
     }
   };
 
   const getDeptIcon = (dept: string) => {
     const lower = dept.toLowerCase();
     if (lower.includes("sci") || lower.includes("bio") || lower.includes("chem") || lower.includes("phy")) {
-      return <Atom className="h-5 w-5 text-[#A22965]" />;
+      return <Atom className="h-5 w-5 text-[#8A0000]" />;
     }
     if (lower.includes("math")) {
-      return <Compass className="h-5 w-5 text-[#A22965]" />;
+      return <Compass className="h-5 w-5 text-[#8A0000]" />;
     }
     if (lower.includes("lang") || lower.includes("eng") || lower.includes("hin")) {
-      return <Languages className="h-5 w-5 text-[#A22965]" />;
+      return <Languages className="h-5 w-5 text-[#8A0000]" />;
     }
     if (lower.includes("tech") || lower.includes("comput") || lower.includes("ai")) {
-      return <Cpu className="h-5 w-5 text-[#A22965]" />;
+      return <Cpu className="h-5 w-5 text-[#8A0000]" />;
     }
     if (lower.includes("comm") || lower.includes("econ") || lower.includes("bus")) {
-      return <TrendingUp className="h-5 w-5 text-[#A22965]" />;
+      return <TrendingUp className="h-5 w-5 text-[#8A0000]" />;
     }
     if (lower.includes("phys") || lower.includes("sport")) {
-      return <Dumbbell className="h-5 w-5 text-[#A22965]" />;
+      return <Dumbbell className="h-5 w-5 text-[#8A0000]" />;
     }
-    return <BookOpen className="h-5 w-5 text-[#A22965]" />;
+    return <BookOpen className="h-5 w-5 text-[#8A0000]" />;
   };
 
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* 
         HERO SECTION
-        Curated Modi World School-Style Hero with rich #A22965 gradient, gold highlights & stats
+        Curated Modi World School-Style Hero with rich #8A0000 gradient, gold highlights & stats
       */}
-      <section className="relative bg-gradient-to-br from-[#851e51] via-[#A22965] to-[#591036] text-white py-16 md:py-24 overflow-hidden border-b-4 border-[#D4A72C]">
+      <section className="relative bg-gradient-to-br from-[#680000] via-[#8A0000] to-[#591036] text-white py-16 md:py-24 overflow-hidden border-b-4 border-[#D4A72C]">
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-10 pointer-events-none" />
-        
+
         <Container className="relative z-10">
           <div className="max-w-3xl space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#D4A72C] text-xs font-bold uppercase tracking-wider">
@@ -216,11 +216,10 @@ export function PublicAcademicsView({
           <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto py-3 no-scrollbar">
             <button
               onClick={() => setActiveTab("programs")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === "programs"
-                  ? "bg-[#A22965] text-white shadow-md shadow-[#A22965]/20"
-                  : "bg-slate-100 hover:bg-slate-200 text-slate-700"
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${activeTab === "programs"
+                ? "bg-[#8A0000] text-white shadow-md shadow-[#8A0000]/20"
+                : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                }`}
             >
               <School className="h-4 w-4" />
               <span>Academic Programs & Classes ({programs.length})</span>
@@ -228,11 +227,10 @@ export function PublicAcademicsView({
 
             <button
               onClick={() => setActiveTab("subjects")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === "subjects"
-                  ? "bg-[#A22965] text-white shadow-md shadow-[#A22965]/20"
-                  : "bg-slate-100 hover:bg-slate-200 text-slate-700"
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${activeTab === "subjects"
+                ? "bg-[#8A0000] text-white shadow-md shadow-[#8A0000]/20"
+                : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                }`}
             >
               <BookOpen className="h-4 w-4" />
               <span>Curriculum & Subjects ({subjects.length})</span>
@@ -240,11 +238,10 @@ export function PublicAcademicsView({
 
             <button
               onClick={() => setActiveTab("calendar")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === "calendar"
-                  ? "bg-[#A22965] text-white shadow-md shadow-[#A22965]/20"
-                  : "bg-slate-100 hover:bg-slate-200 text-slate-700"
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${activeTab === "calendar"
+                ? "bg-[#8A0000] text-white shadow-md shadow-[#8A0000]/20"
+                : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                }`}
             >
               <Calendar className="h-4 w-4" />
               <span>Academic Calendar 2026-27 ({calendarEvents.length})</span>
@@ -252,11 +249,10 @@ export function PublicAcademicsView({
 
             <button
               onClick={() => setActiveTab("pedagogy")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${
-                activeTab === "pedagogy"
-                  ? "bg-[#A22965] text-white shadow-md shadow-[#A22965]/20"
-                  : "bg-slate-100 hover:bg-slate-200 text-slate-700"
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm whitespace-nowrap transition-all cursor-pointer ${activeTab === "pedagogy"
+                ? "bg-[#8A0000] text-white shadow-md shadow-[#8A0000]/20"
+                : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                }`}
             >
               <Sparkles className="h-4 w-4" />
               <span>Pedagogy & Infrastructure</span>
@@ -273,7 +269,7 @@ export function PublicAcademicsView({
         {activeTab === "programs" && (
           <div className="space-y-12">
             <div>
-              <span className="text-[#A22965] font-bold text-xs uppercase tracking-wider block mb-1">
+              <span className="text-[#8A0000] font-bold text-xs uppercase tracking-wider block mb-1">
                 Progressive Academic Journey
               </span>
               <h2 className="text-3xl font-extrabold text-[#252525] tracking-tight">
@@ -294,11 +290,10 @@ export function PublicAcademicsView({
                   <div
                     key={prog._id}
                     onClick={() => setSelectedProgramSlug(prog.slug)}
-                    className={`relative rounded-2xl overflow-hidden border-2 transition-all cursor-pointer duration-300 flex flex-col bg-white shadow-sm hover:shadow-xl group ${
-                      isSelected
-                        ? "border-[#A22965] ring-4 ring-[#A22965]/10 shadow-lg"
-                        : "border-slate-200 hover:border-[#A22965]/50"
-                    }`}
+                    className={`relative rounded-2xl overflow-hidden border-2 transition-all cursor-pointer duration-300 flex flex-col bg-white shadow-sm hover:shadow-xl group ${isSelected
+                      ? "border-[#8A0000] ring-4 ring-[#8A0000]/10 shadow-lg"
+                      : "border-slate-200 hover:border-[#8A0000]/50"
+                      }`}
                   >
                     <div className="aspect-[16/10] relative overflow-hidden bg-slate-900">
                       {prog.image ? (
@@ -308,14 +303,14 @@ export function PublicAcademicsView({
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#A22965]/20 to-[#851e51]/10">
-                          <GraduationCap className="h-16 w-16 text-[#A22965]" />
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#8A0000]/20 to-[#680000]/10">
+                          <GraduationCap className="h-16 w-16 text-[#8A0000]" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      
+
                       <div className="absolute top-3 left-3">
-                        <span className="bg-[#A22965] text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-md uppercase tracking-wider">
+                        <span className="bg-[#8A0000] text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-md uppercase tracking-wider">
                           Stage {idx + 1}
                         </span>
                       </div>
@@ -339,7 +334,7 @@ export function PublicAcademicsView({
                         <span className="text-xs font-semibold text-slate-500">
                           Click to view classes & details
                         </span>
-                        <ChevronRight className={`h-4 w-4 text-[#A22965] transition-transform ${isSelected ? "translate-x-1" : ""}`} />
+                        <ChevronRight className={`h-4 w-4 text-[#8A0000] transition-transform ${isSelected ? "translate-x-1" : ""}`} />
                       </div>
                     </div>
                   </div>
@@ -352,7 +347,7 @@ export function PublicAcademicsView({
               <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-md space-y-8">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
                   <div>
-                    <span className="text-[#A22965] font-bold text-xs uppercase tracking-wider block">
+                    <span className="text-[#8A0000] font-bold text-xs uppercase tracking-wider block">
                       Active Stage Spotlight
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-[#252525] mt-1">
@@ -362,7 +357,7 @@ export function PublicAcademicsView({
 
                   <Link
                     href="/admissions"
-                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#A22965] hover:bg-[#851e51] text-white font-bold text-sm shadow-md transition-all self-start md:self-auto"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#8A0000] hover:bg-[#680000] text-white font-bold text-sm shadow-md transition-all self-start md:self-auto"
                   >
                     <span>Enquire for {activeProgram.name}</span>
                     <ArrowRight className="h-4 w-4" />
@@ -371,7 +366,7 @@ export function PublicAcademicsView({
 
                 <div className="space-y-4">
                   <h4 className="text-base font-bold text-[#252525] flex items-center gap-2">
-                    <BookOpen className="h-5 w-5 text-[#A22965]" />
+                    <BookOpen className="h-5 w-5 text-[#8A0000]" />
                     <span>Classes & Sections in this Wing ({activeProgramClasses.length})</span>
                   </h4>
 
@@ -382,14 +377,14 @@ export function PublicAcademicsView({
                       {activeProgramClasses.map((cls) => (
                         <div
                           key={cls._id}
-                          className="bg-slate-50 border border-slate-200/80 rounded-xl p-4.5 hover:border-[#A22965]/40 transition-colors"
+                          className="bg-slate-50 border border-slate-200/80 rounded-xl p-4.5 hover:border-[#8A0000]/40 transition-colors"
                         >
                           <div className="flex items-center justify-between">
                             <span className="font-extrabold text-base text-[#252525]">
                               {cls.name}
                             </span>
                             {cls.section && (
-                              <span className="bg-[#A22965]/10 text-[#A22965] text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="bg-[#8A0000]/10 text-[#8A0000] text-xs font-bold px-2 py-0.5 rounded">
                                 Sec: {cls.section}
                               </span>
                             )}
@@ -415,7 +410,7 @@ export function PublicAcademicsView({
         {activeTab === "subjects" && (
           <div className="space-y-10">
             <div>
-              <span className="text-[#A22965] font-bold text-xs uppercase tracking-wider block mb-1">
+              <span className="text-[#8A0000] font-bold text-xs uppercase tracking-wider block mb-1">
                 CBSE Aligned Offerings
               </span>
               <h2 className="text-3xl font-extrabold text-[#252525] tracking-tight">
@@ -434,7 +429,7 @@ export function PublicAcademicsView({
                   className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4"
                 >
                   <div className="flex items-center gap-3 pb-3 border-b border-slate-100">
-                    <div className="p-2.5 rounded-xl bg-[#A22965]/10 shrink-0">
+                    <div className="p-2.5 rounded-xl bg-[#8A0000]/10 shrink-0">
                       {getDeptIcon(department)}
                     </div>
                     <div>
@@ -458,7 +453,7 @@ export function PublicAcademicsView({
                             {subj.name}
                           </span>
                           {subj.code && (
-                            <span className="font-mono text-[10px] font-bold bg-[#A22965] text-white px-2 py-0.5 rounded shrink-0">
+                            <span className="font-mono text-[10px] font-bold bg-[#8A0000] text-white px-2 py-0.5 rounded shrink-0">
                               {subj.code}
                             </span>
                           )}
@@ -484,7 +479,7 @@ export function PublicAcademicsView({
           <div className="space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <span className="text-[#A22965] font-bold text-xs uppercase tracking-wider block mb-1">
+                <span className="text-[#8A0000] font-bold text-xs uppercase tracking-wider block mb-1">
                   Session 2026 - 2027
                 </span>
                 <h2 className="text-3xl font-extrabold text-[#252525] tracking-tight">
@@ -515,10 +510,10 @@ export function PublicAcademicsView({
                   const evtDate = new Date(evt.date);
                   const formattedDate = !isNaN(evtDate.getTime())
                     ? evtDate.toLocaleDateString("en-IN", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })
                     : String(evt.date);
 
                   return (
@@ -528,7 +523,7 @@ export function PublicAcademicsView({
                     >
                       <div className="flex items-start gap-4">
                         {/* Date badge */}
-                        <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-xl bg-[#A22965]/10 text-[#A22965] border border-[#A22965]/20 flex flex-col items-center justify-center shrink-0">
+                        <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-xl bg-[#8A0000]/10 text-[#8A0000] border border-[#8A0000]/20 flex flex-col items-center justify-center shrink-0">
                           <span className="text-xs font-bold uppercase tracking-wider">
                             {!isNaN(evtDate.getTime())
                               ? evtDate.toLocaleString("en-IN", { month: "short" })
@@ -577,7 +572,7 @@ export function PublicAcademicsView({
         {activeTab === "pedagogy" && (
           <div className="space-y-10">
             <div>
-              <span className="text-[#A22965] font-bold text-xs uppercase tracking-wider block mb-1">
+              <span className="text-[#8A0000] font-bold text-xs uppercase tracking-wider block mb-1">
                 Teaching & Infrastructure
               </span>
               <h2 className="text-3xl font-extrabold text-[#252525] tracking-tight">
@@ -591,7 +586,7 @@ export function PublicAcademicsView({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Feature 1 */}
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#A22965]/10 text-[#A22965] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#8A0000]/10 text-[#8A0000] flex items-center justify-center">
                   <Atom className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#252525]">
@@ -601,15 +596,15 @@ export function PublicAcademicsView({
                   Well-equipped Physics, Chemistry, and Biology laboratories provide students with safe, hands-on environments to perform CBSE prescribed experiments and explore scientific theories firsthand.
                 </p>
                 <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100 font-medium">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Dedicated apparatus for senior secondary board practicals</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Safety equipment, fire extinguishers, and first-aid protocols</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Supervised by qualified lab demonstrators & teachers</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Dedicated apparatus for senior secondary board practicals</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Safety equipment, fire extinguishers, and first-aid protocols</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Supervised by qualified lab demonstrators & teachers</li>
                 </ul>
               </div>
 
               {/* Feature 2 */}
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#A22965]/10 text-[#A22965] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#8A0000]/10 text-[#8A0000] flex items-center justify-center">
                   <Cpu className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#252525]">
@@ -619,15 +614,15 @@ export function PublicAcademicsView({
                   High-speed networked computer labs equipped with modern PCs and broadband internet. Students learn coding in Python, web development, cybersecurity, and artificial intelligence basics.
                 </p>
                 <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100 font-medium">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> 1:1 student-to-computer ratio during lab sessions</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Licensed educational software & programming IDEs</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Content filtering & safe internet browsing protocols</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> 1:1 student-to-computer ratio during lab sessions</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Licensed educational software & programming IDEs</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Content filtering & safe internet browsing protocols</li>
                 </ul>
               </div>
 
               {/* Feature 3 */}
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#A22965]/10 text-[#A22965] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#8A0000]/10 text-[#8A0000] flex items-center justify-center">
                   <BookOpen className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#252525]">
@@ -637,15 +632,15 @@ export function PublicAcademicsView({
                   Our library houses thousands of titles across literature, reference encyclopedias, national journals, competitive exam manuals, and multilingual readers to cultivate lifelong reading habits.
                 </p>
                 <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100 font-medium">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Rich collection of CBSE NCERT textbooks & reference guides</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Quiet reading zones & periodicals section</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Digital book lending & reading club activities</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Rich collection of CBSE NCERT textbooks & reference guides</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Quiet reading zones & periodicals section</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Digital book lending & reading club activities</li>
                 </ul>
               </div>
 
               {/* Feature 4 */}
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-[#A22965]/10 text-[#A22965] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-[#8A0000]/10 text-[#8A0000] flex items-center justify-center">
                   <Award className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-bold text-[#252525]">
@@ -655,9 +650,9 @@ export function PublicAcademicsView({
                   Through Periodic Assessments and holistic feedback, our educators identify each learner's unique strengths and provide special after-school remedial sessions to clear doubts without exam anxiety.
                 </p>
                 <ul className="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-100 font-medium">
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Regular parent-teacher meetings & individual counseling</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Personalized remedial classes for core subjects</li>
-                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#A22965]" /> Entrance exam mentorship for JEE / NEET / CUET aspirants</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Regular parent-teacher meetings & individual counseling</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Personalized remedial classes for core subjects</li>
+                  <li className="flex items-center gap-2"><Check className="h-4 w-4 text-[#8A0000]" /> Entrance exam mentorship for JEE / NEET / CUET aspirants</li>
                 </ul>
               </div>
             </div>
@@ -667,7 +662,7 @@ export function PublicAcademicsView({
         {/* 
           BOTTOM ADMISSION CALLOUT BANNER
         */}
-        <div className="mt-16 bg-gradient-to-r from-[#851e51] to-[#A22965] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-[#D4A72C]/40">
+        <div className="mt-16 bg-gradient-to-r from-[#680000] to-[#8A0000] rounded-3xl p-8 sm:p-12 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-[#D4A72C]/40">
           <div className="space-y-2 max-w-2xl text-center md:text-left">
             <span className="text-[#D4A72C] font-bold text-xs uppercase tracking-wider block">
               Admission Open 2026 - 2027

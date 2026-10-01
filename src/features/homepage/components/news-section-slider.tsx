@@ -81,10 +81,10 @@ export function NewsSectionSlider({
       item.date ||
       (item.publishedAt
         ? new Date(item.publishedAt).toLocaleDateString("en-IN", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          })
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })
         : "Latest News");
 
     return {
@@ -250,16 +250,14 @@ export function NewsSectionSlider({
                     key={idx}
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
-                    className={`text-left p-3.5 rounded-xl transition-all duration-300 border cursor-pointer ${
-                      isActive
+                    className={`text-left p-3.5 rounded-xl transition-all duration-300 border cursor-pointer ${isActive
                         ? "bg-[#8A0000] text-white border-[#8A0000] shadow-md"
                         : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
-                    }`}
+                      }`}
                   >
                     <p
-                      className={`text-[11px] font-bold mb-1 tracking-wider ${
-                        isActive ? "text-[#D4A72C]" : "text-slate-500"
-                      }`}
+                      className={`text-[11px] font-bold mb-1 tracking-wider ${isActive ? "text-[#D4A72C]" : "text-slate-500"
+                        }`}
                     >
                       {item.date}
                     </p>

@@ -57,287 +57,287 @@ const PREDEFINED_SECTIONS: {
   icon: React.ComponentType<{ className?: string }>;
   fields: SettingFieldDef[];
 }[] = [
-  {
-    id: "branding",
-    title: "Branding & Logos",
-    description: "Manage school logos for the header, footer, favicon, and badges.",
-    icon: Sparkles,
-    fields: [
-      {
-        key: "header_logo",
-        label: "Header Logo",
-        description: "Primary school crest or logo shown in the main navigation bar. Supports direct file upload or URL.",
-        group: "branding",
-        type: "image",
-        placeholder: "Upload or paste header logo URL",
-      },
-      {
-        key: "logo",
-        label: "Primary Logo (Fallback)",
-        description: "Main school logo used across general components when specific logos are not provided.",
-        group: "branding",
-        type: "image",
-        placeholder: "Upload or paste logo URL",
-      },
-      {
-        key: "footer_logo",
-        label: "Footer Logo",
-        description: "Logo shown in the website footer. Leave empty to automatically use the Header/Primary logo.",
-        group: "branding",
-        type: "image",
-        placeholder: "Upload or paste footer logo URL",
-      },
-      {
-        key: "favicon",
-        label: "Favicon / Browser Crest",
-        description: "Small icon shown in browser tabs and bookmarks (PNG, ICO, SVG).",
-        group: "branding",
-        type: "image",
-        placeholder: "Upload or paste favicon URL",
-      },
-      {
-        key: "header_subtitle",
-        label: "Header Affiliation Badge / Subtitle",
-        description: "Small text displayed right under the school name in the header (e.g. CBSE Affiliated).",
-        group: "branding",
-        type: "text",
-        placeholder: "CBSE Affiliated",
-        defaultValue: "CBSE Affiliated",
-      },
-    ],
-  },
-  {
-    id: "topbar",
-    title: "Top Bar & CTA",
-    description: "Configure the top notification bar, contact snippets, and admission action button.",
-    icon: Sliders,
-    fields: [
-      {
-        key: "topbar_show",
-        label: "Enable Top Bar",
-        description: "Show or hide the dark blue top information bar above the header.",
-        group: "topbar",
-        type: "boolean",
-        defaultValue: true,
-      },
-      {
-        key: "topbar_phone",
-        label: "Topbar Phone Number",
-        description: "Phone number displayed on the left side of the top bar (defaults to primary phone).",
-        group: "topbar",
-        type: "text",
-        placeholder: "+91 98765 43210",
-      },
-      {
-        key: "topbar_email",
-        label: "Topbar Email Address",
-        description: "Email address displayed in the top bar (defaults to primary email).",
-        group: "topbar",
-        type: "text",
-        placeholder: "info@stlawrenceschool.edu.in",
-      },
-      {
-        key: "topbar_announcement",
-        label: "Topbar Announcement / Info Note",
-        description: "Optional short text, CBSE affiliation number, or timings shown in top bar.",
-        group: "topbar",
-        type: "text",
-        placeholder: "CBSE Affiliation No: 1730123 | School Code: 10456",
-      },
-      {
-        key: "topbar_cta_show",
-        label: "Show Admission CTA Button",
-        description: "Display the highlight button (e.g. 'Apply Now') on the right side of the top bar.",
-        group: "topbar",
-        type: "boolean",
-        defaultValue: true,
-      },
-      {
-        key: "topbar_cta_text",
-        label: "CTA Button Text",
-        description: "Text label for the top bar button.",
-        group: "topbar",
-        type: "text",
-        placeholder: "Apply Now",
-        defaultValue: "Apply Now",
-      },
-      {
-        key: "topbar_cta_link",
-        label: "CTA Button Target Link",
-        description: "Destination URL or page path for the CTA button.",
-        group: "topbar",
-        type: "text",
-        placeholder: "/admissions",
-        defaultValue: "/admissions",
-      },
-    ],
-  },
-  {
-    id: "general",
-    title: "General Information",
-    description: "School name, motto, CBSE credentials, and overall site metadata.",
-    icon: FileText,
-    fields: [
-      {
-        key: "site_name",
-        label: "School / Institution Name",
-        description: "Official name of the school used across header, footer, and page titles.",
-        group: "general",
-        type: "text",
-        placeholder: "Saint Lawrence Public School",
-        defaultValue: "Saint Lawrence Public School",
-      },
-      {
-        key: "tagline",
-        label: "School Tagline / Motto",
-        description: "School vision or motto shown below the title or in footer.",
-        group: "general",
-        type: "text",
-        placeholder: "Nurturing Minds, Building Futures",
-        defaultValue: "Nurturing Minds, Building Futures",
-      },
-      {
-        key: "affiliation_number",
-        label: "CBSE Affiliation Number",
-        description: "Official CBSE affiliation number for compliance headers and disclosure.",
-        group: "general",
-        type: "text",
-        placeholder: "1730123",
-      },
-      {
-        key: "school_code",
-        label: "CBSE School Code",
-        description: "Official board school code.",
-        group: "general",
-        type: "text",
-        placeholder: "10456",
-      },
-    ],
-  },
-  {
-    id: "contact",
-    title: "Contact & Location",
-    description: "Campus address, telephone numbers, official email, and working hours.",
-    icon: Phone,
-    fields: [
-      {
-        key: "phone",
-        label: "Primary Contact Phone",
-        description: "Main phone number for inquiries and general calls.",
-        group: "contact",
-        type: "text",
-        placeholder: "+91 1234567890",
-      },
-      {
-        key: "email",
-        label: "Primary Contact Email",
-        description: "Main reception/admissions email address.",
-        group: "contact",
-        type: "text",
-        placeholder: "info@school.edu.in",
-      },
-      {
-        key: "address",
-        label: "Campus Address",
-        description: "Full postal address of the school campus.",
-        group: "contact",
-        type: "textarea",
-        placeholder: "123 School Road, City, State - Pin",
-      },
-      {
-        key: "office_hours",
-        label: "Office / School Timings",
-        description: "Working hours shown on contact page and disclosure.",
-        group: "contact",
-        type: "text",
-        placeholder: "Mon–Fri: 8:00 AM – 3:30 PM | Sat: 8:00 AM – 12:00 PM",
-      },
-      {
-        key: "google_map_embed",
-        label: "Google Maps Embed URL",
-        description: "Embed link from Google Maps (iframe src URL) for the Contact page map.",
-        group: "contact",
-        type: "url",
-        placeholder: "https://www.google.com/maps/embed?pb=...",
-      },
-      {
-        key: "website",
-        label: "Official Website URL",
-        description: "Full web address of the school.",
-        group: "contact",
-        type: "url",
-        placeholder: "https://saintlawrence.edu.in",
-      },
-    ],
-  },
-  {
-    id: "social",
-    title: "Social Media Links",
-    description: "Connect the school's social media channels displayed in the footer and contact sections.",
-    icon: Share2,
-    fields: [
-      {
-        key: "facebook",
-        label: "Facebook Page URL",
-        group: "social",
-        type: "url",
-        placeholder: "https://facebook.com/your-school",
-      },
-      {
-        key: "instagram",
-        label: "Instagram Profile URL",
-        group: "social",
-        type: "url",
-        placeholder: "https://instagram.com/your-school",
-      },
-      {
-        key: "twitter",
-        label: "Twitter / X Profile URL",
-        group: "social",
-        type: "url",
-        placeholder: "https://x.com/your-school",
-      },
-      {
-        key: "youtube",
-        label: "YouTube Channel URL",
-        group: "social",
-        type: "url",
-        placeholder: "https://youtube.com/@your-school",
-      },
-      {
-        key: "linkedin",
-        label: "LinkedIn Page URL",
-        group: "social",
-        type: "url",
-        placeholder: "https://linkedin.com/company/your-school",
-      },
-    ],
-  },
-  {
-    id: "footer",
-    title: "Footer & Copyright",
-    description: "Customize footer description text, legal notices, and copyright statement.",
-    icon: Layers,
-    fields: [
-      {
-        key: "footer_text",
-        label: "Footer Description / About Snippet",
-        description: "Short paragraph displayed under the school logo in the footer.",
-        group: "footer",
-        type: "textarea",
-        placeholder: "Saint Lawrence Public School is committed to holistic education and excellence...",
-      },
-      {
-        key: "copyright_text",
-        label: "Copyright Notice",
-        description: "Bottom copyright statement. (Leave empty to use default auto-year format).",
-        group: "footer",
-        type: "text",
-        placeholder: `© ${new Date().getFullYear()} Saint Lawrence Public School. All rights reserved.`,
-      },
-    ],
-  },
-];
+    {
+      id: "branding",
+      title: "Branding & Logos",
+      description: "Manage school logos for the header, footer, favicon, and badges.",
+      icon: Sparkles,
+      fields: [
+        {
+          key: "header_logo",
+          label: "Header Logo",
+          description: "Primary school crest or logo shown in the main navigation bar. Supports direct file upload or URL.",
+          group: "branding",
+          type: "image",
+          placeholder: "Upload or paste header logo URL",
+        },
+        {
+          key: "logo",
+          label: "Primary Logo (Fallback)",
+          description: "Main school logo used across general components when specific logos are not provided.",
+          group: "branding",
+          type: "image",
+          placeholder: "Upload or paste logo URL",
+        },
+        {
+          key: "footer_logo",
+          label: "Footer Logo",
+          description: "Logo shown in the website footer. Leave empty to automatically use the Header/Primary logo.",
+          group: "branding",
+          type: "image",
+          placeholder: "Upload or paste footer logo URL",
+        },
+        {
+          key: "favicon",
+          label: "Favicon / Browser Crest",
+          description: "Small icon shown in browser tabs and bookmarks (PNG, ICO, SVG).",
+          group: "branding",
+          type: "image",
+          placeholder: "Upload or paste favicon URL",
+        },
+        {
+          key: "header_subtitle",
+          label: "Header Affiliation Badge / Subtitle",
+          description: "Small text displayed right under the school name in the header (e.g. CBSE Affiliated).",
+          group: "branding",
+          type: "text",
+          placeholder: "CBSE Affiliated",
+          defaultValue: "CBSE Affiliated",
+        },
+      ],
+    },
+    {
+      id: "topbar",
+      title: "Top Bar & CTA",
+      description: "Configure the top notification bar, contact snippets, and admission action button.",
+      icon: Sliders,
+      fields: [
+        {
+          key: "topbar_show",
+          label: "Enable Top Bar",
+          description: "Show or hide the dark blue top information bar above the header.",
+          group: "topbar",
+          type: "boolean",
+          defaultValue: true,
+        },
+        {
+          key: "topbar_phone",
+          label: "Topbar Phone Number",
+          description: "Phone number displayed on the left side of the top bar (defaults to primary phone).",
+          group: "topbar",
+          type: "text",
+          placeholder: "+91 98765 43210",
+        },
+        {
+          key: "topbar_email",
+          label: "Topbar Email Address",
+          description: "Email address displayed in the top bar (defaults to primary email).",
+          group: "topbar",
+          type: "text",
+          placeholder: "info@stlawrenceschool.edu.in",
+        },
+        {
+          key: "topbar_announcement",
+          label: "Topbar Announcement / Info Note",
+          description: "Optional short text, CBSE affiliation number, or timings shown in top bar.",
+          group: "topbar",
+          type: "text",
+          placeholder: "CBSE Affiliation No: 1730123 | School Code: 10456",
+        },
+        {
+          key: "topbar_cta_show",
+          label: "Show Admission CTA Button",
+          description: "Display the highlight button (e.g. 'Apply Now') on the right side of the top bar.",
+          group: "topbar",
+          type: "boolean",
+          defaultValue: true,
+        },
+        {
+          key: "topbar_cta_text",
+          label: "CTA Button Text",
+          description: "Text label for the top bar button.",
+          group: "topbar",
+          type: "text",
+          placeholder: "Apply Now",
+          defaultValue: "Apply Now",
+        },
+        {
+          key: "topbar_cta_link",
+          label: "CTA Button Target Link",
+          description: "Destination URL or page path for the CTA button.",
+          group: "topbar",
+          type: "text",
+          placeholder: "/admissions",
+          defaultValue: "/admissions",
+        },
+      ],
+    },
+    {
+      id: "general",
+      title: "General Information",
+      description: "School name, motto, CBSE credentials, and overall site metadata.",
+      icon: FileText,
+      fields: [
+        {
+          key: "site_name",
+          label: "School / Institution Name",
+          description: "Official name of the school used across header, footer, and page titles.",
+          group: "general",
+          type: "text",
+          placeholder: "Saint Lawrence Public School",
+          defaultValue: "Saint Lawrence Public School",
+        },
+        {
+          key: "tagline",
+          label: "School Tagline / Motto",
+          description: "School vision or motto shown below the title or in footer.",
+          group: "general",
+          type: "text",
+          placeholder: "Nurturing Minds, Building Futures",
+          defaultValue: "Nurturing Minds, Building Futures",
+        },
+        {
+          key: "affiliation_number",
+          label: "CBSE Affiliation Number",
+          description: "Official CBSE affiliation number for compliance headers and disclosure.",
+          group: "general",
+          type: "text",
+          placeholder: "1730123",
+        },
+        {
+          key: "school_code",
+          label: "CBSE School Code",
+          description: "Official board school code.",
+          group: "general",
+          type: "text",
+          placeholder: "10456",
+        },
+      ],
+    },
+    {
+      id: "contact",
+      title: "Contact & Location",
+      description: "Campus address, telephone numbers, official email, and working hours.",
+      icon: Phone,
+      fields: [
+        {
+          key: "phone",
+          label: "Primary Contact Phone",
+          description: "Main phone number for inquiries and general calls.",
+          group: "contact",
+          type: "text",
+          placeholder: "+91 1234567890",
+        },
+        {
+          key: "email",
+          label: "Primary Contact Email",
+          description: "Main reception/admissions email address.",
+          group: "contact",
+          type: "text",
+          placeholder: "info@school.edu.in",
+        },
+        {
+          key: "address",
+          label: "Campus Address",
+          description: "Full postal address of the school campus.",
+          group: "contact",
+          type: "textarea",
+          placeholder: "123 School Road, City, State - Pin",
+        },
+        {
+          key: "office_hours",
+          label: "Office / School Timings",
+          description: "Working hours shown on contact page and disclosure.",
+          group: "contact",
+          type: "text",
+          placeholder: "Mon–Fri: 8:00 AM – 3:30 PM | Sat: 8:00 AM – 12:00 PM",
+        },
+        {
+          key: "google_map_embed",
+          label: "Google Maps Embed URL",
+          description: "Embed link from Google Maps (iframe src URL) for the Contact page map.",
+          group: "contact",
+          type: "url",
+          placeholder: "https://www.google.com/maps/embed?pb=...",
+        },
+        {
+          key: "website",
+          label: "Official Website URL",
+          description: "Full web address of the school.",
+          group: "contact",
+          type: "url",
+          placeholder: "https://saintlawrence.edu.in",
+        },
+      ],
+    },
+    {
+      id: "social",
+      title: "Social Media Links",
+      description: "Connect the school's social media channels displayed in the footer and contact sections.",
+      icon: Share2,
+      fields: [
+        {
+          key: "facebook",
+          label: "Facebook Page URL",
+          group: "social",
+          type: "url",
+          placeholder: "https://facebook.com/your-school",
+        },
+        {
+          key: "instagram",
+          label: "Instagram Profile URL",
+          group: "social",
+          type: "url",
+          placeholder: "https://instagram.com/your-school",
+        },
+        {
+          key: "twitter",
+          label: "Twitter / X Profile URL",
+          group: "social",
+          type: "url",
+          placeholder: "https://x.com/your-school",
+        },
+        {
+          key: "youtube",
+          label: "YouTube Channel URL",
+          group: "social",
+          type: "url",
+          placeholder: "https://youtube.com/@your-school",
+        },
+        {
+          key: "linkedin",
+          label: "LinkedIn Page URL",
+          group: "social",
+          type: "url",
+          placeholder: "https://linkedin.com/company/your-school",
+        },
+      ],
+    },
+    {
+      id: "footer",
+      title: "Footer & Copyright",
+      description: "Customize footer description text, legal notices, and copyright statement.",
+      icon: Layers,
+      fields: [
+        {
+          key: "footer_text",
+          label: "Footer Description / About Snippet",
+          description: "Short paragraph displayed under the school logo in the footer.",
+          group: "footer",
+          type: "textarea",
+          placeholder: "Saint Lawrence Public School is committed to holistic education and excellence...",
+        },
+        {
+          key: "copyright_text",
+          label: "Copyright Notice",
+          description: "Bottom copyright statement. (Leave empty to use default auto-year format).",
+          group: "footer",
+          type: "text",
+          placeholder: `© ${new Date().getFullYear()} Saint Lawrence Public School. All rights reserved.`,
+        },
+      ],
+    },
+  ];
 
 export function SettingsManager({ settings }: Props) {
   const [isPending, startTransition] = useTransition();
@@ -467,11 +467,10 @@ export function SettingsManager({ settings }: Props) {
               key={sec.id}
               type="button"
               onClick={() => setActiveTab(sec.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
-                isActive
+              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${isActive
                   ? "border-primary text-primary font-semibold bg-primary/5 rounded-t-lg"
                   : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-t-lg"
-              }`}
+                }`}
             >
               <Icon className="h-4 w-4" />
               <span>{sec.title}</span>
@@ -485,11 +484,10 @@ export function SettingsManager({ settings }: Props) {
         <button
           type="button"
           onClick={() => setActiveTab("custom")}
-          className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
-            isCustomTab
+          className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${isCustomTab
               ? "border-primary text-primary font-semibold bg-primary/5 rounded-t-lg"
               : "border-transparent text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-t-lg"
-          }`}
+            }`}
         >
           <Settings2 className="h-4 w-4" />
           <span>Advanced / Custom</span>

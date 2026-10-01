@@ -72,7 +72,7 @@ function HomepageSection({
 
     case "announcement":
       return (
-        <div className="bg-[#851e51] text-white py-3 border-b border-[#D4A72C]/30">
+        <div className="bg-[#680000] text-white py-3 border-b border-[#D4A72C]/30">
           <Container className="text-center text-xs md:text-sm font-semibold tracking-wide flex items-center justify-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-[#D4A72C] animate-pulse" />
             <span>{content.text as string}</span>
@@ -100,7 +100,7 @@ function HomepageSection({
                   {content.description as string}
                 </p>
               )}
-              <div className="w-20 h-1 bg-[#A22965] mx-auto mt-6 rounded-full" />
+              <div className="w-20 h-1 bg-[#8A0000] mx-auto mt-6 rounded-full" />
             </div>
           </Container>
         </section>
@@ -231,7 +231,7 @@ function HomepageSection({
       const hasCustomDescription = typeof content.description === "string" && content.description.trim().length > 0;
 
       return (
-        <section className="w-full bg-[#A22965] text-white overflow-hidden">
+        <section className="w-full bg-[#8A0000] text-white overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[580px] lg:min-h-[640px]">
             {/* Left 50%: Campus Photo matching Modi DSC06202 */}
             <div className="relative min-h-[380px] lg:min-h-full w-full bg-slate-900">
@@ -243,8 +243,8 @@ function HomepageSection({
               <div className="absolute inset-0 bg-black/10" />
             </div>
 
-            {/* Right 50%: Deep Wine Red background with White Text matching Modi #A22965 */}
-            <div className="bg-[#A22965] p-8 sm:p-12 lg:p-16 xl:p-20 flex flex-col justify-center text-white">
+            {/* Right 50%: Deep Wine Red background with White Text matching Modi #8A0000 */}
+            <div className="bg-[#8A0000] p-8 sm:p-12 lg:p-16 xl:p-20 flex flex-col justify-center text-white">
               <h1 className="text-3xl sm:text-4xl lg:text-[45px] font-semibold !text-white mb-6 leading-tight">
                 {section.title || "Why Siddharth International School"}
               </h1>
@@ -328,20 +328,20 @@ function HomepageSection({
 
       const amenitiesList = Array.isArray(content.items) && content.items.length > 0
         ? (content.items as { title: string; image?: string; icon?: any; desc?: string }[]).map((item, idx) => {
-            let IconComponent = Sparkles;
-            if (typeof item.icon === "string" && iconMap[item.icon]) {
-              IconComponent = iconMap[item.icon];
-            } else if (item.icon && typeof item.icon !== "string") {
-              IconComponent = item.icon;
-            } else {
-              IconComponent = defaultAmenitiesList[idx % defaultAmenitiesList.length]?.icon || Sparkles;
-            }
-            return {
-              title: item.title,
-              icon: IconComponent,
-              desc: item.desc,
-            };
-          })
+          let IconComponent = Sparkles;
+          if (typeof item.icon === "string" && iconMap[item.icon]) {
+            IconComponent = iconMap[item.icon];
+          } else if (item.icon && typeof item.icon !== "string") {
+            IconComponent = item.icon;
+          } else {
+            IconComponent = defaultAmenitiesList[idx % defaultAmenitiesList.length]?.icon || Sparkles;
+          }
+          return {
+            title: item.title,
+            icon: IconComponent,
+            desc: item.desc,
+          };
+        })
         : defaultAmenitiesList;
 
       return (
@@ -361,10 +361,10 @@ function HomepageSection({
                 return (
                   <div
                     key={idx}
-                    className="p-6 sm:p-7 rounded-[8px] bg-white border border-[#A22965] shadow-2xs hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center justify-center group hover:-translate-y-1"
+                    className="p-6 sm:p-7 rounded-[8px] bg-white border border-[#8A0000] shadow-2xs hover:shadow-lg transition-all duration-300 text-center flex flex-col items-center justify-center group hover:-translate-y-1"
                   >
-                    <div className="w-14 h-14 rounded-full bg-[#A22965]/10 flex items-center justify-center text-[#A22965] mb-4 group-hover:bg-[#A22965] group-hover:text-white transition-colors">
-                      <IconComponent className="h-7 w-7 text-[#A22965] group-hover:text-white transition-colors" />
+                    <div className="w-14 h-14 rounded-full bg-[#8A0000]/10 flex items-center justify-center text-[#8A0000] mb-4 group-hover:bg-[#8A0000] group-hover:text-white transition-colors">
+                      <IconComponent className="h-7 w-7 text-[#8A0000] group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="font-semibold text-base sm:text-[20px] text-[#00306E] group-hover:text-[#D20936] transition-colors leading-snug">
                       {item.title}
@@ -432,7 +432,7 @@ function HomepageSection({
             <div className="text-center mt-12">
               <Link
                 href={(content.buttonUrl as string) || "/gallery"}
-                className="inline-flex items-center gap-2 bg-[#A22965] hover:bg-[#851e51] text-white font-bold text-sm px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 bg-[#8A0000] hover:bg-[#680000] text-white font-bold text-sm px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all"
               >
                 <span>{(content.buttonText as string) || "View Full Photo & Video Gallery"}</span>
                 <ArrowRight className="h-4 w-4 text-[#D4A72C]" />
@@ -475,7 +475,7 @@ function HomepageSection({
           <Container>
             {/* Header */}
             <div className="max-w-4xl mx-auto text-center mb-12 md:mb-14">
-              <span className="inline-block text-[#A22965] font-semibold text-xs tracking-widest uppercase mb-2">
+              <span className="inline-block text-[#8A0000] font-semibold text-xs tracking-widest uppercase mb-2">
                 LEADERSHIP DESK
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-[#252525] tracking-tight">
@@ -498,7 +498,7 @@ function HomepageSection({
 
               {/* Leader Message Text */}
               <div className="lg:col-span-7 space-y-4">
-                <span className="inline-block text-[#A22965] font-bold text-xs tracking-widest uppercase bg-[#A22965]/10 px-3 py-1 rounded-md border border-[#A22965]/20">
+                <span className="inline-block text-[#8A0000] font-bold text-xs tracking-widest uppercase bg-[#8A0000]/10 px-3 py-1 rounded-md border border-[#8A0000]/20">
                   {designationText}
                 </span>
                 {content.name && (
@@ -617,7 +617,7 @@ function HomepageSection({
                   {primaryBtnText && (
                     <Link
                       href={primaryBtnUrl}
-                      className="bg-[#A22965] hover:bg-[#851e51] text-white font-bold text-sm px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all"
+                      className="bg-[#8A0000] hover:bg-[#680000] text-white font-bold text-sm px-8 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all"
                     >
                       {primaryBtnText}
                     </Link>
@@ -625,11 +625,11 @@ function HomepageSection({
                   {secondaryBtnText && (
                     <Link
                       href={secondaryBtnUrl}
-                      className="bg-[#D4A72C]/15 hover:bg-[#D4A72C] text-[#851e51] hover:text-[#591036] font-bold text-sm px-7 py-3.5 rounded-lg border-2 border-[#D4A72C] shadow-xs hover:shadow-md transition-all inline-flex items-center gap-2.5 hover:scale-105 active:scale-95"
+                      className="bg-[#D4A72C]/15 hover:bg-[#D4A72C] text-[#680000] hover:text-[#591036] font-bold text-sm px-7 py-3.5 rounded-lg border-2 border-[#D4A72C] shadow-xs hover:shadow-md transition-all inline-flex items-center gap-2.5 hover:scale-105 active:scale-95"
                     >
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A72C] opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#A22965]"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8A0000]"></span>
                       </span>
                       <span>{secondaryBtnText}</span>
                     </Link>
@@ -653,7 +653,7 @@ function HomepageSection({
     // Statistics Bar
     case "statistics":
       return (
-        <section className="py-14 md:py-20 bg-[#851e51] text-white border-y border-[#D4A72C]/30 relative overflow-hidden">
+        <section className="py-14 md:py-20 bg-[#680000] text-white border-y border-[#D4A72C]/30 relative overflow-hidden">
           <Container className="relative z-10">
             {section.title && (
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-10 tracking-tight !text-white">
@@ -686,7 +686,7 @@ function HomepageSection({
         "/uploads/campus/morning-assembly-ground.jpg";
 
       return (
-        <section className="relative py-20 md:py-28 overflow-hidden bg-[#A22965] text-white">
+        <section className="relative py-20 md:py-28 overflow-hidden bg-[#8A0000] text-white">
           {/* Background Image with Wine Red Overlay */}
           <div className="absolute inset-0 z-0">
             <img
@@ -694,7 +694,7 @@ function HomepageSection({
               alt={section.title || "Admissions"}
               className="w-full h-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-[#A22965]/92" />
+            <div className="absolute inset-0 bg-[#8A0000]/92" />
           </div>
 
           <Container className="relative z-10 text-center">
@@ -769,7 +769,7 @@ function HomepageSection({
           <Container>
             {/* Header */}
             <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
-              <span className="inline-block text-[#A22965] font-semibold text-xs tracking-widest uppercase mb-2">
+              <span className="inline-block text-[#8A0000] font-semibold text-xs tracking-widest uppercase mb-2">
                 FREQUENTLY ASKED
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#252525] tracking-tight mb-3">
@@ -782,11 +782,11 @@ function HomepageSection({
               {items.map((item, i) => (
                 <details
                   key={i}
-                  className="group rounded-2xl border border-slate-200/90 bg-white shadow-xs hover:border-[#A22965]/40 transition-all overflow-hidden [&_summary::-webkit-details-marker]:hidden"
+                  className="group rounded-2xl border border-slate-200/90 bg-white shadow-xs hover:border-[#8A0000]/40 transition-all overflow-hidden [&_summary::-webkit-details-marker]:hidden"
                 >
-                  <summary className="flex items-center justify-between p-5 sm:p-6 font-bold text-sm sm:text-base text-[#252525] hover:text-[#A22965] cursor-pointer select-none transition-colors">
+                  <summary className="flex items-center justify-between p-5 sm:p-6 font-bold text-sm sm:text-base text-[#252525] hover:text-[#8A0000] cursor-pointer select-none transition-colors">
                     <span>{item.question}</span>
-                    <span className="shrink-0 ml-4 text-[#A22965] transition-transform duration-300 group-open:rotate-180">
+                    <span className="shrink-0 ml-4 text-[#8A0000] transition-transform duration-300 group-open:rotate-180">
                       <ChevronDown className="w-5 h-5" />
                     </span>
                   </summary>

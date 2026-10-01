@@ -3,6 +3,7 @@ import { newsService } from "@/services/news.service";
 import { HomepageRenderer } from "@/features/homepage/components/homepage-renderer";
 import { PublicHeader } from "@/components/layout/public-header";
 import { PublicFooter } from "@/components/layout/public-footer";
+import { StickyEnquiryButton } from "@/components/shared/sticky-enquiry-button";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -22,6 +23,7 @@ export default async function RootPage() {
           <p className="mt-4 text-muted-foreground">Website under construction. Check back soon.</p>
         </main>
         <PublicFooter />
+        <StickyEnquiryButton />
       </div>
     );
   }
@@ -36,6 +38,7 @@ export default async function RootPage() {
         />
       </main>
       <PublicFooter />
+      <StickyEnquiryButton />
     </div>
   );
 }

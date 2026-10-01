@@ -27,9 +27,9 @@ export default async function PublicDisclosurePage() {
     <main className="min-h-screen bg-slate-50/70 pb-20">
       {/* 
         TOP HEADER BANNER
-        Styled with school signature pink/maroon #A22965 brand palette and gold compliance accents
+        Styled with school signature pink/maroon #8A0000 brand palette and gold compliance accents
       */}
-      <div className="bg-gradient-to-r from-[#851e51] via-[#A22965] to-[#851e51] text-white py-14 md:py-20 relative overflow-hidden border-b-4 border-[#D4A72C]">
+      <div className="bg-gradient-to-r from-[#680000] via-[#8A0000] to-[#680000] text-white py-14 md:py-20 relative overflow-hidden border-b-4 border-[#D4A72C]">
         <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
         <Container className="relative z-10 max-w-5xl">
           <div className="flex items-center gap-2 text-[#D4A72C] font-extrabold text-xs uppercase tracking-widest mb-3">
@@ -64,9 +64,9 @@ export default async function PublicDisclosurePage() {
                     className="overflow-hidden border border-slate-200 shadow-sm rounded-2xl bg-white"
                   >
                     {/* Section Header */}
-                    <CardHeader className="bg-[#A22965]/5 border-b border-[#A22965]/15 px-6 py-4">
+                    <CardHeader className="bg-[#8A0000]/5 border-b border-[#8A0000]/15 px-6 py-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <CardTitle className="text-lg sm:text-xl font-extrabold text-[#A22965] flex items-center gap-2">
+                        <CardTitle className="text-lg sm:text-xl font-extrabold text-[#8A0000] flex items-center gap-2">
                           <span>{sec.title}</span>
                         </CardTitle>
                         <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 bg-white border border-slate-300 px-3 py-1 rounded-full w-fit shadow-xs">
@@ -113,7 +113,7 @@ export default async function PublicDisclosurePage() {
                                             href={docUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#A22965] text-white text-xs font-bold hover:bg-[#851e51] shadow-xs transition-all hover:scale-105 active:scale-95"
+                                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#8A0000] text-white text-xs font-bold hover:bg-[#680000] shadow-xs transition-all hover:scale-105 active:scale-95"
                                           >
                                             <ExternalLink className="h-3.5 w-3.5" />
                                             <span>View PDF</span>
@@ -134,7 +134,7 @@ export default async function PublicDisclosurePage() {
                                           href={docUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#A22965] text-white text-xs font-semibold hover:bg-[#851e51] shadow-xs transition-all"
+                                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-[#8A0000] text-white text-xs font-semibold hover:bg-[#680000] shadow-xs transition-all"
                                         >
                                           <ExternalLink className="h-3.5 w-3.5" />
                                           <span>Open Link</span>
@@ -144,6 +144,20 @@ export default async function PublicDisclosurePage() {
                                           <CheckCircle2 className="h-3.5 w-3.5" />
                                           {field.value ? "Yes / Approved" : "No"}
                                         </span>
+                                      ) : field.label.toLowerCase().includes("email") && String(field.value || "").includes("@") ? (
+                                        <a
+                                          href={`mailto:${String(field.value).trim()}`}
+                                          className="font-semibold text-[#8A0000] hover:underline text-xs sm:text-sm transition-colors"
+                                        >
+                                          {String(field.value)}
+                                        </a>
+                                      ) : (field.label.toLowerCase().includes("contact") || field.label.toLowerCase().includes("phone")) && String(field.value || "").match(/\d{5,}/) ? (
+                                        <a
+                                          href={`tel:${String(field.value).replace(/[^0-9+]/g, "")}`}
+                                          className="font-semibold text-[#8A0000] hover:underline text-xs sm:text-sm transition-colors"
+                                        >
+                                          {String(field.value)}
+                                        </a>
                                       ) : (
                                         <span className="font-semibold text-slate-800 text-xs sm:text-sm">
                                           {String(field.value ?? "—")}

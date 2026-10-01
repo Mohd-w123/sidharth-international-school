@@ -241,7 +241,7 @@ export function TestimonialsSlider({
                 type="button"
                 onClick={prevSlide}
                 aria-label="Previous Testimonials"
-                className="w-10 h-10 rounded-full border border-slate-300 bg-white text-[#4D5765] hover:bg-[#A22965] hover:text-white hover:border-[#A22965] flex items-center justify-center transition-all shadow-xs cursor-pointer"
+                className="w-10 h-10 rounded-full border border-slate-300 bg-white text-[#4D5765] hover:bg-[#8A0000] hover:text-white hover:border-[#8A0000] flex items-center justify-center transition-all shadow-xs cursor-pointer"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
@@ -254,11 +254,10 @@ export function TestimonialsSlider({
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
-                    className={`transition-all duration-300 rounded-full cursor-pointer ${
-                      idx === currentIndex
-                        ? "w-6 h-2 bg-[#A22965]"
-                        : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
-                    }`}
+                    className={`transition-all duration-300 rounded-full cursor-pointer ${idx === currentIndex
+                      ? "w-6 h-2 bg-[#8A0000]"
+                      : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
+                      }`}
                   />
                 ))}
               </div>
@@ -267,7 +266,7 @@ export function TestimonialsSlider({
                 type="button"
                 onClick={nextSlide}
                 aria-label="Next Testimonials"
-                className="w-10 h-10 rounded-full border border-slate-300 bg-white text-[#4D5765] hover:bg-[#A22965] hover:text-white hover:border-[#A22965] flex items-center justify-center transition-all shadow-xs cursor-pointer"
+                className="w-10 h-10 rounded-full border border-slate-300 bg-white text-[#4D5765] hover:bg-[#8A0000] hover:text-white hover:border-[#8A0000] flex items-center justify-center transition-all shadow-xs cursor-pointer"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>

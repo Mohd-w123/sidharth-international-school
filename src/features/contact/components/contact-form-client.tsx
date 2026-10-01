@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
+import { submitContactMessage } from "@/actions/enquiry.actions";
+
 export function ContactFormClient() {
   const [isPending, startTransition] = useTransition();
   const [submitted, setSubmitted] = useState(false);
@@ -25,11 +27,20 @@ export function ContactFormClient() {
       return;
     }
     startTransition(async () => {
-      // In a real implementation, this would call a server action to save the contact form
-      // For now, we simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setSubmitted(true);
-      toast.success("Message sent successfully!");
+      const res = await submitContactMessage({
+        name,
+        email,
+        phone,
+        subject,
+        message,
+      });
+
+      if (res.error) {
+        toast.error(res.error);
+      } else {
+        setSubmitted(true);
+        toast.success(res.message || "Message sent successfully!");
+      }
     });
   };
 
